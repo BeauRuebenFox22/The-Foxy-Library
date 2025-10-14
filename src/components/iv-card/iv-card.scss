@@ -1,0 +1,124 @@
+// Base iv-card styles with theming tokens (CSS custom properties)
+// Designers override --iv-card-* variables in theme / scope; we keep safe fallbacks.
+
+.iv-card {
+  display: var(--iv-card-display, block);
+  box-sizing: border-box;
+  padding: var(--iv-card-padding, 0);
+  margin: var(--iv-card-margin, 0);
+  background: var(--iv-card-bg, transparent);
+  color: var(--iv-card-color, inherit);
+  border: var(--iv-card-border, none);
+  border-radius: var(--iv-card-border-radius, 0);
+  box-shadow: var(--iv-card-shadow, none);
+  font-size: var(--iv-card-font-size, inherit);
+  line-height: var(--iv-card-line-height, 1.4);
+  position: relative;
+  text-decoration: none;
+  transition: var(--iv-card-transition, background-color .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease);
+  gap: var(--iv-card-gap, 0.75rem);
+  display: var(--iv-card-layout, flex);
+  flex-direction: var(--iv-card-flex-direction, column);
+
+  a, a:visited, a:hover, a:focus {
+    text-decoration: var(--iv-card-link-text-decoration, none);
+    color: var(--iv-card-link-color, inherit);
+  }
+}
+
+.iv-card[href],
+.iv-card.is-interactive {
+  cursor: pointer;
+}
+
+.iv-card[href]:hover,
+.iv-card[href]:focus-visible,
+.iv-card.is-interactive:hover,
+.iv-card.is-interactive:focus-visible {
+  background: var(--iv-card-hover-bg, var(--iv-card-bg, transparent));
+  border: var(--iv-card-hover-border, var(--iv-card-border, none));
+  box-shadow: var(--iv-card-hover-shadow, var(--iv-card-shadow, none));
+  outline: var(--iv-card-focus-outline, none);
+  box-shadow: var(--iv-card-focus-ring, var(--iv-card-hover-shadow, var(--iv-card-shadow, none)));
+}
+
+// Wrapper link (when whole card is clickable) gets its own modifier class
+.iv-card-link-wrapper {
+  display: var(--iv-card-link-wrapper-display, contents); // allows children to layout naturally
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+// Prevent underline / link style bleed onto data fields
+.iv-card-field {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-weight: var(--iv-card-field-font-weight, inherit);
+  color: var(--iv-card-field-color, inherit);
+  word-break: break-word;
+  text-decoration: none;
+}
+
+// Ensure Add to Cart button remains clickable and visually distinct inside clickable card
+.iv-card .iv-card-add-to-cart-btn {
+  position: relative;
+  z-index: 2;
+}
+
+// Hover / focus styling only adjusts background / shadow, not text decoration
+.iv-card-link-wrapper:hover .iv-card-field,
+.iv-card-link-wrapper:focus-visible .iv-card-field {
+  text-decoration: none;
+}
+
+// Optional variable-driven hover state (kept non-invasive)
+.iv-card-link-wrapper:hover,
+.iv-card-link-wrapper:focus-visible {
+  background: var(--iv-card-link-hover-bg, var(--iv-card-hover-bg, transparent));
+}
+
+.iv-card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--iv-card-image-aspect-ratio, auto);
+  object-fit: var(--iv-card-image-object-fit, cover);
+  border-radius: var(--iv-card-image-border-radius, var(--iv-card-border-radius, 0));
+  background: var(--iv-card-image-bg, transparent);
+}
+
+.iv-card-title { 
+  font-weight: var(--iv-card-heading-font-weight, 600);
+  font-size: var(--iv-card-title-font-size, 1em);
+  line-height: var(--iv-card-title-line-height, 1.2);
+}
+
+.iv-card-price {
+  color: var(--iv-card-price-color, inherit);
+  font-weight: var(--iv-card-price-weight, 500);
+}
+
+.iv-card-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--iv-card-control-gap, 0.5rem);
+  align-items: center;
+  margin-top: var(--iv-card-controls-margin-top, var(--iv-card-gap, 0.75rem));
+}
+
+.iv-card-add-to-cart-btn {
+  --iv-button-variant: var(--iv-card-button-variant, primary);
+}
+
+.iv-card-inner { 
+  width: 100%;
+  display: contents; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iv-card {
+    transition: none;
+  }
+}

@@ -1,0 +1,100 @@
+// Base iv-suggest styles with component-scoped CSS variables.
+// Override --iv-suggest-* externally (theme / section scope) without editing this file.
+
+.iv-suggest {
+  box-sizing: border-box;
+  width: var(--iv-suggest-width, 100%);
+  max-width: var(--iv-suggest-max-width, 100%);
+  margin: var(--iv-suggest-margin, 0);
+  padding: var(--iv-suggest-padding, 0);
+  background: var(--iv-suggest-bg, transparent);
+  border: var(--iv-suggest-border, none);
+  border-radius: var(--iv-suggest-radius, 0);
+  box-shadow: var(--iv-suggest-shadow, none);
+  color: var(--iv-suggest-color, inherit);
+  --iv-layout-gap: var(--iv-suggest-layout-gap, 1.25rem); 
+}
+
+.iv-suggest-queries,
+.iv-suggest-collections,
+.iv-suggest-products,
+.iv-suggest-banner {
+  box-sizing: border-box;
+  padding: var(--iv-suggest-section-padding, 0);
+  margin: var(--iv-suggest-section-margin, 0);
+  background: var(--iv-suggest-section-bg, transparent);
+  border: var(--iv-suggest-section-border, none);
+  border-radius: var(--iv-suggest-section-radius, 0);
+}
+
+.iv-suggest-queries-title,
+.iv-suggest-products-title,
+.iv-suggest-collections-title {
+  display: block;
+  margin: var(--iv-suggest-title-margin, 0 0 .75rem 0);
+  font-size: var(--iv-suggest-title-font-size, 1rem);
+  font-weight: var(--iv-suggest-title-font-weight, 600);
+  line-height: var(--iv-suggest-title-line-height, 1.2);
+  letter-spacing: var(--iv-suggest-title-letter-spacing, normal);
+}
+
+.iv-suggest-top-queries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--iv-suggest-queries-gap, .5rem);
+}
+
+.iv-suggest-top-queries .iv-link {
+  --iv-link-color: var(--iv-suggest-query-link-color, inherit);
+  --iv-link-hover-color: var(--iv-suggest-query-link-hover-color, var(--iv-link-color, inherit));
+  font-size: var(--iv-suggest-query-link-font-size, .875rem);
+  background: var(--iv-suggest-query-link-bg, transparent);
+  padding: var(--iv-suggest-query-link-padding, 0);
+  border: var(--iv-suggest-query-link-border, none);
+  border-radius: var(--iv-suggest-query-link-radius, 0);
+}
+
+.iv-suggest .iv-card {
+  --iv-card-padding: var(--iv-suggest-card-padding, var(--iv-card-padding, 0));
+  margin: var(--iv-suggest-card-margin, 0);
+}
+
+.iv-suggest-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.iv-suggest-banner-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: var(--iv-suggest-banner-image-object-fit, cover);
+  aspect-ratio: var(--iv-suggest-banner-image-aspect-ratio, auto);
+}
+
+.iv-suggest-no-data {
+  font-size: var(--iv-suggest-empty-font-size, .8125rem);
+  opacity: var(--iv-suggest-empty-opacity, .8);
+  padding: var(--iv-suggest-empty-padding, 0);
+}
+
+.iv-suggest--scroll-x .iv-layout {
+  display: flex !important;
+  overflow-x: auto;
+  scrollbar-width: var(--iv-suggest-scrollbar-width, thin);
+  -webkit-overflow-scrolling: touch;
+}
+
+.iv-suggest--scroll-x .iv-layout > * { flex: 0 0 var(--iv-suggest-scroll-item-width, 70%); }
+
+@media (min-width: 40rem) {
+  .iv-suggest { --iv-suggest-layout-gap: var(--iv-suggest-layout-gap-md, var(--iv-suggest-layout-gap, 1.25rem)); }
+}
+
+@media (min-width: 64rem) {
+  .iv-suggest { --iv-suggest-layout-gap: var(--iv-suggest-layout-gap-lg, var(--iv-suggest-layout-gap, 1.25rem)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iv-suggest { scroll-behavior: auto; }
+}

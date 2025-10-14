@@ -1,0 +1,10 @@
+.iv-toast-container {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 10000;
+  pointer-events: none;
+}

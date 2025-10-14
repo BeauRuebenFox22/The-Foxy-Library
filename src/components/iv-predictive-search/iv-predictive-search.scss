@@ -1,0 +1,148 @@
+// Predictive Search Base Styles
+// Neutral, token-driven; designers override --iv-predictive-* vars upstream.
+
+.iv-predictive-search {
+  box-sizing: border-box;
+  width: var(--iv-predictive-width, 100%);
+  max-width: var(--iv-predictive-max-width, 100%);
+  margin: var(--iv-predictive-margin, 0);
+  padding: var(--iv-predictive-padding, 0);
+  position: relative;
+  background: var(--iv-predictive-background, transparent);
+  border: var(--iv-predictive-border, none);
+  border-radius: var(--iv-predictive-border-radius, 0);
+  box-shadow: var(--iv-predictive-box-shadow, none);
+  font-family: var(--iv-predictive-font-family, inherit);
+  font-size: var(--iv-predictive-font-size, 1rem);
+  color: var(--iv-predictive-text-color, inherit);
+  transition: var(--iv-predictive-transition, box-shadow .2s ease, border-color .2s ease);
+}
+
+.iv-predictive-search-wrapper {
+  box-sizing: border-box;
+  padding: var(--iv-predictive-wrapper-padding, 0);
+  display: var(--iv-predictive-wrapper-display, block);
+  gap: var(--iv-predictive-wrapper-gap, .5rem);
+}
+
+.iv-predictive-search-wrapper.label-top .iv-predictive-search-label { display: block; }
+
+.iv-predictive-search-wrapper.label-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--iv-predictive-inline-gap, .5rem);
+}
+
+.iv-predictive-search-label {
+  margin: var(--iv-predictive-label-margin, 0 0 .25rem 0);
+  font-size: var(--iv-predictive-label-font-size, 1rem);
+  font-weight: var(--iv-predictive-label-font-weight, 500);
+  color: var(--iv-predictive-label-color, inherit);
+  line-height: var(--iv-predictive-label-line-height, 1.2);
+}
+
+.iv-predictive-search-input {
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--iv-predictive-input-background, transparent);
+  color: var(--iv-predictive-input-color, inherit);
+  border: var(--iv-predictive-input-border, 1px solid currentColor);
+  border-radius: var(--iv-predictive-input-border-radius, 0);
+  padding: var(--iv-predictive-input-padding, .5rem .75rem);
+  font-size: var(--iv-predictive-input-font-size, inherit);
+  line-height: var(--iv-predictive-input-line-height, 1.2);
+  outline: none;
+  transition: var(--iv-predictive-input-transition, border-color .2s ease, box-shadow .2s ease);
+}
+
+.iv-predictive-search-input:focus {
+  border: var(--iv-predictive-input-focus-border, var(--iv-predictive-input-border, 1px solid currentColor));
+  box-shadow: var(--iv-predictive-input-focus-shadow, 0 0 0 2px rgba(0,0,0,.15));
+}
+
+.iv-predictive-search-results {
+  position: var(--iv-predictive-results-position, absolute);
+  top: var(--iv-predictive-results-top, 100%);
+  left: var(--iv-predictive-results-left, 0);
+  right: var(--iv-predictive-results-right, 0);
+  z-index: var(--iv-predictive-results-z-index, 10);
+  margin: var(--iv-predictive-results-margin, .5rem 0 0 0);
+  padding: var(--iv-predictive-results-padding, .5rem);
+  background: var(--iv-predictive-results-background, var(--iv-predictive-background, transparent));
+  border: var(--iv-predictive-results-border, var(--iv-predictive-border, none));
+  border-radius: var(--iv-predictive-results-border-radius, var(--iv-predictive-border-radius, 0));
+  box-shadow: var(--iv-predictive-results-box-shadow, var(--iv-predictive-box-shadow, none));
+  box-sizing: border-box;
+}
+
+.iv-predictive-search-prediction-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--iv-predictive-list-gap, .5rem);
+}
+
+.iv-predictive-search-prediction-item {
+  background: var(--iv-predictive-item-background, transparent);
+  border-radius: var(--iv-predictive-item-border-radius, 0);
+  transition: var(--iv-predictive-item-transition, background .2s ease, color .2s ease);
+}
+
+.iv-predictive-search-prediction-item:hover {
+  background: var(--iv-predictive-item-hover-background, var(--iv-predictive-item-background, transparent));
+}
+
+.iv-predictive-search-prediction-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--iv-predictive-link-color, inherit);
+  padding: var(--iv-predictive-link-padding, .25rem .5rem);
+  border-radius: var(--iv-predictive-link-border-radius, 0);
+  gap: var(--iv-predictive-link-gap, .5rem);
+  background: var(--iv-predictive-link-background, transparent);
+  transition: var(--iv-predictive-link-transition, background .2s ease, color .2s ease);
+}
+
+.iv-predictive-search-prediction-link:hover {
+  color: var(--iv-predictive-link-hover-color, var(--iv-predictive-link-color, inherit));
+  background: var(--iv-predictive-link-hover-background, var(--iv-predictive-link-background, transparent));
+}
+
+.iv-predictive-search-prediction-link .prediction-image {
+  width: var(--iv-predictive-image-width, 48px);
+  height: var(--iv-predictive-image-height, 48px);
+  object-fit: var(--iv-predictive-image-object-fit, cover);
+  border-radius: var(--iv-predictive-image-border-radius, 0);
+  background: var(--iv-predictive-image-background, transparent);
+  border: var(--iv-predictive-image-border, none);
+  flex: 0 0 auto;
+}
+
+.iv-predictive-search-prediction-link .prediction-part {
+  font-size: var(--iv-predictive-part-font-size, 1rem);
+  color: var(--iv-predictive-part-color, inherit);
+  margin-right: var(--iv-predictive-part-margin-right, 0);
+}
+
+.iv-predictive-search-no-results {
+  padding: var(--iv-predictive-no-results-padding, .5rem);
+  font-size: var(--iv-predictive-no-results-font-size, .875rem);
+  color: var(--iv-predictive-no-results-color, inherit);
+  text-align: var(--iv-predictive-no-results-text-align, center);
+  opacity: var(--iv-predictive-no-results-opacity, .8);
+}
+
+.iv-predictive-search-see-all {
+  margin-top: var(--iv-predictive-see-all-margin-top, .75rem);
+  text-align: var(--iv-predictive-see-all-text-align, right);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iv-predictive-search,
+  .iv-predictive-search-input,
+  .iv-predictive-search-prediction-item,
+  .iv-predictive-search-prediction-link { transition: none; }
+}

@@ -1,0 +1,77 @@
+// Base iv-button styles with theming tokens. Override --iv-button-* in theme scopes.
+// Keep defaults minimal so designers can layer brand styling later.
+
+.iv-button {
+  display: var(--iv-button-display, inline-flex);
+  align-items: var(--iv-button-align, center);
+  justify-content: var(--iv-button-justify, center);
+  gap: var(--iv-button-gap, 0.5rem);
+  box-sizing: border-box;
+  padding: var(--iv-button-padding, 0.75rem 1rem);
+  background: var(--iv-button-bg, transparent);
+  color: var(--iv-button-color, inherit);
+  border: var(--iv-button-border, none);
+  border-radius: var(--iv-button-radius, 0);
+  font: inherit;
+  font-size: var(--iv-button-font-size, inherit);
+  font-weight: var(--iv-button-font-weight, 500);
+  line-height: var(--iv-button-line-height, 1.2);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  min-width: var(--iv-button-min-width, unset);
+  min-height: var(--iv-button-min-height, 2.5rem);
+  box-shadow: var(--iv-button-shadow, none);
+  transition: var(--iv-button-transition, background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.iv-button:hover:not(.disabled):not([disabled]),
+.iv-button:focus-visible:not(.disabled):not([disabled]) {
+  background: var(--iv-button-hover-bg, var(--iv-button-bg, transparent));
+  color: var(--iv-button-hover-color, var(--iv-button-color, inherit));
+  border: var(--iv-button-hover-border, var(--iv-button-border, none));
+  box-shadow: var(--iv-button-hover-shadow, var(--iv-button-shadow, none));
+  outline: var(--iv-button-focus-outline, none);
+}
+
+.iv-button:active:not(.disabled):not([disabled]) {
+  background: var(--iv-button-active-bg, var(--iv-button-hover-bg, var(--iv-button-bg, transparent)));
+  color: var(--iv-button-active-color, var(--iv-button-hover-color, var(--iv-button-color, inherit)));
+  border: var(--iv-button-active-border, var(--iv-button-hover-border, var(--iv-button-border, none)));
+  box-shadow: var(--iv-button-active-shadow, var(--iv-button-hover-shadow, var(--iv-button-shadow, none)));
+}
+
+.iv-button.disabled,
+.iv-button[disabled] {
+  cursor: not-allowed;
+  opacity: var(--iv-button-disabled-opacity, 0.5);
+  background: var(--iv-button-disabled-bg, var(--iv-button-bg, transparent));
+  color: var(--iv-button-disabled-color, var(--iv-button-color, inherit));
+  border: var(--iv-button-disabled-border, var(--iv-button-border, none));
+  box-shadow: var(--iv-button-disabled-shadow, none);
+}
+
+.iv-button.variant-card,
+.iv-card-add-to-cart-btn.iv-button {
+  --iv-button-bg: var(--iv-card-button-bg, transparent);
+  --iv-button-border: var(--iv-card-button-border, none);
+  --iv-button-color: var(--iv-card-button-color, inherit);
+  --iv-button-hover-bg: var(--iv-card-button-hover-bg, var(--iv-button-bg));
+  --iv-button-hover-border: var(--iv-card-button-hover-border, var(--iv-button-border));
+  --iv-button-hover-color: var(--iv-card-button-hover-color, var(--iv-button-color));
+}
+
+.iv-button:focus-visible:not(.disabled):not([disabled]) {
+  box-shadow: var(--iv-button-focus-ring, var(--iv-button-hover-shadow, var(--iv-button-shadow, none)));
+}
+
+.iv-button--sm { --iv-button-padding: var(--iv-button-sm-padding, 0.5rem 0.75rem); font-size: var(--iv-button-sm-font-size, 0.875rem); }
+.iv-button--lg { --iv-button-padding: var(--iv-button-lg-padding, 1rem 1.25rem); font-size: var(--iv-button-lg-font-size, 1.125rem); }
+
+.iv-button > svg, .iv-button .icon { width: var(--iv-button-icon-size, 1em); height: var(--iv-button-icon-size, 1em); flex: 0 0 auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .iv-button { transition: none; }
+}

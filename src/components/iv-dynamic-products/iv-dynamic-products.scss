@@ -1,0 +1,75 @@
+// Base iv-dynamic-products styles with CSS variable theming.
+// Designers override --iv-dynamic-products-* tokens externally.
+
+.iv-dynamic-products {
+  box-sizing: border-box;
+  width: var(--iv-dynamic-products-width, 100%);
+  max-width: var(--iv-dynamic-products-max-width, 100%);
+  margin: var(--iv-dynamic-products-margin, 0);
+  padding: var(--iv-dynamic-products-padding, 0);
+  background: var(--iv-dynamic-products-bg, transparent);
+  border: var(--iv-dynamic-products-border, none);
+  border-radius: var(--iv-dynamic-products-radius, 0);
+  box-shadow: var(--iv-dynamic-products-shadow, none);
+  color: var(--iv-dynamic-products-color, inherit);
+  --iv-layout-gap: var(--iv-dynamic-products-gap, 1.5rem); 
+}
+
+.iv-dynamic-products-title {
+  margin: var(--iv-dynamic-products-title-margin, 0 0 1rem 0);
+  font-size: var(--iv-dynamic-products-title-font-size, clamp(1.125rem, 1vw + 1rem, 1.75rem));
+  font-weight: var(--iv-dynamic-products-title-font-weight, 600);
+  line-height: var(--iv-dynamic-products-title-line-height, 1.2);
+  letter-spacing: var(--iv-dynamic-products-title-letter-spacing, normal);
+}
+
+/* State blocks */
+.iv-dynamic-products-error,
+.iv-dynamic-products-empty {
+  padding: var(--iv-dynamic-products-state-padding, 1rem);
+  border: var(--iv-dynamic-products-state-border, none);
+  background: var(--iv-dynamic-products-state-bg, transparent);
+  color: var(--iv-dynamic-products-state-color, inherit);
+  font-size: var(--iv-dynamic-products-state-font-size, 0.875rem);
+  text-align: var(--iv-dynamic-products-state-text-align, center);
+}
+
+.iv-dynamic-products-products {
+  width: 100%;
+  margin: var(--iv-dynamic-products-products-margin, 0);
+  padding: var(--iv-dynamic-products-products-padding, 0);
+}
+
+/* Bridge styling into layout variant */
+.iv-layout--iv-dynamic-products-layout {
+  --iv-layout-gap: var(--iv-dynamic-products-grid-gap, var(--iv-dynamic-products-gap, 1.5rem));
+  align-items: var(--iv-dynamic-products-grid-align, stretch);
+  justify-content: var(--iv-dynamic-products-grid-justify, flex-start);
+}
+
+.iv-dynamic-products .iv-card {
+  margin: var(--iv-dynamic-products-card-margin, 0);
+  --iv-card-padding: var(--iv-dynamic-products-card-padding, var(--iv-card-padding, 0));
+}
+
+@media (min-width: 40rem) {
+  .iv-dynamic-products { --iv-dynamic-products-gap: var(--iv-dynamic-products-gap-md, var(--iv-dynamic-products-gap, 1.5rem)); }
+}
+@media (min-width: 64rem) {
+  .iv-dynamic-products { --iv-dynamic-products-gap: var(--iv-dynamic-products-gap-lg, var(--iv-dynamic-products-gap, 1.5rem)); }
+}
+
+.iv-dynamic-products--scroll-x .iv-layout--iv-dynamic-products-layout {
+  display: flex !important;
+  overflow-x: auto;
+  scrollbar-width: var(--iv-dynamic-products-scrollbar-width, thin);
+  -webkit-overflow-scrolling: touch;
+}
+
+.iv-dynamic-products--scroll-x .iv-layout--iv-dynamic-products-layout > * {
+  flex: 0 0 var(--iv-dynamic-products-scroll-item-width, 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iv-dynamic-products { scroll-behavior: auto; }
+}

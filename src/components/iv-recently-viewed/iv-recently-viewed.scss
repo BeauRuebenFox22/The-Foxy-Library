@@ -1,0 +1,85 @@
+// Base styles for iv-recently-viewed
+// All customizable values use the --iv-recently-viewed-* variable naming pattern with safe fallbacks.
+// Example override: .theme-dark { --iv-recently-viewed-background: #111; }
+
+.iv-recently-viewed {
+  background: var(--iv-recently-viewed-background, none);
+  padding: var(--iv-recently-viewed-padding, 1rem 0);
+  margin: var(--iv-recently-viewed-margin, 0);
+  border: var(--iv-recently-viewed-border, none);
+  border-radius: var(--iv-recently-viewed-radius, 0);
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+}
+
+.iv-recently-viewed-title {
+  margin: var(--iv-recently-viewed-title-margin, 0 0 0.75rem);
+  font-size: var(--iv-recently-viewed-title-font-size, 1.25rem);
+  line-height: var(--iv-recently-viewed-title-line-height, 1.2);
+  font-weight: var(--iv-recently-viewed-title-weight, 600);
+  color: var(--iv-recently-viewed-title-color, inherit);
+}
+
+.iv-recently-viewed__list,
+.iv-recently-viewed__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.iv-recently-viewed iv-layout,
+.iv-recently-viewed .iv-layout {
+  --gap: var(--iv-recently-viewed-gap, 1rem);
+  gap: var(--iv-recently-viewed-gap, 1rem);
+}
+
+.iv-recently-viewed iv-card,
+.iv-recently-viewed .iv-card {
+  max-width: var(--iv-recently-viewed-card-max-width, 260px);
+  width: 100%;
+}
+
+.iv-recently-viewed-no-history,
+.iv-recently-viewed__no-history,
+.iv-recently-viewed-no-history-message {
+  font-size: var(--iv-recently-viewed-no-history-font-size, 0.875rem);
+  color: var(--iv-recently-viewed-no-history-color, #666);
+  padding: var(--iv-recently-viewed-no-history-padding, 0.5rem 0);
+}
+
+// Spacing utilities between internal blocks
+.iv-recently-viewed > * + * {
+  margin-top: var(--iv-recently-viewed-stack-gap, 1rem);
+}
+
+@media (min-width: 640px) {
+  .iv-recently-viewed {
+    padding: var(--iv-recently-viewed-padding-md, var(--iv-recently-viewed-padding, 1.25rem 0));
+  }
+  .iv-recently-viewed-title {
+    font-size: var(--iv-recently-viewed-title-font-size-md, 1.375rem);
+  }
+}
+
+@media (min-width: 960px) {
+  .iv-recently-viewed-title {
+    font-size: var(--iv-recently-viewed-title-font-size-lg, 1.5rem);
+  }
+}
+
+.iv-recently-viewed::after {
+  content: var(--iv-recently-viewed-after-content, '');
+  display: var(--iv-recently-viewed-after-display, none);
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--iv-recently-viewed-after-border-color, currentColor);
+  opacity: var(--iv-recently-viewed-after-opacity, 0.1);
+}
+
+.iv-recently-viewed[data-tight] {
+  --iv-recently-viewed-gap: 0.5rem;
+  --iv-recently-viewed-stack-gap: 0.75rem;
+}

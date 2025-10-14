@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html 
+  dir="ltr" 
+  lang="en" 
+  store-token="2d689153a5be5671be6e6270994ca80c"
+  store-url="beau-backyard">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+    <script type="module" src="/build/intravenous.esm.js"></script>
+    <script nomodule src="/build/intravenous.js"></script>
+  </head>
+  <body>
+
+    <iv-toast-container></iv-toast-container>
+
+    <iv-accordion
+      accordionlabels="label 1, label 2, label 3, label 4, label 5">
+      <div slot="panel-0">Label 1</div>
+      <div slot="panel-1">Label 2</div>
+      <div slot="panel-2">Label 3</div>
+      <div slot="panel-3">Label 4</div>
+      <div slot="panel-4">Label 5</div>
+    </iv-accordion>
+
+    <iv-recently-viewed
+      componenttitle="Recently Viewed"
+      titletag="h2"
+      numbertoshow="4"
+      noviewhistory="No view history">
+    </iv-recently-viewed>
+
+    <!-- <iv-dynamic-products
+      type="BEST_SELLING"
+      limit="8"
+      title="Foxy Socks Best Selling"
+      titletag="h1"
+      collectionhandle="all"
+      requestedfields: string = 'id,title,handle'
+      emptystring: string = 'No products found what so ever'>
+    </iv-dynamic-products> -->
+
+    <iv-modal></iv-modal>
+
+    <!-- <iv-wishlist
+      buttoncontent="Add to wishlist"
+      productdata='{"id":123,"title":"Test Product","price":19.99,"image":"img.jpg","url":"/product/123"}'
+      usefields="id,title,price,image,url">
+    </iv-wishlist> -->
+
+    <!-- <div class="container">
+      <iv-predictive-search
+        buttontrigger
+        placeholder="Start typing to search..."
+        gridlayout="collection product product,collection product product,collection article article"
+        requestedfields="img,price,title"
+        action="/search"
+        searchlabel="Predictive Search"
+        labelposition="inline"></iv-predictive-search>
+      <iv-suggest
+        banner="https://www.stephenwebster.com/cdn/shop/files/Stephen_Webster_Banner_Desktop_2.jpg?v=1686655731"
+        bannerurl="https://www.stephenwebster.com/pages/ring-size-guide"
+        bannertitle="Ring Size Guide"
+        topqueries="foxy, socks, stencil, JavaScript, TypeScript"
+        collections="test"
+        gridlayout='"banner" "queries" "collections"'>
+      </iv-suggest>
+    </div> -->
+    <style>
+      :root {
+        --iv-predictive-background: #f9f9fb;
+        --iv-predictive-text-color: red;
+        --iv-predictive-contrast-color: orange;
+        --iv-predictive-border-radius: 8px;
+        --iv-predictive-border: 1px solid #d1d5db;
+        --iv-predictive-box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        --iv-predictive-input-background: #fff;
+        --iv-predictive-input-color: #222;
+        --iv-predictive-input-padding: 0.75rem 1rem;
+        --iv-predictive-label-color: #555;
+        --iv-predictive-label-font-size: 1.2rem;
+        --iv-predictive-results-background: #fff;
+        --iv-predictive-results-border: 1px solid #e5e7eb;
+        --iv-predictive-font-family: 'Arial', sans-serif;
+        --iv-predictive-font-size: 1rem;
+        --iv-predictive-wrapper-padding: 1rem;
+        --iv-predictive-label-font-weight: 600;
+        --iv-predictive-label-margin-bottom: 0.5rem;
+        --iv-predictive-input-border-radius: 4px;
+        --iv-predictive-input-border: 1px solid #d1d5db;
+        --iv-predictive-input-font-size: 1rem;
+        --iv-predictive-input-focus-border: 1px solid #7c3aed;
+        --iv-predictive-input-focus-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        --iv-predictive-results-border-radius: 8px;
+        --iv-predictive-results-box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        --iv-predictive-results-margin-top: 0.5rem;
+        --iv-predictive-results-padding: 0.5rem;
+        --iv-predictive-results-z-index: 1000;
+        --iv-predictive-list-gap: 0.5rem;
+        --iv-predictive-item-background: #fff;
+        --iv-predictive-item-border-radius: 4px;
+        --iv-predictive-item-hover-background: #f3f4f6;
+        --iv-predictive-link-color: #7c3aed;
+        --iv-predictive-link-padding: 0.5rem 1rem;
+        --iv-predictive-link-border-radius: 4px;
+        --iv-predictive-link-hover-color: #4c1d95;
+        --iv-predictive-link-hover-background: #f3f4f6;
+        --iv-predictive-image-width: 100px;
+        --iv-predictive-image-height: 100px;
+        --iv-predictive-image-margin-right: 0.5rem;
+        --iv-predictive-image-border-radius: 4px;
+        --iv-predictive-image-background: #f3f4f6;
+        --iv-predictive-image-border: 1px solid #e5e7eb;
+        --iv-predictive-part-font-size: 0.875rem;
+        --iv-predictive-part-color: #555;
+        --iv-predictive-part-margin-right: 0.5rem;
+        --iv-predictive-no-results-color: #888;
+        --iv-predictive-no-results-font-size: 1rem;
+        --iv-predictive-no-results-padding: 0.5rem;
+      }
+
+      .container {
+        width: 50%;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+    </style>
+
+    <!-- Broke this don't know how - need to fix -->
+    <iv-sidebar>
+      <div slot="header">
+        <h3>Header</h3>
+      </div>
+      <div slot="content">
+        <h3>Content</h3>
+      </div>
+      <div slot="foxy">
+        <h3>Foxy Content</h3>
+      </div>
+      <div slot="footer">
+        <h3>Footer</h3>
+      </div>
+    </iv-sidebar>
+
+    <iv-button
+      eventname="openPullout"
+      eventdetail="content">
+      Open Pullout
+    </iv-button>
+
+    <!-- <iv-suggest 
+      topqueries="Cream, Sunscreen, Haircare, Face mask, Body cream" 
+      products="[{&quot;id&quot;:3724193726554,&quot;title&quot;:&quot;'Get me to the church on time' Journal&quot;,&quot;handle&quot;:&quot;get-me-to-the-church-on-time-journal&quot;,&quot;description&quot;:&quot;\u003cp\u003ePerfect for any busy bride and groom to take notes in all those important meetings.\u003cbr\u003eThis duck egg blue is part of our new range.\u003cbr\u003eThe quote 'Get me to the church on time' is hand engraved on each journal, in gold.\u003cbr\u003eThe pages are lined with gold gilding and a ribbon marker. \u003cbr\u003eLook beautiful with the couples initials engraved in the bottom right hand corner.\u003c\/p\u003e\n\u003cp\u003eLines spacing is 0.7cm each\u003cbr\u003eSides: 520 Pages: 260\u003c\/p\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/p\u003e&quot;,&quot;published_at&quot;:&quot;2019-09-13T15:47:46+01:00&quot;,&quot;created_at&quot;:&quot;2019-09-13T15:47:46+01:00&quot;,&quot;vendor&quot;:&quot;Noble Macmillan&quot;,&quot;type&quot;:&quot;Journals&quot;,&quot;tags&quot;:[&quot;all&quot;,&quot;Blue&quot;,&quot;Category_Journals&quot;,&quot;Colour_Blue&quot;,&quot;Diaries \u0026 Notebooks&quot;,&quot;Material_Leather&quot;,&quot;Notebooks&quot;,&quot;Occasion_Engagements&quot;,&quot;Occasion_Valentine's Day&quot;,&quot;Occasion_Weddings&quot;,&quot;Personalised_Yes&quot;,&quot;Price_£50 to £100&quot;,&quot;Size_A5&quot;,&quot;Style_Lined&quot;,&quot;wedding gift&quot;],&quot;price&quot;:9500,&quot;price_min&quot;:9500,&quot;price_max&quot;:9500,&quot;available&quot;:true,&quot;price_varies&quot;:false,&quot;compare_at_price&quot;:null,&quot;compare_at_price_min&quot;:0,&quot;compare_at_price_max&quot;:0,&quot;compare_at_price_varies&quot;:false,&quot;variants&quot;:[{&quot;id&quot;:28450440511578,&quot;title&quot;:&quot;Default Title&quot;,&quot;option1&quot;:&quot;Default Title&quot;,&quot;option2&quot;:null,&quot;option3&quot;:null,&quot;sku&quot;:&quot;EA2878&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:null,&quot;available&quot;:true,&quot;name&quot;:&quot;'Get me to the church on time' Journal&quot;,&quot;public_title&quot;:null,&quot;options&quot;:[&quot;Default Title&quot;],&quot;price&quot;:9500,&quot;weight&quot;:227,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[]}],&quot;images&quot;:[&quot;\/\/www.noblemacmillan.com\/cdn\/shop\/products\/get_me_to_the_church_on_time.jpg?v=1568389123&quot;,&quot;\/\/www.noblemacmillan.com\/cdn\/shop\/products\/get_me_to_the_church_on_time_1.jpg?v=1568389123&quot;],&quot;featured_image&quot;:&quot;\/\/www.noblemacmillan.com\/cdn\/shop\/products\/get_me_to_the_church_on_time.jpg?v=1568389123&quot;,&quot;options&quot;:[&quot;Title&quot;],&quot;media&quot;:[{&quot;alt&quot;:null,&quot;id&quot;:1712957751386,&quot;position&quot;:1,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.906,&quot;height&quot;:2712,&quot;width&quot;:2456,&quot;src&quot;:&quot;\/\/www.noblemacmillan.com\/cdn\/shop\/products\/get_me_to_the_church_on_time.jpg?v=1568389123&quot;},&quot;aspect_ratio&quot;:0.906,&quot;height&quot;:2712,&quot;media_type&quot;:&quot;image&quot;,&quot;src&quot;:&quot;\/\/www.noblemacmillan.com\/cdn\/shop\/products\/get_me_to_the_church_on_time.jpg?v=1568389123&quot;,&quot;width&quot;:2456},{&quot;alt&quot;:null,&quot;id&quot;:1712957784154,&quot;position&quot;:2,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.992,&quot;height&quot;:1512,&quot;width&quot;:1500,&quot;src&quot;:&quot;\/\/www.noblemacmillan.com\/cdn\/shop\/products\/get_me_to_the_church_on_time_1.jpg?v=1568389123&quot;},&quot;aspect_ratio&quot;:0.992,&quot;height&quot;:1512,&quot;media_type&quot;:&quot;image&quot;,&quot;src&quot;:&quot;\/\/www.noblemacmillan.com\/cdn\/shop\/products\/get_me_to_the_church_on_time_1.jpg?v=1568389123&quot;,&quot;width&quot;:1500}],&quot;requires_selling_plan&quot;:false,&quot;selling_plan_groups&quot;:[],&quot;content&quot;:&quot;\u003cp\u003ePerfect for any busy bride and groom to take notes in all those important meetings.\u003cbr\u003eThis duck egg blue is part of our new range.\u003cbr\u003eThe quote 'Get me to the church on time' is hand engraved on each journal, in gold.\u003cbr\u003eThe pages are lined with gold gilding and a ribbon marker. \u003cbr\u003eLook beautiful with the couples initials engraved in the bottom right hand corner.\u003c\/p\u003e\n\u003cp\u003eLines spacing is 0.7cm each\u003cbr\u003eSides: 520 Pages: 260\u003c\/p\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/p\u003e&quot;}]"
+      gridlayout="queries queries, banner banner, collections products">
+    </iv-suggest> -->
+
+  </body>
+</html>

@@ -1,0 +1,81 @@
+.iv-toast {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  line-height: 1.4;
+  min-width: 26rem; // slightly wider for readability
+  max-width: 36rem;
+  padding: 1.1rem 1.5rem 1.1rem 1.75rem; // extra left space for accent bar
+  border-radius: 0.5rem;
+  font-size: var(--iv-toast-font-size, 1.05rem);
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(2rem) scale(0.95);
+  box-shadow: 0 8px 32px rgba(0,0,0,.18), 0 2px 6px rgba(0,0,0,.12);
+  border: 1px solid var(--iv-toast-border, rgba(0,0,0,.12));
+  background-clip: padding-box;
+  backdrop-filter: var(--iv-toast-backdrop-filter, none);
+  -webkit-font-smoothing: antialiased;
+  animation: toast-in .5s cubic-bezier(.4, 1.4, .6, 1) forwards, toast-out .5s cubic-bezier(.4, 1.4, .6, 1) forwards;
+  animation-delay: 0s, calc(var(--iv-toast-duration, 5s) - 0.5s);
+  pointer-events: all;
+  transition: box-shadow .25s ease, transform .25s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0.4rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    background: var(--iv-toast-accent, #6366f1);
+  }
+
+  &:hover {
+    box-shadow: 0 10px 42px rgba(0,0,0,.22), 0 3px 10px rgba(0,0,0,.18);
+    transform: translateY(-2px);
+  }
+
+  &.info {
+    background-color: var(--iv-toast-info-background, black);
+    color: var(--iv-toast-info-color, white);
+    --iv-toast-accent: var(--iv-toast-info-accent, #6366f1);
+  }
+
+  &.success {
+    background-color: var(--iv-toast-success-background, #d1fadf);
+    color: var(--iv-toast-success-color, #065f46);
+    --iv-toast-accent: var(--iv-toast-success-accent, #12b76a);
+  }
+
+  &.warning {
+    background-color: var(--iv-toast-warning-background, #ffe8c7);
+    color: var(--iv-toast-warning-color, #7c2d12);
+    --iv-toast-accent: var(--iv-toast-warning-accent, #f59e0b);
+  }
+
+  &.error {
+    background-color: var(--iv-toast-error-background, #ffe2e2);
+    color: var(--iv-toast-error-color, #7f1d1d);
+    --iv-toast-accent: var(--iv-toast-error-accent, #ef4444);
+  }
+
+  .iv-toast-message {
+    margin: 0;
+    line-height: 1.4;
+    word-break: break-word;
+    font-weight: 600;
+  }
+}
+
+@keyframes toast-in {
+  0% { opacity: 0; transform: translateY(1.25rem) scale(.92); }
+  55% { opacity: 1; transform: translateY(-3px) scale(1.03); }
+  75% { transform: translateY(2px) scale(.997); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toast-out {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(1rem) scale(.94); }
+}

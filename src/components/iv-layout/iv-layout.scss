@@ -1,0 +1,60 @@
+// Base iv-layout styles.
+// Usage notes:
+// - Component sets display + gap inline (grid if gridTemplateAreas prop, else flex).
+// - Designers override --iv-layout-* vars for spacing / sizing without editing component code.
+// - In flex mode, children auto share space equally via flex:1 (override via --iv-layout-flex-child).
+
+.iv-layout {
+  box-sizing: border-box;
+  width: var(--iv-layout-width, 100%);
+  max-width: var(--iv-layout-max-width, 100%);
+  margin: var(--iv-layout-margin, 0);
+  padding: var(--iv-layout-padding, 0);
+  gap: var(--iv-layout-gap, 1rem); 
+  align-items: var(--iv-layout-align, stretch);
+  justify-content: var(--iv-layout-justify, flex-start);
+  flex-wrap: var(--iv-layout-flex-wrap, wrap);
+  grid-auto-rows: var(--iv-layout-grid-auto-rows, auto);
+  grid-auto-columns: var(--iv-layout-grid-auto-columns, auto);
+  grid-auto-flow: var(--iv-layout-grid-auto-flow, row);
+  grid-template-columns: var(--iv-layout-grid-template-columns, none);
+  grid-template-rows: var(--iv-layout-grid-template-rows, none);
+  background: var(--iv-layout-bg, transparent);
+  border: var(--iv-layout-border, none);
+  border-radius: var(--iv-layout-radius, 0);
+  box-shadow: var(--iv-layout-shadow, none);
+}
+
+.iv-layout > * {
+  flex: var(--iv-layout-flex-child, 1 1 0);
+  min-width: var(--iv-layout-child-min-width, 0);
+  max-width: var(--iv-layout-child-max-width, 100%);
+  box-sizing: border-box;
+}
+
+.iv-layout--tight { --iv-layout-gap: var(--iv-layout-tight-gap, 0.5rem); }
+
+.iv-layout--relaxed { --iv-layout-gap: var(--iv-layout-relaxed-gap, 2rem); }
+
+.iv-layout--scroll-x {
+  display: flex !important;
+  overflow-x: auto;
+  scrollbar-width: var(--iv-layout-scrollbar-width, thin);
+  -webkit-overflow-scrolling: touch;
+}
+
+.iv-layout--scroll-x > * { flex: 0 0 var(--iv-layout-scroll-item-width, 80%); }
+
+.iv-layout--debug > * { outline: 1px dashed var(--iv-layout-debug-color, magenta); }
+
+@media (min-width: 40rem) {
+  .iv-layout { --iv-layout-gap: var(--iv-layout-gap-md, var(--iv-layout-gap, 1rem)); }
+}
+
+@media (min-width: 64rem) {
+  .iv-layout { --iv-layout-gap: var(--iv-layout-gap-lg, var(--iv-layout-gap, 1rem)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iv-layout { scroll-behavior: auto; }
+}
