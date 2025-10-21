@@ -7,21 +7,21 @@
 
 ## Properties
 
-| Property           | Attribute          | Description | Type                                                               | Default               |
-| ------------------ | ------------------ | ----------- | ------------------------------------------------------------------ | --------------------- |
-| `addtocarttext`    | `addtocarttext`    |             | `string`                                                           | `undefined`           |
-| `buttontext`       | `buttontext`       |             | `string`                                                           | `undefined`           |
-| `cachettl`         | `cachettl`         |             | `number`                                                           | `undefined`           |
-| `calltoaction`     | `calltoaction`     |             | `boolean`                                                          | `false`               |
-| `collectionhandle` | `collectionhandle` |             | `string`                                                           | `'all'`               |
-| `componenttitle`   | `componenttitle`   |             | `string`                                                           | `undefined`           |
-| `emptystring`      | `emptystring`      |             | `string`                                                           | `'No products found'` |
-| `limit`            | `limit`            |             | `number`                                                           | `24`                  |
-| `requestedfields`  | `requestedfields`  |             | `string`                                                           | `undefined`           |
-| `reversed`         | `reversed`         |             | `boolean`                                                          | `false`               |
-| `stale`            | `stale`            |             | `boolean`                                                          | `true`                |
-| `titletag`         | `titletag`         |             | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6"`                     | `'h2'`                |
-| `type`             | `type`             |             | `"BEST_SELLING" \| "CREATED" \| "PRICE" \| "RELEVANCE" \| "TITLE"` | `'CREATED'`           |
+| Property           | Attribute          | Description | Type                                                                               | Default               |
+| ------------------ | ------------------ | ----------- | ---------------------------------------------------------------------------------- | --------------------- |
+| `addtocarttext`    | `addtocarttext`    |             | `string`                                                                           | `undefined`           |
+| `buttontext`       | `buttontext`       |             | `string`                                                                           | `undefined`           |
+| `cachettl`         | `cachettl`         |             | `number`                                                                           | `undefined`           |
+| `calltoaction`     | `calltoaction`     |             | `boolean`                                                                          | `false`               |
+| `collectionhandle` | `collectionhandle` |             | `string`                                                                           | `'all'`               |
+| `componenttitle`   | `componenttitle`   |             | `string`                                                                           | `undefined`           |
+| `emptystring`      | `emptystring`      |             | `string`                                                                           | `'No products found'` |
+| `limit`            | `limit`            |             | `number`                                                                           | `24`                  |
+| `requestedfields`  | `requestedfields`  |             | `string`                                                                           | `undefined`           |
+| `reversed`         | `reversed`         |             | `boolean`                                                                          | `false`               |
+| `stale`            | `stale`            |             | `boolean`                                                                          | `true`                |
+| `titletag`         | `titletag`         |             | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6"`                                     | `'h2'`                |
+| `type`             | `type`             |             | `"BEST_SELLING" \| "CREATED" \| "CREATED_AT" \| "PRICE" \| "RELEVANCE" \| "TITLE"` | `'CREATED_AT'`        |
 
 
 ## Dependencies

@@ -13,17 +13,13 @@ const BLOCK = 'iv-dynamic-products';
 })
 
 export class IvDynamicProducts {
-
-  // @Prop() type: 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE' = 'BEST_SELLING'; 
-  @Prop() type: 'CREATED' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE' = 'CREATED'; 
+  @Prop() type: 'CREATED' | 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE' = 'CREATED_AT'; 
   @Prop() limit: number = 8;
   @Prop() reversed: boolean = false; 
   @Prop() componenttitle?: string;
   @Prop() titletag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h2';
   @Prop() collectionhandle: string = 'all';
-  
   @Prop() carousel: boolean = false; 
-  
   @Prop() requestedfields: string;
   @Prop() calltoaction: boolean = false;
   @Prop() buttontext?: string;

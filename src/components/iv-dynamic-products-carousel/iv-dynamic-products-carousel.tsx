@@ -12,8 +12,8 @@ const BLOCK = 'iv-dynamic-products-carousel';
   shadow: false
 })
 
-export class IvDynamicProducts {
-  @Prop() type: 'CREATED' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE' = 'CREATED'; 
+export class IvDynamicProductsCarousel {
+  @Prop() type: 'CREATED' | 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE' = 'CREATED_AT'; 
   @Prop() limit: number = 24;
   @Prop() reversed: boolean = false; 
   @Prop() componenttitle?: string;
@@ -26,14 +26,15 @@ export class IvDynamicProducts {
   @Prop() emptystring: string = 'No products found';
   @Prop() cachettl?: number; 
   @Prop() stale?: boolean = true;   
-
+  
   @State() products: any[] = [];
   @State() errorMsg: string; 
   @State() staleData: boolean = false;
-  @State() page: number = 0; // current slide index
+  @State() page: number = 0; 
+
   private readonly itemsPerPage = 6;
 
-  private errors = createErrorHandler({ component: 'iv-dynamic-products' });
+  private errors = createErrorHandler({ component: 'iv-dynamic-products-carousel' });
 
   @Watch('type')
   @Watch('limit')
@@ -95,16 +96,21 @@ export class IvDynamicProducts {
     const chunks: any[][] = [];
     for(let i=0; i < this.products.length; i += this.itemsPerPage) {
       chunks.push(this.products.slice(i, i + this.itemsPerPage));
-    }
+    };
     return chunks;
-  }
+  };
 
-  // removed unused clampPage and resetPageOnDataChange
+  private next = () => { 
+    const pages = this.pagedProducts().length;
+    if(this.page < pages - 1) this.page++;
+  };
 
-  private next = () => { const pages = this.pagedProducts().length; if(this.page < pages - 1) this.page++; };
-  private prev = () => { if(this.page > 0) this.page--; };
+  private prev = () => { 
+    if(this.page > 0) this.page--;
+  };
 
   render() {
+
     const TAG = this.titletag as any;
 
     return (
@@ -118,7 +124,9 @@ export class IvDynamicProducts {
           <div class={`${BLOCK}-empty`}>{this.emptystring}</div>
         ) : (
           <div class={`${BLOCK}-carousel`} aria-roledescription="carousel">
-            <button class={`${BLOCK}-nav ${BLOCK}-nav-prev`} onClick={this.prev} disabled={this.page===0} aria-label="Previous" type="button">‹</button>
+            <button class={`${BLOCK}-nav ${BLOCK}-nav-prev`} onClick={this.prev} disabled={this.page===0} aria-label="Previous" type="button">
+              ‹
+            </button>
             <div class={`${BLOCK}-viewport`}>
               <div class={`${BLOCK}-track`} style={{ transform: `translateX(-${this.page * 100}%)` }}>
                 {this.pagedProducts().map((group, i) => (
@@ -136,7 +144,9 @@ export class IvDynamicProducts {
                 ))}
               </div>
             </div>
-            <button class={`${BLOCK}-nav ${BLOCK}-nav-next`} onClick={this.next} disabled={this.page===this.pagedProducts().length-1} aria-label="Next" type="button">›</button>
+            <button class={`${BLOCK}-nav ${BLOCK}-nav-next`} onClick={this.next} disabled={this.page===this.pagedProducts().length-1} aria-label="Next" type="button">
+              ›
+            </button>
             <div class={`${BLOCK}-status`} aria-live="polite">{this.pagedProducts().length > 1 ? `Slide ${this.page+1} of ${this.pagedProducts().length}` : ''}</div>
             {this.staleData && (
               <div class={`${BLOCK}-stale-indicator`} aria-live="polite">Refreshing…</div>

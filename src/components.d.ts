@@ -103,9 +103,9 @@ export namespace Components {
          */
         "titletag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         /**
-          * @default 'CREATED'
+          * @default 'CREATED_AT'
          */
-        "type": 'CREATED' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
+        "type": 'CREATED' | 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
     }
     interface IvDynamicProductsCarousel {
         "addtocarttext"?: string;
@@ -142,9 +142,9 @@ export namespace Components {
          */
         "titletag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         /**
-          * @default 'CREATED'
+          * @default 'CREATED_AT'
          */
-        "type": 'CREATED' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
+        "type": 'CREATED' | 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
     }
     interface IvFilters {
     }
@@ -641,9 +641,9 @@ declare namespace LocalJSX {
          */
         "titletag"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         /**
-          * @default 'CREATED'
+          * @default 'CREATED_AT'
          */
-        "type"?: 'CREATED' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
+        "type"?: 'CREATED' | 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
     }
     interface IvDynamicProductsCarousel {
         "addtocarttext"?: string;
@@ -680,9 +680,9 @@ declare namespace LocalJSX {
          */
         "titletag"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         /**
-          * @default 'CREATED'
+          * @default 'CREATED_AT'
          */
-        "type"?: 'CREATED' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
+        "type"?: 'CREATED' | 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
     }
     interface IvFilters {
     }
