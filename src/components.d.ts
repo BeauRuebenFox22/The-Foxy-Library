@@ -124,6 +124,7 @@ export namespace Components {
           * @default 'No products found'
          */
         "emptystring": string;
+        "excluse"?: string;
         /**
           * @default 24
          */
@@ -662,6 +663,7 @@ declare namespace LocalJSX {
           * @default 'No products found'
          */
         "emptystring"?: string;
+        "excluse"?: string;
         /**
           * @default 24
          */

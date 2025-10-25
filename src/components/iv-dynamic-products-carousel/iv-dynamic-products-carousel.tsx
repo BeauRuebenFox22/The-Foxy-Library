@@ -25,7 +25,8 @@ export class IvDynamicProductsCarousel {
   @Prop() addtocarttext?: string;
   @Prop() emptystring: string = 'No products found';
   @Prop() cachettl?: number; 
-  @Prop() stale?: boolean = true;   
+  @Prop() stale?: boolean = true;
+  @Prop() excluse?: string;
   
   @State() products: any[] = [];
   @State() errorMsg: string; 
@@ -51,10 +52,26 @@ export class IvDynamicProductsCarousel {
       handle: this.collectionhandle,
       sort: this.type,
       fields: this.requestedfields,
-      limit: this.limit,
+      limit: 36, // Always fetch 36 products for filtering
       currency: state.currencyCode,
       reversed: this.reversed
     };
+  };
+
+  private ensureProductTypeField(fields: string): string {
+    if(!fields) return 'productType';
+    const arr = fields.split(',').map(f => f.trim());
+    if(!arr.includes('productType')) arr.push('productType');
+    return arr.join(',');
+  };
+
+  private filterAndSliceProducts(data: any[]): any[] {
+    if(!this.excluse) return data.slice(0, this.limit);
+    if(!this.requestedfields || !this.requestedfields.includes('productType')) {
+      this.requestedfields = this.ensureProductTypeField(this.requestedfields);
+    };
+    const filtered = data.filter(p => p.productType !== this.excluse);
+    return filtered.slice(0, this.limit);
   };
 
   private async loadProducts(fromWatch: boolean) {
@@ -65,7 +82,7 @@ export class IvDynamicProductsCarousel {
       const data = await productCache.getOrSetData(
         params,
         async () => {
-          const fresh = await fetchProducts(this.limit, this.collectionhandle, this.type, this.requestedfields, this.reversed);
+          const fresh = await fetchProducts(36, this.collectionhandle, this.type, this.requestedfields, this.reversed);
           return fresh;
         },
         {
@@ -76,7 +93,7 @@ export class IvDynamicProductsCarousel {
       );
       const metaCheck = productCache.getData<typeof data>(params);
       this.staleData = metaCheck.isExpired && metaCheck.isStale;
-      this.products = data || [];
+      this.products = Array.isArray(data) ? this.filterAndSliceProducts(data) : [];
       this.page = 0;
     } catch (err: any) {
       this.errorMsg = 'Failed to load products';
