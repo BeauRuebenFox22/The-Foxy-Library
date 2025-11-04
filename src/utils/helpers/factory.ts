@@ -7,7 +7,6 @@ export function requestedFields(fields: string): string[] | null {
 }; 
 
 export function formatMoney(amount: number, currencyCode: string = 'GBP', locale: string = 'en-GB'): string {
-  // return new Intl.NumberFormat(locale, { style: 'currency', currency: currencyCode }).format(amount / 100);
   return new Intl.NumberFormat(locale, { style: 'currency', currency: currencyCode }).format(amount);
 };
 
@@ -27,4 +26,14 @@ export function getProductIDFromGid(id: string): number {
 export function getProductHandle(): string {
   const path = window.location.pathname;
   return path.startsWith('/products/') ? path.replace('/products/', '').split('/')[0] : null;
+};
+
+export function isValueEmail(value: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(value);
+};
+
+export function isValuePhoneNumber(value: string): boolean {
+  const phoneRegex = /^\+?[0-9\s\-()]{7,}$/;
+  return phoneRegex.test(value);
 };

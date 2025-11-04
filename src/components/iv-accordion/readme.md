@@ -7,16 +7,26 @@
 
 ## Properties
 
-| Property          | Attribute         | Description | Type                              | Default        |
-| ----------------- | ----------------- | ----------- | --------------------------------- | -------------- |
-| `accordionlabels` | `accordionlabels` |             | `string`                          | `undefined`    |
-| `accordiontype`   | `accordiontype`   |             | `"article" \| "div" \| "section"` | `'div'`        |
-| `classmodifier`   | `classmodifier`   |             | `string`                          | `undefined`    |
-| `layout`          | `layout`          |             | `"horizontal" \| "vertical"`      | `'horizontal'` |
-| `showfirst`       | `showfirst`       |             | `boolean`                         | `false`        |
-| `showmultiple`    | `showmultiple`    |             | `boolean`                         | `false`        |
-| `startingpanel`   | `startingpanel`   |             | `number`                          | `0`            |
+| Property        | Attribute       | Description | Type                                      | Default     |
+| --------------- | --------------- | ----------- | ----------------------------------------- | ----------- |
+| `allowmultiple` | `allowmultiple` |             | `boolean`                                 | `false`     |
+| `dropdownicon`  | `dropdownicon`  |             | `"add-outline" \| "chevron-down-outline"` | `undefined` |
+| `labels`        | `labels`        |             | `string`                                  | `undefined` |
+| `startopen`     | `startopen`     |             | `boolean`                                 | `false`     |
 
+
+## Dependencies
+
+### Depends on
+
+- ion-icon
+
+### Graph
+```mermaid
+graph TD;
+  iv-accordion --> ion-icon
+  style iv-accordion fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

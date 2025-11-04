@@ -1,6 +1,8 @@
 import { Component, h, Prop, State } from '@stencil/core';
+import { requestedFields } from '../../utils/helpers/factory';
+import 'ionicons';
 
-const BLOCK = 'iv-accordion'
+const BLOCK = 'iv-accordion';
 
 @Component({
   tag: 'iv-accordion',
@@ -10,43 +12,65 @@ const BLOCK = 'iv-accordion'
 
 export class IvAccordion {
 
-  @Prop() classmodifier?: string;
-  @Prop() accordiontype: 'div' | 'section' | 'article' = 'div';
-  @Prop() accordionlabels: string;
-  @Prop() showmultiple: boolean = false;
-  @Prop() showfirst: boolean = false;
-  @Prop() startingpanel: number = 0;
-  @Prop() layout: 'vertical' | 'horizontal' = 'horizontal';
+  @Prop() labels: string;
+  @Prop() allowmultiple: boolean = false;
+  @Prop() startopen: boolean = false;
+  @Prop() dropdownicon?: 'chevron-down-outline' | 'add-outline';
 
-  @State() activePanel: string;
+  @State() openPanels: number[] = [];
 
-  private interimLabels(): string [] {
-    let labelsArray = [];
-    this.accordionlabels.split(',').forEach(label => {
-      labelsArray.push(label.trim());
-    });
-    return labelsArray;
+  componentWillLoad() {
+    this.openPanels = this.startopen ? [0] : [];
+  };
+
+  private togglePanel(index: number) {
+    if(this.allowmultiple) {
+      this.openPanels = this.openPanels.includes(index)
+        ? this.openPanels.filter(i => i !== index)
+        : [...this.openPanels, index];
+    } else {
+      this.openPanels = this.openPanels.includes(index)
+        ? []
+        : [index];
+    };
   };
 
   render() {
 
     return (
+
       <div class={BLOCK}>
-
-        <div class={`${BLOCK}-labels`}>
-          {this.accordionlabels && this.interimLabels().map((label: string, index: number) => (
+        {requestedFields(this.labels).map((label, index) => (
+          <div class="accordion-panel" key={index}>
             <button
-              onClick={() => this.activePanel = `panel-${index}`}>
-              {label}
+              class={{
+                'copy': true,
+                'accordion-header': true,
+                'open': this.openPanels.includes(index)
+              }}
+              onClick={() => this.togglePanel(index)}
+              aria-expanded={this.openPanels.includes(index)}
+              aria-controls={`panel-content-${index}`}
+              id={`panel-header-${index}`}
+              type="button">
+                {label}
+                {this.dropdownicon && <ion-icon class="accordion-icon" name={this.dropdownicon}></ion-icon>}
             </button>
-          ))}
-        </div>
-
-        <div class={`${BLOCK}-content-panel`}>
-          <slot name={this.activePanel}></slot>
-        </div>
-
+            <div
+              id={`panel-content-${index}`}
+              class={{
+                'accordion-content': true,
+                'open': this.openPanels.includes(index)
+              }}
+              role="region"
+              aria-labelledby={`panel-header-${index}`}
+              hidden={!this.openPanels.includes(index)}>
+              <slot name={`panel-${index + 1}`}></slot>
+            </div>
+          </div>
+        ))};
       </div>
+
     );
 
   };

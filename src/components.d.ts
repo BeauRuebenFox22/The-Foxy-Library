@@ -7,28 +7,16 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface IvAccordion {
-        "accordionlabels": string;
-        /**
-          * @default 'div'
-         */
-        "accordiontype": 'div' | 'section' | 'article';
-        "classmodifier"?: string;
-        /**
-          * @default 'horizontal'
-         */
-        "layout": 'vertical' | 'horizontal';
         /**
           * @default false
          */
-        "showfirst": boolean;
+        "allowmultiple": boolean;
+        "dropdownicon"?: 'chevron-down-outline' | 'add-outline';
+        "labels": string;
         /**
           * @default false
          */
-        "showmultiple": boolean;
-        /**
-          * @default 0
-         */
-        "startingpanel": number;
+        "startopen": boolean;
     }
     interface IvBanner {
         "bannerbuttontext"?: string;
@@ -149,6 +137,15 @@ export namespace Components {
     }
     interface IvFilters {
     }
+    interface IvFooter {
+        "includecontacticons"?: boolean;
+        "includecopyright"?: boolean;
+        "includenewsletter"?: boolean;
+        "includesitelinks"?: boolean;
+        "includesocialicons"?: boolean;
+        "includesupportedpayments"?: boolean;
+        "sitelinkcollapse"?: boolean;
+    }
     interface IvLayout {
         "classModifier"?: string;
         /**
@@ -187,7 +184,24 @@ export namespace Components {
          */
         "linktype": 'inline' | 'wrapper' | 'nav' | 'button';
     }
+    interface IvLinkList {
+        /**
+          * @default 'vertical'
+         */
+        "layout": 'vertical' | 'horizontal';
+        "links": string;
+        /**
+          * @default 'social'
+         */
+        "linktype": 'social' | 'contact' | 'text';
+        /**
+          * @default false
+         */
+        "showicons": boolean;
+    }
     interface IvModal {
+    }
+    interface IvNewsletter {
     }
     interface IvPredictiveSearch {
         "action"?: string;
@@ -416,6 +430,12 @@ declare global {
         prototype: HTMLIvFiltersElement;
         new (): HTMLIvFiltersElement;
     };
+    interface HTMLIvFooterElement extends Components.IvFooter, HTMLStencilElement {
+    }
+    var HTMLIvFooterElement: {
+        prototype: HTMLIvFooterElement;
+        new (): HTMLIvFooterElement;
+    };
     interface HTMLIvLayoutElement extends Components.IvLayout, HTMLStencilElement {
     }
     var HTMLIvLayoutElement: {
@@ -428,11 +448,23 @@ declare global {
         prototype: HTMLIvLinkElement;
         new (): HTMLIvLinkElement;
     };
+    interface HTMLIvLinkListElement extends Components.IvLinkList, HTMLStencilElement {
+    }
+    var HTMLIvLinkListElement: {
+        prototype: HTMLIvLinkListElement;
+        new (): HTMLIvLinkListElement;
+    };
     interface HTMLIvModalElement extends Components.IvModal, HTMLStencilElement {
     }
     var HTMLIvModalElement: {
         prototype: HTMLIvModalElement;
         new (): HTMLIvModalElement;
+    };
+    interface HTMLIvNewsletterElement extends Components.IvNewsletter, HTMLStencilElement {
+    }
+    var HTMLIvNewsletterElement: {
+        prototype: HTMLIvNewsletterElement;
+        new (): HTMLIvNewsletterElement;
     };
     interface HTMLIvPredictiveSearchElementEventMap {
         "searchTermsChanged": any;
@@ -526,9 +558,12 @@ declare global {
         "iv-dynamic-products": HTMLIvDynamicProductsElement;
         "iv-dynamic-products-carousel": HTMLIvDynamicProductsCarouselElement;
         "iv-filters": HTMLIvFiltersElement;
+        "iv-footer": HTMLIvFooterElement;
         "iv-layout": HTMLIvLayoutElement;
         "iv-link": HTMLIvLinkElement;
+        "iv-link-list": HTMLIvLinkListElement;
         "iv-modal": HTMLIvModalElement;
+        "iv-newsletter": HTMLIvNewsletterElement;
         "iv-predictive-search": HTMLIvPredictiveSearchElement;
         "iv-recently-viewed": HTMLIvRecentlyViewedElement;
         "iv-sidebar": HTMLIvSidebarElement;
@@ -545,28 +580,16 @@ declare global {
 }
 declare namespace LocalJSX {
     interface IvAccordion {
-        "accordionlabels"?: string;
-        /**
-          * @default 'div'
-         */
-        "accordiontype"?: 'div' | 'section' | 'article';
-        "classmodifier"?: string;
-        /**
-          * @default 'horizontal'
-         */
-        "layout"?: 'vertical' | 'horizontal';
         /**
           * @default false
          */
-        "showfirst"?: boolean;
+        "allowmultiple"?: boolean;
+        "dropdownicon"?: 'chevron-down-outline' | 'add-outline';
+        "labels"?: string;
         /**
           * @default false
          */
-        "showmultiple"?: boolean;
-        /**
-          * @default 0
-         */
-        "startingpanel"?: number;
+        "startopen"?: boolean;
     }
     interface IvBanner {
         "bannerbuttontext"?: string;
@@ -688,6 +711,15 @@ declare namespace LocalJSX {
     }
     interface IvFilters {
     }
+    interface IvFooter {
+        "includecontacticons"?: boolean;
+        "includecopyright"?: boolean;
+        "includenewsletter"?: boolean;
+        "includesitelinks"?: boolean;
+        "includesocialicons"?: boolean;
+        "includesupportedpayments"?: boolean;
+        "sitelinkcollapse"?: boolean;
+    }
     interface IvLayout {
         "classModifier"?: string;
         /**
@@ -726,7 +758,24 @@ declare namespace LocalJSX {
          */
         "linktype"?: 'inline' | 'wrapper' | 'nav' | 'button';
     }
+    interface IvLinkList {
+        /**
+          * @default 'vertical'
+         */
+        "layout"?: 'vertical' | 'horizontal';
+        "links"?: string;
+        /**
+          * @default 'social'
+         */
+        "linktype"?: 'social' | 'contact' | 'text';
+        /**
+          * @default false
+         */
+        "showicons"?: boolean;
+    }
     interface IvModal {
+    }
+    interface IvNewsletter {
     }
     interface IvPredictiveSearch {
         "action"?: string;
@@ -896,9 +945,12 @@ declare namespace LocalJSX {
         "iv-dynamic-products": IvDynamicProducts;
         "iv-dynamic-products-carousel": IvDynamicProductsCarousel;
         "iv-filters": IvFilters;
+        "iv-footer": IvFooter;
         "iv-layout": IvLayout;
         "iv-link": IvLink;
+        "iv-link-list": IvLinkList;
         "iv-modal": IvModal;
+        "iv-newsletter": IvNewsletter;
         "iv-predictive-search": IvPredictiveSearch;
         "iv-recently-viewed": IvRecentlyViewed;
         "iv-sidebar": IvSidebar;
@@ -925,9 +977,12 @@ declare module "@stencil/core" {
             "iv-dynamic-products": LocalJSX.IvDynamicProducts & JSXBase.HTMLAttributes<HTMLIvDynamicProductsElement>;
             "iv-dynamic-products-carousel": LocalJSX.IvDynamicProductsCarousel & JSXBase.HTMLAttributes<HTMLIvDynamicProductsCarouselElement>;
             "iv-filters": LocalJSX.IvFilters & JSXBase.HTMLAttributes<HTMLIvFiltersElement>;
+            "iv-footer": LocalJSX.IvFooter & JSXBase.HTMLAttributes<HTMLIvFooterElement>;
             "iv-layout": LocalJSX.IvLayout & JSXBase.HTMLAttributes<HTMLIvLayoutElement>;
             "iv-link": LocalJSX.IvLink & JSXBase.HTMLAttributes<HTMLIvLinkElement>;
+            "iv-link-list": LocalJSX.IvLinkList & JSXBase.HTMLAttributes<HTMLIvLinkListElement>;
             "iv-modal": LocalJSX.IvModal & JSXBase.HTMLAttributes<HTMLIvModalElement>;
+            "iv-newsletter": LocalJSX.IvNewsletter & JSXBase.HTMLAttributes<HTMLIvNewsletterElement>;
             "iv-predictive-search": LocalJSX.IvPredictiveSearch & JSXBase.HTMLAttributes<HTMLIvPredictiveSearchElement>;
             "iv-recently-viewed": LocalJSX.IvRecentlyViewed & JSXBase.HTMLAttributes<HTMLIvRecentlyViewedElement>;
             "iv-sidebar": LocalJSX.IvSidebar & JSXBase.HTMLAttributes<HTMLIvSidebarElement>;

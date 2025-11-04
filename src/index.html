@@ -14,36 +14,23 @@
     <script nomodule src="/build/intravenous.js"></script>
   </head>
   <body>
-
-    <iv-toast-container></iv-toast-container>
-
+    <iv-link-list
+      showicons  
+      links="https://www.facebook.com, https://www.twitter.com, https://www.instagram.com"
+      linktype="social">
+    </iv-link-list>
+    <iv-link-list
+      links="07772990999 | Call me, beau.fox@herd.io | this is crazy"
+      linktype="contact">
+    </iv-link-list>
     <iv-accordion
-      accordionlabels="label 1, label 2, label 3, label 4, label 5">
-      <div slot="panel-0">Label 1</div>
-      <div slot="panel-1">Label 2</div>
-      <div slot="panel-2">Label 3</div>
-      <div slot="panel-3">Label 4</div>
-      <div slot="panel-4">Label 5</div>
+      labels="label 1, label 2, label 3, label 4, label 5">
+      <div slot="panel-1">Label 1</div>
+      <div slot="panel-2">Label 2</div>
+      <div slot="panel-3">Label 3</div>
+      <div slot="panel-4">Label 4</div>
+      <div slot="panel-5">Label 5</div>
     </iv-accordion>
-
-    <iv-recently-viewed
-      componenttitle="Recently Viewed"
-      titletag="h2"
-      numbertoshow="4"
-      noviewhistory="No view history">
-    </iv-recently-viewed>
-
-    <!-- <iv-dynamic-products
-      type="BEST_SELLING"
-      limit="8"
-      title="Foxy Socks Best Selling"
-      titletag="h1"
-      collectionhandle="all"
-      requestedfields: string = 'id,title,handle'
-      emptystring: string = 'No products found what so ever'>
-    </iv-dynamic-products> -->
-
-    <iv-modal></iv-modal>
 
     <!-- <iv-wishlist
       buttoncontent="Add to wishlist"
