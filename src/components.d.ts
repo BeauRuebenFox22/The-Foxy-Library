@@ -5,18 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { NewsletterFailDetail, NewsletterSuccessDetail } from "./components/iv-newsletter/iv-newsletter";
+export { NewsletterFailDetail, NewsletterSuccessDetail } from "./components/iv-newsletter/iv-newsletter";
 export namespace Components {
     interface IvAccordion {
-        /**
-          * @default false
-         */
-        "allowmultiple": boolean;
+        "allowmultiple"?: boolean;
         "dropdownicon"?: 'chevron-down-outline' | 'add-outline';
         "labels": string;
-        /**
-          * @default false
-         */
-        "startopen": boolean;
+        "startopen"?: boolean;
     }
     interface IvBanner {
         "bannerbuttontext"?: string;
@@ -138,13 +134,7 @@ export namespace Components {
     interface IvFilters {
     }
     interface IvFooter {
-        "includecontacticons"?: boolean;
-        "includecopyright"?: boolean;
-        "includenewsletter"?: boolean;
-        "includesitelinks"?: boolean;
-        "includesocialicons"?: boolean;
-        "includesupportedpayments"?: boolean;
-        "sitelinkcollapse"?: boolean;
+        "gridtemplateareas": string;
     }
     interface IvLayout {
         "classModifier"?: string;
@@ -202,6 +192,22 @@ export namespace Components {
     interface IvModal {
     }
     interface IvNewsletter {
+        "formdescriptiontext"?: string;
+        "formfailuremessage"?: string;
+        "formlabeltext"?: string;
+        "formplaceholdertext"?: string;
+        "formstackbutton"?: boolean;
+        /**
+          * @default 'Subscribe'
+         */
+        "formsubmitbtntext": string;
+        "formsuccessmessage"?: string;
+        /**
+          * @default 'h2'
+         */
+        "formtitletag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+        "formtitletext"?: string;
+        "includeloadingspinner"?: boolean;
     }
     interface IvPredictiveSearch {
         "action"?: string;
@@ -249,6 +255,8 @@ export namespace Components {
         "showallbuttontext"?: string;
         "showspinner"?: boolean;
         "tablayout"?: string;
+    }
+    interface IvProductUpsell {
     }
     interface IvRecentlyViewed {
         "componenttitle"?: string;
@@ -366,6 +374,10 @@ export interface IvButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIvButtonElement;
 }
+export interface IvNewsletterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIvNewsletterElement;
+}
 export interface IvPredictiveSearchCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIvPredictiveSearchElement;
@@ -460,7 +472,19 @@ declare global {
         prototype: HTMLIvModalElement;
         new (): HTMLIvModalElement;
     };
+    interface HTMLIvNewsletterElementEventMap {
+        "newsletterSuccess": NewsletterSuccessDetail;
+        "newsletterFail": NewsletterFailDetail;
+    }
     interface HTMLIvNewsletterElement extends Components.IvNewsletter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIvNewsletterElementEventMap>(type: K, listener: (this: HTMLIvNewsletterElement, ev: IvNewsletterCustomEvent<HTMLIvNewsletterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIvNewsletterElementEventMap>(type: K, listener: (this: HTMLIvNewsletterElement, ev: IvNewsletterCustomEvent<HTMLIvNewsletterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIvNewsletterElement: {
         prototype: HTMLIvNewsletterElement;
@@ -482,6 +506,12 @@ declare global {
     var HTMLIvPredictiveSearchElement: {
         prototype: HTMLIvPredictiveSearchElement;
         new (): HTMLIvPredictiveSearchElement;
+    };
+    interface HTMLIvProductUpsellElement extends Components.IvProductUpsell, HTMLStencilElement {
+    }
+    var HTMLIvProductUpsellElement: {
+        prototype: HTMLIvProductUpsellElement;
+        new (): HTMLIvProductUpsellElement;
     };
     interface HTMLIvRecentlyViewedElement extends Components.IvRecentlyViewed, HTMLStencilElement {
     }
@@ -565,6 +595,7 @@ declare global {
         "iv-modal": HTMLIvModalElement;
         "iv-newsletter": HTMLIvNewsletterElement;
         "iv-predictive-search": HTMLIvPredictiveSearchElement;
+        "iv-product-upsell": HTMLIvProductUpsellElement;
         "iv-recently-viewed": HTMLIvRecentlyViewedElement;
         "iv-sidebar": HTMLIvSidebarElement;
         "iv-spinner": HTMLIvSpinnerElement;
@@ -580,15 +611,9 @@ declare global {
 }
 declare namespace LocalJSX {
     interface IvAccordion {
-        /**
-          * @default false
-         */
         "allowmultiple"?: boolean;
         "dropdownicon"?: 'chevron-down-outline' | 'add-outline';
         "labels"?: string;
-        /**
-          * @default false
-         */
         "startopen"?: boolean;
     }
     interface IvBanner {
@@ -712,13 +737,7 @@ declare namespace LocalJSX {
     interface IvFilters {
     }
     interface IvFooter {
-        "includecontacticons"?: boolean;
-        "includecopyright"?: boolean;
-        "includenewsletter"?: boolean;
-        "includesitelinks"?: boolean;
-        "includesocialicons"?: boolean;
-        "includesupportedpayments"?: boolean;
-        "sitelinkcollapse"?: boolean;
+        "gridtemplateareas"?: string;
     }
     interface IvLayout {
         "classModifier"?: string;
@@ -776,6 +795,24 @@ declare namespace LocalJSX {
     interface IvModal {
     }
     interface IvNewsletter {
+        "formdescriptiontext"?: string;
+        "formfailuremessage"?: string;
+        "formlabeltext"?: string;
+        "formplaceholdertext"?: string;
+        "formstackbutton"?: boolean;
+        /**
+          * @default 'Subscribe'
+         */
+        "formsubmitbtntext"?: string;
+        "formsuccessmessage"?: string;
+        /**
+          * @default 'h2'
+         */
+        "formtitletag"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+        "formtitletext"?: string;
+        "includeloadingspinner"?: boolean;
+        "onNewsletterFail"?: (event: IvNewsletterCustomEvent<NewsletterFailDetail>) => void;
+        "onNewsletterSuccess"?: (event: IvNewsletterCustomEvent<NewsletterSuccessDetail>) => void;
     }
     interface IvPredictiveSearch {
         "action"?: string;
@@ -824,6 +861,8 @@ declare namespace LocalJSX {
         "showallbuttontext"?: string;
         "showspinner"?: boolean;
         "tablayout"?: string;
+    }
+    interface IvProductUpsell {
     }
     interface IvRecentlyViewed {
         "componenttitle"?: string;
@@ -952,6 +991,7 @@ declare namespace LocalJSX {
         "iv-modal": IvModal;
         "iv-newsletter": IvNewsletter;
         "iv-predictive-search": IvPredictiveSearch;
+        "iv-product-upsell": IvProductUpsell;
         "iv-recently-viewed": IvRecentlyViewed;
         "iv-sidebar": IvSidebar;
         "iv-spinner": IvSpinner;
@@ -984,6 +1024,7 @@ declare module "@stencil/core" {
             "iv-modal": LocalJSX.IvModal & JSXBase.HTMLAttributes<HTMLIvModalElement>;
             "iv-newsletter": LocalJSX.IvNewsletter & JSXBase.HTMLAttributes<HTMLIvNewsletterElement>;
             "iv-predictive-search": LocalJSX.IvPredictiveSearch & JSXBase.HTMLAttributes<HTMLIvPredictiveSearchElement>;
+            "iv-product-upsell": LocalJSX.IvProductUpsell & JSXBase.HTMLAttributes<HTMLIvProductUpsellElement>;
             "iv-recently-viewed": LocalJSX.IvRecentlyViewed & JSXBase.HTMLAttributes<HTMLIvRecentlyViewedElement>;
             "iv-sidebar": LocalJSX.IvSidebar & JSXBase.HTMLAttributes<HTMLIvSidebarElement>;
             "iv-spinner": LocalJSX.IvSpinner & JSXBase.HTMLAttributes<HTMLIvSpinnerElement>;

@@ -1,3 +1,29 @@
-:host {
-  display: block;
+.iv-footer {
+  display: grid;
+  gap: 2rem;
+
+  .footer-social-links { 
+    grid-area: social; 
+  }
+
+  .footer-contact-links { 
+    grid-area: contact;
+  }
+
+  .footer-newsletter-signup { 
+    grid-area: newsletter; 
+  }
+
+  .footer-menu { 
+    grid-area: menu; 
+  }
+
+  .footer-boilerplate { 
+    grid-area: boilerplate; 
+  }
+
+  .footer-payment-icons { 
+    grid-area: payment; 
+  }
+
 }

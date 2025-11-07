@@ -14,23 +14,35 @@
     <script nomodule src="/build/intravenous.js"></script>
   </head>
   <body>
-    <iv-link-list
-      showicons  
-      links="https://www.facebook.com, https://www.twitter.com, https://www.instagram.com"
-      linktype="social">
-    </iv-link-list>
-    <iv-link-list
-      links="07772990999 | Call me, beau.fox@herd.io | this is crazy"
-      linktype="contact">
-    </iv-link-list>
-    <iv-accordion
-      labels="label 1, label 2, label 3, label 4, label 5">
-      <div slot="panel-1">Label 1</div>
-      <div slot="panel-2">Label 2</div>
-      <div slot="panel-3">Label 3</div>
-      <div slot="panel-4">Label 4</div>
-      <div slot="panel-5">Label 5</div>
-    </iv-accordion>
+    <iv-footer 
+      gridtemplateareas="newsletter newsletter, social contact, menu menu">
+      <div class="footer-newsletter-signup">
+        <iv-newsletter></iv-newsletter>
+      </div>
+      <div class="footer-social-links">
+        <iv-link-list
+          showicons  
+          links="https://www.facebook.com, https://www.twitter.com, https://www.instagram.com"
+          linktype="social">
+        </iv-link-list>
+      </div>
+      <div class="footer-contact-links">
+        <iv-link-list
+          links="07772990999 | Call me, beau.fox@herd.io | this is crazy"
+          linktype="contact">
+        </iv-link-list>
+      </div>
+      <div class="footer-menu">
+        <iv-accordion
+          labels="label 1, label 2, label 3, label 4, label 5">
+          <div slot="panel-1">Label 1</div>
+          <div slot="panel-2">Label 2</div>
+          <div slot="panel-3">Label 3</div>
+          <div slot="panel-4">Label 4</div>
+          <div slot="panel-5">Label 5</div>
+        </iv-accordion>
+      </div>
+    </iv-footer>
 
     <!-- <iv-wishlist
       buttoncontent="Add to wishlist"

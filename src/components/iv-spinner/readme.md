@@ -18,6 +18,7 @@
 
  - [iv-dynamic-products](../iv-dynamic-products)
  - [iv-dynamic-products-carousel](../iv-dynamic-products-carousel)
+ - [iv-newsletter](../iv-newsletter)
  - [iv-predictive-search](../iv-predictive-search)
 
 ### Graph
@@ -25,6 +26,7 @@
 graph TD;
   iv-dynamic-products --> iv-spinner
   iv-dynamic-products-carousel --> iv-spinner
+  iv-newsletter --> iv-spinner
   iv-predictive-search --> iv-spinner
   style iv-spinner fill:#f9f,stroke:#333,stroke-width:4px
 ```

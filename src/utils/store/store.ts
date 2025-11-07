@@ -17,7 +17,10 @@ function createInitialStoreState() {
   return {
     _instanceId: Math.random().toString(36).slice(2),
     storefrontToken: null as string | null,
+
     shopDomain: null as string | null,
+    shopDomainApi: null as string | null,
+    
     currencyCode: 'GBP',
     setCurrencyCode(code: string) { this.currencyCode = code; },
     modalIsOpen: false,

@@ -13,8 +13,8 @@ const BLOCK = 'iv-accordion';
 export class IvAccordion {
 
   @Prop() labels: string;
-  @Prop() allowmultiple: boolean = false;
-  @Prop() startopen: boolean = false;
+  @Prop() allowmultiple?: boolean;
+  @Prop() startopen?: boolean;
   @Prop() dropdownicon?: 'chevron-down-outline' | 'add-outline';
 
   @State() openPanels: number[] = [];
@@ -65,10 +65,10 @@ export class IvAccordion {
               role="region"
               aria-labelledby={`panel-header-${index}`}
               hidden={!this.openPanels.includes(index)}>
-              <slot name={`panel-${index + 1}`}></slot>
+              <slot name={`panel-${index}`}></slot>
             </div>
           </div>
-        ))};
+        ))}
       </div>
 
     );
