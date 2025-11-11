@@ -13,7 +13,7 @@ export class IvFooter {
   @Prop() gridtemplateareas: string;
 
   @Element() host: HTMLElement;
-  
+
   @State() blockElements: HTMLElement[] = [];
   
   // private footerEl?: HTMLElement;

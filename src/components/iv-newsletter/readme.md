@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property                | Attribute                 | Description | Type                                                     | Default       |
-| ----------------------- | ------------------------- | ----------- | -------------------------------------------------------- | ------------- |
-| `formDescriptionText`   | `form-description-text`   |             | `string`                                                 | `undefined`   |
-| `formFailureMessage`    | `form-failure-message`    |             | `string`                                                 | `undefined`   |
-| `formLabelText`         | `form-label-text`         |             | `string`                                                 | `undefined`   |
-| `formPlaceholderText`   | `form-placeholder-text`   |             | `string`                                                 | `undefined`   |
-| `formStackButton`       | `form-stack-button`       |             | `boolean`                                                | `undefined`   |
-| `formSubmitBtnText`     | `form-submit-btn-text`    |             | `string`                                                 | `'Subscribe'` |
-| `formSuccessMessage`    | `form-success-message`    |             | `string`                                                 | `undefined`   |
-| `formTitleTag`          | `form-title-tag`          |             | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" \| "span"` | `'h2'`        |
-| `formTitleText`         | `form-title-text`         |             | `string`                                                 | `undefined`   |
-| `includeLoadingSpinner` | `include-loading-spinner` |             | `boolean`                                                | `undefined`   |
+| Property                | Attribute               | Description | Type                                                     | Default       |
+| ----------------------- | ----------------------- | ----------- | -------------------------------------------------------- | ------------- |
+| `formdescriptiontext`   | `formdescriptiontext`   |             | `string`                                                 | `undefined`   |
+| `formfailuremessage`    | `formfailuremessage`    |             | `string`                                                 | `undefined`   |
+| `formlabeltext`         | `formlabeltext`         |             | `string`                                                 | `undefined`   |
+| `formplaceholdertext`   | `formplaceholdertext`   |             | `string`                                                 | `undefined`   |
+| `formstackbutton`       | `formstackbutton`       |             | `boolean`                                                | `undefined`   |
+| `formsubmitbtntext`     | `formsubmitbtntext`     |             | `string`                                                 | `'Subscribe'` |
+| `formsuccessmessage`    | `formsuccessmessage`    |             | `string`                                                 | `undefined`   |
+| `formtitletag`          | `formtitletag`          |             | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" \| "span"` | `'h2'`        |
+| `formtitletext`         | `formtitletext`         |             | `string`                                                 | `undefined`   |
+| `includeloadingspinner` | `includeloadingspinner` |             | `boolean`                                                | `undefined`   |
 
 
 ## Events

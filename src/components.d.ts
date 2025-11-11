@@ -5,7 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { NewsletterTimerOptions } from "./utils/shared/newsletter-timer";
 import { NewsletterFailDetail, NewsletterSuccessDetail } from "./components/iv-newsletter/iv-newsletter";
+export { NewsletterTimerOptions } from "./utils/shared/newsletter-timer";
 export { NewsletterFailDetail, NewsletterSuccessDetail } from "./components/iv-newsletter/iv-newsletter";
 export namespace Components {
     interface IvAccordion {
@@ -131,6 +133,14 @@ export namespace Components {
          */
         "type": 'CREATED' | 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
     }
+    interface IvEventButton {
+        /**
+          * @default 'Click Me'
+         */
+        "buttontext": string;
+        "eventdetail": any;
+        "eventname": string;
+    }
     interface IvFilters {
     }
     interface IvFooter {
@@ -190,6 +200,12 @@ export namespace Components {
         "showicons": boolean;
     }
     interface IvModal {
+        "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
+        "newsletterpopupimage"?: NewsletterTimerOptions['newsletterpopupimage'];
+        "newsletterpopuptext"?: NewsletterTimerOptions['newsletterpopuptext'];
+        "newsletterpopuptimedelay"?: NewsletterTimerOptions['newsletterpopuptimedelay'];
+        "newsletterpopuptitle"?: NewsletterTimerOptions['newsletterpopuptitle'];
+        "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvNewsletter {
         "formdescriptiontext"?: string;
@@ -275,10 +291,6 @@ export namespace Components {
         "titletag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
     }
     interface IvSidebar {
-        /**
-          * @default '×'
-         */
-        "closeicon": string;
     }
     interface IvSpinner {
         /**
@@ -374,6 +386,10 @@ export interface IvButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIvButtonElement;
 }
+export interface IvEventButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIvEventButtonElement;
+}
 export interface IvNewsletterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIvNewsletterElement;
@@ -435,6 +451,23 @@ declare global {
     var HTMLIvDynamicProductsCarouselElement: {
         prototype: HTMLIvDynamicProductsCarouselElement;
         new (): HTMLIvDynamicProductsCarouselElement;
+    };
+    interface HTMLIvEventButtonElementEventMap {
+        "action": any;
+    }
+    interface HTMLIvEventButtonElement extends Components.IvEventButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIvEventButtonElementEventMap>(type: K, listener: (this: HTMLIvEventButtonElement, ev: IvEventButtonCustomEvent<HTMLIvEventButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIvEventButtonElementEventMap>(type: K, listener: (this: HTMLIvEventButtonElement, ev: IvEventButtonCustomEvent<HTMLIvEventButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIvEventButtonElement: {
+        prototype: HTMLIvEventButtonElement;
+        new (): HTMLIvEventButtonElement;
     };
     interface HTMLIvFiltersElement extends Components.IvFilters, HTMLStencilElement {
     }
@@ -587,6 +620,7 @@ declare global {
         "iv-carousel": HTMLIvCarouselElement;
         "iv-dynamic-products": HTMLIvDynamicProductsElement;
         "iv-dynamic-products-carousel": HTMLIvDynamicProductsCarouselElement;
+        "iv-event-button": HTMLIvEventButtonElement;
         "iv-filters": HTMLIvFiltersElement;
         "iv-footer": HTMLIvFooterElement;
         "iv-layout": HTMLIvLayoutElement;
@@ -734,6 +768,15 @@ declare namespace LocalJSX {
          */
         "type"?: 'CREATED' | 'CREATED_AT' | 'BEST_SELLING' | 'PRICE' | 'TITLE' | 'RELEVANCE';
     }
+    interface IvEventButton {
+        /**
+          * @default 'Click Me'
+         */
+        "buttontext"?: string;
+        "eventdetail"?: any;
+        "eventname"?: string;
+        "onAction"?: (event: IvEventButtonCustomEvent<any>) => void;
+    }
     interface IvFilters {
     }
     interface IvFooter {
@@ -793,6 +836,12 @@ declare namespace LocalJSX {
         "showicons"?: boolean;
     }
     interface IvModal {
+        "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
+        "newsletterpopupimage"?: NewsletterTimerOptions['newsletterpopupimage'];
+        "newsletterpopuptext"?: NewsletterTimerOptions['newsletterpopuptext'];
+        "newsletterpopuptimedelay"?: NewsletterTimerOptions['newsletterpopuptimedelay'];
+        "newsletterpopuptitle"?: NewsletterTimerOptions['newsletterpopuptitle'];
+        "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvNewsletter {
         "formdescriptiontext"?: string;
@@ -881,10 +930,6 @@ declare namespace LocalJSX {
         "titletag"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
     }
     interface IvSidebar {
-        /**
-          * @default '×'
-         */
-        "closeicon"?: string;
     }
     interface IvSpinner {
         /**
@@ -983,6 +1028,7 @@ declare namespace LocalJSX {
         "iv-carousel": IvCarousel;
         "iv-dynamic-products": IvDynamicProducts;
         "iv-dynamic-products-carousel": IvDynamicProductsCarousel;
+        "iv-event-button": IvEventButton;
         "iv-filters": IvFilters;
         "iv-footer": IvFooter;
         "iv-layout": IvLayout;
@@ -1016,6 +1062,7 @@ declare module "@stencil/core" {
             "iv-carousel": LocalJSX.IvCarousel & JSXBase.HTMLAttributes<HTMLIvCarouselElement>;
             "iv-dynamic-products": LocalJSX.IvDynamicProducts & JSXBase.HTMLAttributes<HTMLIvDynamicProductsElement>;
             "iv-dynamic-products-carousel": LocalJSX.IvDynamicProductsCarousel & JSXBase.HTMLAttributes<HTMLIvDynamicProductsCarouselElement>;
+            "iv-event-button": LocalJSX.IvEventButton & JSXBase.HTMLAttributes<HTMLIvEventButtonElement>;
             "iv-filters": LocalJSX.IvFilters & JSXBase.HTMLAttributes<HTMLIvFiltersElement>;
             "iv-footer": LocalJSX.IvFooter & JSXBase.HTMLAttributes<HTMLIvFooterElement>;
             "iv-layout": LocalJSX.IvLayout & JSXBase.HTMLAttributes<HTMLIvLayoutElement>;

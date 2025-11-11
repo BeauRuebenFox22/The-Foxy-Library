@@ -9,10 +9,10 @@
 
 | Property        | Attribute       | Description | Type                                      | Default     |
 | --------------- | --------------- | ----------- | ----------------------------------------- | ----------- |
-| `allowmultiple` | `allowmultiple` |             | `boolean`                                 | `false`     |
+| `allowmultiple` | `allowmultiple` |             | `boolean`                                 | `undefined` |
 | `dropdownicon`  | `dropdownicon`  |             | `"add-outline" \| "chevron-down-outline"` | `undefined` |
 | `labels`        | `labels`        |             | `string`                                  | `undefined` |
-| `startopen`     | `startopen`     |             | `boolean`                                 | `false`     |
+| `startopen`     | `startopen`     |             | `boolean`                                 | `undefined` |
 
 
 ## Dependencies

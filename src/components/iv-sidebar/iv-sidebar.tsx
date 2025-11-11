@@ -1,42 +1,46 @@
-import { Component, Host, h, Prop, Listen } from '@stencil/core';
-import { state, togglePullout } from '../../utils/store/store';
+import { Component, h, Listen, State } from '@stencil/core';
 
 const BLOCK = 'iv-sidebar';
 
 @Component({
   tag: 'iv-sidebar',
   styleUrl: 'iv-sidebar.scss',
-  shadow: false,
+  shadow: false
 })
 
 export class IvSidebar {
 
-  @Prop() closeicon: string = '×';
+  @State() sidebarState: boolean = false;
+  @State() contentName: string;
 
-  @Listen('openPullout', { target: 'window' })
-  handleOpenPullout(event: CustomEvent) {
-    togglePullout(event.detail);
+  @Listen('openSidebar', { target: 'document' })
+  handleopenSidebar(event: CustomEvent) {
+    const { content } = event.detail;
+    this.contentName = content;
+    this.toggleSidebar();
+  };
+
+  private toggleSidebar() {
+    this.sidebarState = !this.sidebarState;
   };
 
   render() {
     
-    return (
-      <Host>
-        <div class={`${BLOCK} ${ state.pulloutOpen ? 'open' : '' }`}>
-          <iv-button class={`${BLOCK}-close-button`} onClick={() => togglePullout()}>
-            <span class="inner-button close">{this.closeicon}</span>
-          </iv-button>
-          <slot name="header"></slot>
-          {state.pulloutContent === 'wishlist' ? (
-            <iv-wishlist-view />
-          ) : (
-            state.pulloutContent && <slot name={state.pulloutContent}></slot>
-          )}
-          <slot name="footer"></slot>
-        </div>
-        <div class={`${BLOCK}-overlay ${state.pulloutOpen ? 'open' : ''}`} onClick={() => togglePullout()}></div>
-      </Host>
-    );
+    return [
+
+      <div class={`${BLOCK} ${ this.sidebarState && 'open' }`} role="complementary" aria-labelledby="iv-sidebar-title">
+        <iv-button class={`${BLOCK}-close`} aria-label="Close modal" onClick={() => this.toggleSidebar()}>&times;</iv-button>
+        <slot name="header"></slot>
+        {this.contentName === 'wishlist' ? (
+          <iv-wishlist-view />
+        ) : (
+          this.contentName && <slot name={this.contentName}></slot>
+        )}
+        <slot name="footer"></slot>
+      </div>,
+      <div class={`${BLOCK}-overlay ${this.sidebarState && 'open'}`} onClick={() => this.toggleSidebar()}></div>
+
+      ];
 
   };
 

@@ -1,6 +1,6 @@
 {
   "name": "the-foxy-library",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A ui library designed for Shopify themes.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",

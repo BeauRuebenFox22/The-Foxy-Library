@@ -44,6 +44,29 @@
       </div>
     </iv-footer>
 
+    <iv-event-button eventname="openSidebar" eventdetail="newsletter">
+      Open Sidebar
+    </iv-event-button>
+    <iv-event-button eventname="openModal" eventdetail="foxy socks">
+      Open Newsletter Modal
+    </iv-event-button>
+    <iv-sidebar>
+      <div slot="newsletter">
+        <iv-newsletter></iv-newsletter>
+      </div>
+    </iv-sidebar>
+
+    <iv-modal 
+      newsletterpopuptrigger="exit_intent"
+      newsletterpopuptitle="Subscribe to our Newsletter"
+      newsletterpopuptext="Get the latest updates and offers."
+      newsletterpopupimage="https://via.placeholder.com/150"
+      newsletterpopupdisclaimer="You can unsubscribe at any time.">
+      <div slot="newsletter">
+        <iv-newsletter></iv-newsletter>
+      </div>
+    </iv-modal>
+
     <!-- <iv-wishlist
       buttoncontent="Add to wishlist"
       productdata='{"id":123,"title":"Test Product","price":19.99,"image":"img.jpg","url":"/product/123"}'
@@ -128,27 +151,6 @@
       }
     </style>
 
-    <!-- Broke this don't know how - need to fix -->
-    <iv-sidebar>
-      <div slot="header">
-        <h3>Header</h3>
-      </div>
-      <div slot="content">
-        <h3>Content</h3>
-      </div>
-      <div slot="foxy">
-        <h3>Foxy Content</h3>
-      </div>
-      <div slot="footer">
-        <h3>Footer</h3>
-      </div>
-    </iv-sidebar>
-
-    <iv-button
-      eventname="openPullout"
-      eventdetail="content">
-      Open Pullout
-    </iv-button>
 
     <!-- <iv-suggest 
       topqueries="Cream, Sunscreen, Haircare, Face mask, Body cream" 
