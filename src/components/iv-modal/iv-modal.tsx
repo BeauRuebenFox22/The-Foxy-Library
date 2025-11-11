@@ -1,6 +1,6 @@
 import { Component, Host, h, Listen, State, Prop  } from '@stencil/core';
 import {
-  NewsletterTimerState, NewsletterTimerOptions, createNewsletterTimerState,
+  NewsletterTimerState, NewsletterTimerOptions, createNewsletterTimerState, handleNewsletterExitIntent,
   startNewsletterTimer, pauseNewsletterTimer, resumeNewsletterTimer, hasNewsletterPopupShown
 } from '../../utils/shared/newsletter-timer';
 
@@ -52,26 +52,17 @@ export class IvModal {
       if(this.newsletterpopuptrigger === 'exit_intent' && 
         !hasNewsletterPopupShown()
       ) {
-        document.addEventListener('mouseout', this.handleExitIntent);
+        document.addEventListener('mouseout', (event) => {
+          handleNewsletterExitIntent({
+            event,
+            modalState: this.modalState,
+            contentName: this.contentName,
+            toggleModal: this.toggleModal.bind(this),
+            setContentName: (name: string) => this.contentName = name,
+            setSession: () => sessionStorage.setItem('newsletterPopupShown', 'true')
+          });
+        });
       };
-  };
-    
-  private handleExitIntent = (event: MouseEvent) => {
-    if(event.clientY <= 0 && !hasNewsletterPopupShown()){
-      if(this.modalState && this.contentName !== 'newsletter') {
-        this.toggleModal();
-        setTimeout(() => {
-          this.contentName = 'newsletter';
-          this.toggleModal();
-          sessionStorage.setItem('newsletterPopupShown', 'true');
-        }, 300)
-      } else {
-        this.contentName = 'newsletter';
-        this.toggleModal();
-        sessionStorage.setItem('newsletterPopupShown', 'true');
-      };
-      document.removeEventListener('mouseout', this.handleExitIntent);
-    };
   };
 
   private toggleModal() {

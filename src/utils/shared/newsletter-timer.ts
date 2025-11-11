@@ -55,6 +55,38 @@ export function hasNewsletterPopupShown(): boolean {
   return hasSessionItem('newsletterPopupShown');
 };
 
+export function handleNewsletterExitIntent({
+  event,
+  modalState,
+  contentName,
+  toggleModal,
+  setContentName,
+  setSession
+}: {
+  event: MouseEvent,
+  modalState: boolean,
+  contentName: string,
+  toggleModal: () => void,
+  setContentName: (name: string) => void,
+  setSession: () => void
+}) {
+  if(event.clientY <= 0 && !hasNewsletterPopupShown()){
+    if(modalState && contentName !== 'newsletter') {
+      toggleModal();
+      setTimeout(() => {
+        setContentName('newsletter');
+        toggleModal();
+        setSession();
+      }, 300);
+    } else {
+      setContentName('newsletter');
+      toggleModal();
+      setSession();
+    };
+    document.removeEventListener('mouseout', handleNewsletterExitIntent as any);
+  };
+};
+
 export function createNewsletterTimerState(): NewsletterTimerState {
   return {
     newsletterTimer: null,
