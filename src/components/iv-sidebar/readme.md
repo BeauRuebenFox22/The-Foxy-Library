@@ -5,6 +5,18 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property                    | Attribute                   | Description | Type                            | Default     |
+| --------------------------- | --------------------------- | ----------- | ------------------------------- | ----------- |
+| `newsletterpopupdisclaimer` | `newsletterpopupdisclaimer` |             | `string`                        | `undefined` |
+| `newsletterpopupimage`      | `newsletterpopupimage`      |             | `string`                        | `undefined` |
+| `newsletterpopuptext`       | `newsletterpopuptext`       |             | `string`                        | `undefined` |
+| `newsletterpopuptimedelay`  | `newsletterpopuptimedelay`  |             | `number`                        | `undefined` |
+| `newsletterpopuptitle`      | `newsletterpopuptitle`      |             | `string`                        | `undefined` |
+| `newsletterpopuptrigger`    | `newsletterpopuptrigger`    |             | `"exit_intent" \| "time_delay"` | `undefined` |
+
+
 ## Dependencies
 
 ### Depends on

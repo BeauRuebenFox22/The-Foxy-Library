@@ -1,4 +1,8 @@
-import { Component, h, Listen, State } from '@stencil/core';
+import { Component, h, Listen, State, Prop } from '@stencil/core';
+import {
+  NewsletterTimerState, NewsletterTimerOptions, createNewsletterTimerState, handleNewsletterExitIntent,
+  startNewsletterTimer, pauseNewsletterTimer, resumeNewsletterTimer, hasNewsletterPopupShown
+} from '../../utils/shared/newsletter-timer';
 
 const BLOCK = 'iv-sidebar';
 
@@ -10,18 +14,75 @@ const BLOCK = 'iv-sidebar';
 
 export class IvSidebar {
 
+  @Prop() newsletterpopuptrigger?: NewsletterTimerOptions['newsletterpopuptrigger'];
+  @Prop() newsletterpopuptimedelay?: NewsletterTimerOptions['newsletterpopuptimedelay'];
+  @Prop() newsletterpopuptitle?: NewsletterTimerOptions['newsletterpopuptitle'];
+  @Prop() newsletterpopuptext?: NewsletterTimerOptions['newsletterpopuptext'];
+  @Prop() newsletterpopupimage?: NewsletterTimerOptions['newsletterpopupimage'];
+  @Prop() newsletterpopupdisclaimer?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
+  
   @State() sidebarState: boolean = false;
   @State() contentName: string;
 
+  private newsletterTimerState: NewsletterTimerState = createNewsletterTimerState();
+
   @Listen('openSidebar', { target: 'document' })
   handleopenSidebar(event: CustomEvent) {
+    pauseNewsletterTimer(this.newsletterTimerState);
     const { content } = event.detail;
     this.contentName = content;
     this.toggleSidebar();
   };
 
+  componentWillLoad() {
+    const delay = Number(this.newsletterpopuptimedelay) || 0;
+    if(
+      this.newsletterpopuptrigger === 'time_delay' && 
+      delay > 0 && 
+      !hasNewsletterPopupShown()) {
+        startNewsletterTimer(
+          this.newsletterTimerState,
+          delay,
+          () => {
+            this.contentName = 'newsletter';
+            this.toggleSidebar();
+          }
+        );
+      };
+      if(this.newsletterpopuptrigger === 'exit_intent' && 
+        !hasNewsletterPopupShown()
+      ) {
+        document.addEventListener('mouseout', (event) => {
+          handleNewsletterExitIntent({
+            event,
+            modalState: this.sidebarState,
+            contentName: this.contentName,
+            toggleModal: this.toggleSidebar.bind(this),
+            setContentName: (name: string) => this.contentName = name,
+            setSession: () => sessionStorage.setItem('newsletterPopupShown', 'true')
+          });
+        });
+      };
+  };
+
   private toggleSidebar() {
     this.sidebarState = !this.sidebarState;
+    if(!this.sidebarState) {
+      pauseNewsletterTimer(this.newsletterTimerState);
+      if(
+        this.contentName !== 'newsletter' &&
+        this.newsletterTimerState.newsletterTimerRemaining > 0 &&
+        !hasNewsletterPopupShown()
+      ) {
+        resumeNewsletterTimer(
+          this.newsletterTimerState,
+          () => {
+            this.contentName = 'newsletter';
+            this.toggleSidebar();
+          }
+        );
+      };
+    };
   };
 
   render() {
@@ -40,7 +101,7 @@ export class IvSidebar {
       </div>,
       <div class={`${BLOCK}-overlay ${this.sidebarState && 'open'}`} onClick={() => this.toggleSidebar()}></div>
 
-      ];
+    ];
 
   };
 

@@ -9,9 +9,6 @@ describe('iv-modal', () => {
     });
     expect(page.root).toEqualHtml(`
       <iv-modal>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
       </iv-modal>
     `);
   });

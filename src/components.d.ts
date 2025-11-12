@@ -291,6 +291,12 @@ export namespace Components {
         "titletag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
     }
     interface IvSidebar {
+        "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
+        "newsletterpopupimage"?: NewsletterTimerOptions['newsletterpopupimage'];
+        "newsletterpopuptext"?: NewsletterTimerOptions['newsletterpopuptext'];
+        "newsletterpopuptimedelay"?: NewsletterTimerOptions['newsletterpopuptimedelay'];
+        "newsletterpopuptitle"?: NewsletterTimerOptions['newsletterpopuptitle'];
+        "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvSpinner {
         /**
@@ -930,6 +936,12 @@ declare namespace LocalJSX {
         "titletag"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
     }
     interface IvSidebar {
+        "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
+        "newsletterpopupimage"?: NewsletterTimerOptions['newsletterpopupimage'];
+        "newsletterpopuptext"?: NewsletterTimerOptions['newsletterpopuptext'];
+        "newsletterpopuptimedelay"?: NewsletterTimerOptions['newsletterpopuptimedelay'];
+        "newsletterpopuptitle"?: NewsletterTimerOptions['newsletterpopuptitle'];
+        "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvSpinner {
         /**

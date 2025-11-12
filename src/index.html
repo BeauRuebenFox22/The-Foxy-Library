@@ -50,7 +50,13 @@
     <iv-event-button eventname="openModal" eventdetail="foxy socks">
       Open Newsletter Modal
     </iv-event-button>
-    <iv-sidebar>
+    <iv-sidebar
+      newsletterpopuptrigger="time_delay"
+      newsletterpopuptimedelay="3000"
+      newsletterpopuptitle="Subscribe to our Newsletter"
+      newsletterpopuptext="Get the latest updates and offers."
+      newsletterpopupimage="https://via.placeholder.com/150"
+      newsletterpopupdisclaimer="You can unsubscribe at any time.">
       <div slot="newsletter">
         <iv-newsletter></iv-newsletter>
       </div>
