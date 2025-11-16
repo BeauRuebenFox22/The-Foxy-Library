@@ -3,7 +3,16 @@ import { createErrorHandler } from '../../utils/error_handling/factory';
 
 const errors = createErrorHandler({ component: 'iv-set-up' });
 
-export function setStoreDomain() {
+export function getShopDomain(): string | null {
+  const stateShopDomain = state.shopDomain || null;
+  if(!stateShopDomain){
+    const storeUrl = typeof window !== 'undefined' && window.location ? window.location.hostname : '';
+    return storeUrl || null;
+  };
+  return stateShopDomain;
+};
+
+export function setStoreDomain(): void {
   try {
     const storeUrl = typeof window !== 'undefined' && window.location ? window.location.hostname : '';
     if(!storeUrl) throw new Error('Could not set store domain.');
@@ -20,7 +29,7 @@ export function setStoreDomain() {
 };
 
 // Check where this is called! 
-export function apiSetup() {
+export function apiSetup(): void {
   let token = document.documentElement.getAttribute('store-token');
   if(!token) {
     console.error('[Intravenous] Missing store-url or store-token attribute on <html>.');

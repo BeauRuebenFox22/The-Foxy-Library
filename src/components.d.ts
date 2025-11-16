@@ -49,6 +49,8 @@ export namespace Components {
     }
     interface IvCarousel {
     }
+    interface IvCompareProduct {
+    }
     interface IvDynamicProducts {
         "addtocarttext"?: string;
         "buttontext"?: string;
@@ -272,6 +274,12 @@ export namespace Components {
         "showspinner"?: boolean;
         "tablayout"?: string;
     }
+    interface IvProductPin {
+        "pinBehaviour": 'modal' | 'link' | 'tooltip';
+        "pinCords": { x: number, y: number };
+        "pinKey": number;
+        "pinProduct": string;
+    }
     interface IvProductUpsell {
     }
     interface IvRecentlyViewed {
@@ -289,6 +297,11 @@ export namespace Components {
           * @default 'span'
          */
         "titletag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+    }
+    interface IvShopTheLook {
+        "behaviour": 'modal' | 'link' | 'tooltip';
+        "coordinates": string;
+        "producthandles"?: string;
     }
     interface IvSidebar {
         "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
@@ -346,6 +359,14 @@ export namespace Components {
         "type": 'info' | 'success' | 'error' | 'warning';
     }
     interface IvToastContainer {
+    }
+    interface IvTwoColMedia {
+        "gap": string;
+        "horizontalalign": 'left' | 'center' | 'right';
+        "mobilebehaviour": 'stack' | 'hide_specific' | 'hide_both';
+        "stackorder"?: 'col-1' | 'col-2';
+        "verticalalign": 'top' | 'middle' | 'bottom';
+        "whichcolumn"?: 'col-1' | 'col-2';
     }
     interface IvWishlist {
         /**
@@ -445,6 +466,12 @@ declare global {
     var HTMLIvCarouselElement: {
         prototype: HTMLIvCarouselElement;
         new (): HTMLIvCarouselElement;
+    };
+    interface HTMLIvCompareProductElement extends Components.IvCompareProduct, HTMLStencilElement {
+    }
+    var HTMLIvCompareProductElement: {
+        prototype: HTMLIvCompareProductElement;
+        new (): HTMLIvCompareProductElement;
     };
     interface HTMLIvDynamicProductsElement extends Components.IvDynamicProducts, HTMLStencilElement {
     }
@@ -546,6 +573,12 @@ declare global {
         prototype: HTMLIvPredictiveSearchElement;
         new (): HTMLIvPredictiveSearchElement;
     };
+    interface HTMLIvProductPinElement extends Components.IvProductPin, HTMLStencilElement {
+    }
+    var HTMLIvProductPinElement: {
+        prototype: HTMLIvProductPinElement;
+        new (): HTMLIvProductPinElement;
+    };
     interface HTMLIvProductUpsellElement extends Components.IvProductUpsell, HTMLStencilElement {
     }
     var HTMLIvProductUpsellElement: {
@@ -557,6 +590,12 @@ declare global {
     var HTMLIvRecentlyViewedElement: {
         prototype: HTMLIvRecentlyViewedElement;
         new (): HTMLIvRecentlyViewedElement;
+    };
+    interface HTMLIvShopTheLookElement extends Components.IvShopTheLook, HTMLStencilElement {
+    }
+    var HTMLIvShopTheLookElement: {
+        prototype: HTMLIvShopTheLookElement;
+        new (): HTMLIvShopTheLookElement;
     };
     interface HTMLIvSidebarElement extends Components.IvSidebar, HTMLStencilElement {
     }
@@ -594,6 +633,12 @@ declare global {
         prototype: HTMLIvToastContainerElement;
         new (): HTMLIvToastContainerElement;
     };
+    interface HTMLIvTwoColMediaElement extends Components.IvTwoColMedia, HTMLStencilElement {
+    }
+    var HTMLIvTwoColMediaElement: {
+        prototype: HTMLIvTwoColMediaElement;
+        new (): HTMLIvTwoColMediaElement;
+    };
     interface HTMLIvWishlistElement extends Components.IvWishlist, HTMLStencilElement {
     }
     var HTMLIvWishlistElement: {
@@ -624,6 +669,7 @@ declare global {
         "iv-button": HTMLIvButtonElement;
         "iv-card": HTMLIvCardElement;
         "iv-carousel": HTMLIvCarouselElement;
+        "iv-compare-product": HTMLIvCompareProductElement;
         "iv-dynamic-products": HTMLIvDynamicProductsElement;
         "iv-dynamic-products-carousel": HTMLIvDynamicProductsCarouselElement;
         "iv-event-button": HTMLIvEventButtonElement;
@@ -635,14 +681,17 @@ declare global {
         "iv-modal": HTMLIvModalElement;
         "iv-newsletter": HTMLIvNewsletterElement;
         "iv-predictive-search": HTMLIvPredictiveSearchElement;
+        "iv-product-pin": HTMLIvProductPinElement;
         "iv-product-upsell": HTMLIvProductUpsellElement;
         "iv-recently-viewed": HTMLIvRecentlyViewedElement;
+        "iv-shop-the-look": HTMLIvShopTheLookElement;
         "iv-sidebar": HTMLIvSidebarElement;
         "iv-spinner": HTMLIvSpinnerElement;
         "iv-suggest": HTMLIvSuggestElement;
         "iv-tabs": HTMLIvTabsElement;
         "iv-toast": HTMLIvToastElement;
         "iv-toast-container": HTMLIvToastContainerElement;
+        "iv-two-col-media": HTMLIvTwoColMediaElement;
         "iv-wishlist": HTMLIvWishlistElement;
         "iv-wishlist-view": HTMLIvWishlistViewElement;
         "sw-in-grid-content": HTMLSwInGridContentElement;
@@ -689,6 +738,8 @@ declare namespace LocalJSX {
         "fields"?: string;
     }
     interface IvCarousel {
+    }
+    interface IvCompareProduct {
     }
     interface IvDynamicProducts {
         "addtocarttext"?: string;
@@ -917,6 +968,12 @@ declare namespace LocalJSX {
         "showspinner"?: boolean;
         "tablayout"?: string;
     }
+    interface IvProductPin {
+        "pinBehaviour"?: 'modal' | 'link' | 'tooltip';
+        "pinCords"?: { x: number, y: number };
+        "pinKey"?: number;
+        "pinProduct"?: string;
+    }
     interface IvProductUpsell {
     }
     interface IvRecentlyViewed {
@@ -934,6 +991,11 @@ declare namespace LocalJSX {
           * @default 'span'
          */
         "titletag"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+    }
+    interface IvShopTheLook {
+        "behaviour"?: 'modal' | 'link' | 'tooltip';
+        "coordinates"?: string;
+        "producthandles"?: string;
     }
     interface IvSidebar {
         "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
@@ -992,6 +1054,14 @@ declare namespace LocalJSX {
     }
     interface IvToastContainer {
     }
+    interface IvTwoColMedia {
+        "gap"?: string;
+        "horizontalalign"?: 'left' | 'center' | 'right';
+        "mobilebehaviour"?: 'stack' | 'hide_specific' | 'hide_both';
+        "stackorder"?: 'col-1' | 'col-2';
+        "verticalalign"?: 'top' | 'middle' | 'bottom';
+        "whichcolumn"?: 'col-1' | 'col-2';
+    }
     interface IvWishlist {
         /**
           * @default 'Add to cart'
@@ -1038,6 +1108,7 @@ declare namespace LocalJSX {
         "iv-button": IvButton;
         "iv-card": IvCard;
         "iv-carousel": IvCarousel;
+        "iv-compare-product": IvCompareProduct;
         "iv-dynamic-products": IvDynamicProducts;
         "iv-dynamic-products-carousel": IvDynamicProductsCarousel;
         "iv-event-button": IvEventButton;
@@ -1049,14 +1120,17 @@ declare namespace LocalJSX {
         "iv-modal": IvModal;
         "iv-newsletter": IvNewsletter;
         "iv-predictive-search": IvPredictiveSearch;
+        "iv-product-pin": IvProductPin;
         "iv-product-upsell": IvProductUpsell;
         "iv-recently-viewed": IvRecentlyViewed;
+        "iv-shop-the-look": IvShopTheLook;
         "iv-sidebar": IvSidebar;
         "iv-spinner": IvSpinner;
         "iv-suggest": IvSuggest;
         "iv-tabs": IvTabs;
         "iv-toast": IvToast;
         "iv-toast-container": IvToastContainer;
+        "iv-two-col-media": IvTwoColMedia;
         "iv-wishlist": IvWishlist;
         "iv-wishlist-view": IvWishlistView;
         "sw-in-grid-content": SwInGridContent;
@@ -1072,6 +1146,7 @@ declare module "@stencil/core" {
             "iv-button": LocalJSX.IvButton & JSXBase.HTMLAttributes<HTMLIvButtonElement>;
             "iv-card": LocalJSX.IvCard & JSXBase.HTMLAttributes<HTMLIvCardElement>;
             "iv-carousel": LocalJSX.IvCarousel & JSXBase.HTMLAttributes<HTMLIvCarouselElement>;
+            "iv-compare-product": LocalJSX.IvCompareProduct & JSXBase.HTMLAttributes<HTMLIvCompareProductElement>;
             "iv-dynamic-products": LocalJSX.IvDynamicProducts & JSXBase.HTMLAttributes<HTMLIvDynamicProductsElement>;
             "iv-dynamic-products-carousel": LocalJSX.IvDynamicProductsCarousel & JSXBase.HTMLAttributes<HTMLIvDynamicProductsCarouselElement>;
             "iv-event-button": LocalJSX.IvEventButton & JSXBase.HTMLAttributes<HTMLIvEventButtonElement>;
@@ -1083,14 +1158,17 @@ declare module "@stencil/core" {
             "iv-modal": LocalJSX.IvModal & JSXBase.HTMLAttributes<HTMLIvModalElement>;
             "iv-newsletter": LocalJSX.IvNewsletter & JSXBase.HTMLAttributes<HTMLIvNewsletterElement>;
             "iv-predictive-search": LocalJSX.IvPredictiveSearch & JSXBase.HTMLAttributes<HTMLIvPredictiveSearchElement>;
+            "iv-product-pin": LocalJSX.IvProductPin & JSXBase.HTMLAttributes<HTMLIvProductPinElement>;
             "iv-product-upsell": LocalJSX.IvProductUpsell & JSXBase.HTMLAttributes<HTMLIvProductUpsellElement>;
             "iv-recently-viewed": LocalJSX.IvRecentlyViewed & JSXBase.HTMLAttributes<HTMLIvRecentlyViewedElement>;
+            "iv-shop-the-look": LocalJSX.IvShopTheLook & JSXBase.HTMLAttributes<HTMLIvShopTheLookElement>;
             "iv-sidebar": LocalJSX.IvSidebar & JSXBase.HTMLAttributes<HTMLIvSidebarElement>;
             "iv-spinner": LocalJSX.IvSpinner & JSXBase.HTMLAttributes<HTMLIvSpinnerElement>;
             "iv-suggest": LocalJSX.IvSuggest & JSXBase.HTMLAttributes<HTMLIvSuggestElement>;
             "iv-tabs": LocalJSX.IvTabs & JSXBase.HTMLAttributes<HTMLIvTabsElement>;
             "iv-toast": LocalJSX.IvToast & JSXBase.HTMLAttributes<HTMLIvToastElement>;
             "iv-toast-container": LocalJSX.IvToastContainer & JSXBase.HTMLAttributes<HTMLIvToastContainerElement>;
+            "iv-two-col-media": LocalJSX.IvTwoColMedia & JSXBase.HTMLAttributes<HTMLIvTwoColMediaElement>;
             "iv-wishlist": LocalJSX.IvWishlist & JSXBase.HTMLAttributes<HTMLIvWishlistElement>;
             "iv-wishlist-view": LocalJSX.IvWishlistView & JSXBase.HTMLAttributes<HTMLIvWishlistViewElement>;
             "sw-in-grid-content": LocalJSX.SwInGridContent & JSXBase.HTMLAttributes<HTMLSwInGridContentElement>;

@@ -1,0 +1,20 @@
+.iv-product-pin {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: #e74c3c;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.iv-product-pin:hover {
+  transform: scale(1.1);
+}

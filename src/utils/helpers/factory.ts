@@ -37,3 +37,7 @@ export function isValuePhoneNumber(value: string): boolean {
   const phoneRegex = /^\+?[0-9\s\-()]{7,}$/;
   return phoneRegex.test(value);
 };
+
+export function classNames(...classes: Array<string | false | undefined>){
+  return classes.filter(Boolean).join(' ');
+};
