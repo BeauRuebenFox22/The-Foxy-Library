@@ -1,43 +1,16 @@
 import { state } from '../../utils/store/store';
-import { createErrorHandler } from '../../utils/error_handling/factory';
 
-const errors = createErrorHandler({ component: 'iv-set-up' });
-
-export function getShopDomain(): string | null {
-  const stateShopDomain = state.shopDomain || null;
-  if(!stateShopDomain){
-    const storeUrl = typeof window !== 'undefined' && window.location ? window.location.hostname : '';
-    return storeUrl || null;
-  };
-  return stateShopDomain;
-};
-
-export function setStoreDomain(): void {
-  try {
-    const storeUrl = typeof window !== 'undefined' && window.location ? window.location.hostname : '';
-    if(!storeUrl) throw new Error('Could not set store domain.');
-    state.shopDomain = storeUrl;
-  } catch(err: any) {
-    errors.handle({
-      error: err,
-      scope: 'SetStoreDomain',
-      userMessage: 'Something has gone wrong, please try again.',
-      devMessage: 'Failed to set store domain in store.ts',
-      severity: 'critical'
-    });
-  };
-};
-
-// Check where this is called! 
-export function apiSetup(): void {
+export function apiSetup() {
+  let url = document.documentElement.getAttribute('store-url');
   let token = document.documentElement.getAttribute('store-token');
-  if(!token) {
+  if(!url || !token) {
     console.error('[Intravenous] Missing store-url or store-token attribute on <html>.');
     return;
   };
-  if(state.shopDomain && !state.shopDomain.includes('.myshopify.com')) {
-    state.shopDomain = state.shopDomain + '.myshopify.com';
+  if(url && !url.includes('.myshopify.com')) {
+    url = url + '.myshopify.com';
   };
+  state.shopDomain = url;
   state.storefrontToken = token;
 };
 

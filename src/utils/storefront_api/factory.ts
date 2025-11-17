@@ -1,5 +1,4 @@
 import { state, showToast } from "../store/store";
-
 async function shopifyFetch(query: string, variables: Record<string, any> = {}): Promise<any> {
   try {
     if(!state.shopDomain || !state.storefrontToken) throw new Error('Missing Shopify configuration (shopDomain/storefrontToken)');
