@@ -18,8 +18,7 @@ function createInitialStoreState() {
     _instanceId: Math.random().toString(36).slice(2),
     storefrontToken: null as string | null,
     shopDomain: null as string | null,
-    currencyCode: 'GBP',
-    setCurrencyCode(code: string) { this.currencyCode = code; },
+    currencyCode: 'GBP' as string,
     modalIsOpen: false,
     modalContent: null as string | null,
     pulloutOpen: false as boolean,
@@ -32,6 +31,7 @@ function createInitialStoreState() {
     },
     toasts: [] as ToastItem[],
     wishlist: [] as Array<Record<string, any>>,
+    apiConnected: false as boolean
   };
 }
 

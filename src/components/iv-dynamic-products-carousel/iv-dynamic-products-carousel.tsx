@@ -1,6 +1,6 @@
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { state } from '../../utils/store/store';
-import { fetchProducts } from '../../utils/storefront_api/factory';
+import { fetchProducts } from '../../utils/storefront_api';
 import { productCache } from '../../utils/caching/productCache';
 import { createErrorHandler } from '../../utils/error_handling/factory';
 
@@ -77,12 +77,18 @@ export class IvDynamicProductsCarousel {
   private async loadProducts(fromWatch: boolean) {
     const params = this.buildParams();
     const ttl = this.cachettl || 1000 * 60 * 5;
-    state.loading = !fromWatch; 
+    state.loading = !fromWatch;
     try {
       const data = await productCache.getOrSetData(
         params,
         async () => {
-          const fresh = await fetchProducts(36, this.collectionhandle, this.type, this.requestedfields, this.reversed);
+          const fresh = await fetchProducts(
+            36, 
+            this.collectionhandle, 
+            this.type, 
+            this.requestedfields, 
+            this.reversed
+          );
           return fresh;
         },
         {
@@ -108,7 +114,7 @@ export class IvDynamicProductsCarousel {
       state.loading = false;
     };
   };
-
+  
   private pagedProducts() {
     const chunks: any[][] = [];
     for(let i=0; i < this.products.length; i += this.itemsPerPage) {

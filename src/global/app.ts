@@ -1,29 +1,25 @@
-import { apiSetup, fetchShopifyCurrencyCode } from '../utils/config/factory';
+import { fetchShopifyCurrencyCode } from '../utils/config/factory';
 import { state } from '../utils/store/store';
+import { apiConfig } from '../utils/storefront_api';
+import { createErrorHandler } from '../utils/error_handling/factory';
 
-// Idempotent global init (prevents double execution if script loaded twice)
-// Also resolves Stencil v update expecting a default export from globalScript.
-// Flags kept minimal to avoid polluting window.
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const w: any = (typeof window !== 'undefined') ? window : {};
+const errors = createErrorHandler({ component: 'global-init-function' });
 
-export default async function intravenousGlobalInit() {
+export default async function init(): Promise<void> {
+  apiConfig.connect();
   try {
-    if(!w.__IV_API_SETUP_DONE) {
-      apiSetup();
-      w.__IV_API_SETUP_DONE = true;
-    }
-    if(!w.__IV_CURRENCY_FETCH_DONE) {
-      try {
-        const code = await fetchShopifyCurrencyCode();
-        if(code) state.setCurrencyCode(code);
-      } catch (err) {
-        console.debug('[IV] currency fetch skipped', err);
-      }
-      w.__IV_CURRENCY_FETCH_DONE = true;
-    }
-  } catch(err) {
-    console.error('[IV] Global init failed', err);
-  }
-}
+    if(!apiConfig.isConnected()) throw new Error('Shopify Storefront API not connected');
+    state.apiConnected = true
+    state.currencyCode = (await fetchShopifyCurrencyCode()) || 'GBP';
+  } catch(error) {
+    errors.handle({
+      error,
+      scope: 'globalInit',
+      userMessage: 'Unable to connect to the store right now.',
+      devMessage: 'Global init failed to connect Storefront API',
+      severity: 'error'
+    });
+  };
+};
+
+init();
