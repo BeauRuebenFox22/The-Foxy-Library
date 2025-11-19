@@ -1,4 +1,4 @@
-// Cart Queries
+// Cart Queries - MAY NOW BE USELESS, SUPERSEDED BY cartManager METHODS
 export const DEFAULT_CART_FIELDS = [
   'id',
   'checkoutUrl',
@@ -79,11 +79,6 @@ export function buildVariantProductQuery(productFieldsString: string, variantFie
 };
 
 // Change this to emit an event that the toast component can listen for
-
-// getCurrency
-// addToCart
-// Update cart (quantity, remove items)
-// getProductByID
 // getProductByHandle
 // getProducts
 // getCollections (with sorting)

@@ -9,3 +9,5 @@ export async function fetchShopifyCurrencyCode(): Promise<string> {
     return 'GBP';
   };
 };
+
+/* THIS CAN BE DELETED LATER, SUPERSEDED BY cartManager METHODS */

@@ -2,7 +2,6 @@ import { apiConfig } from './config';
 import { createErrorHandler } from '../../utils/error_handling/factory';
 import { getIdFromHandleQuery, buildProductsQuery, buildSingleProductQuery, buildVariantProductQuery, buildCollectionProductsQuery } from './queries';
 import { normalizeProduct, NormalizedProduct } from './normalize';
-import { showToast } from "../store/store";
 
 const BASE_PRODUCT_FIELDS = ['id','handle','title'];
 const DEFAULT_VARIANT_FIELDS = ['id','title','price { amount currencyCode }'];
@@ -28,50 +27,6 @@ export async function shopifyFetch(query: string, variables: Record<string, any>
       scope: 'loadProducts',
       userMessage: 'Unable to load products right now.',
       devMessage: 'fetchProducts failed in iv-dynamic-products',
-      severity: 'error'
-    });
-    return null;
-  };
-};
-
-export async function addToCart(options: {
-  id: number; quantity?: number; properties?: Record<string, any>;}): Promise<any | null> {
-  try {
-    if(!options.id) throw new Error('No variant id provided for addToCart');
-    const quantity = options.quantity || 1;
-    const properties = options.properties || {};
-    const payload = {
-      items: [
-        {
-          id: options.id,
-          quantity,
-          properties
-        }
-      ]
-    };
-    const url = '/cart/add.js';
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      body: JSON.stringify(payload)
-    });
-    if(!res.ok) {
-      const errorText = await res.text();
-      throw new Error(errorText);
-    };
-    const cartItem = await res.json();
-    showToast(`Added ${cartItem.quantity} of item ${cartItem.title} to cart!`, 'success', 3000);
-    return cartItem;
-  } catch (err: any) {
-    errors.handle({
-      error: err,
-      scope: 'addToCart',
-      userMessage: 'Unable to add item to cart right now.',
-      devMessage: 'addToCart failed in iv-dynamic-products',
       severity: 'error'
     });
     return null;
