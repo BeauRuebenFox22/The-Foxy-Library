@@ -10,12 +10,18 @@ const BLOCK = 'iv-carousel';
 
 export class IvCarousel {
 
-  @Prop() navArrows?: boolean;
-  @Prop() navDots?: boolean;
-  @Prop() autoPlay: boolean = false;
-  @Prop() autoPlaySpeed: number = 3000;
+  @Prop() navarrows?: boolean;
+  @Prop() navdots?: boolean;
+  @Prop() showslidecount?: boolean;
+  @Prop() autoplay: boolean = false;
+  @Prop() autoplayspeed: number = 3000;
+  @Prop() valign: 'top' | 'center' | 'bottom' = 'center';
+  @Prop() halign: 'left' | 'center' | 'right' = 'center';
+  @Prop() hasoverlay: boolean = false;
+  
   @State() currentIndex: number = 0;
   @State() items: HTMLElement[] = [];
+
   @Element() el: HTMLElement;
 
   private autoplayInterval: any;
@@ -26,10 +32,10 @@ export class IvCarousel {
 
   componentDidLoad() {
     this.updateActiveSlide();
-    if(this.autoPlay) {
+    if(this.autoplay) {
       this.autoplayInterval = setInterval(() => {
         this.navigate('right');
-      }, this.autoPlaySpeed);
+      }, this.autoplayspeed);
     };
   };
 
@@ -70,11 +76,11 @@ export class IvCarousel {
 
     return (
       <div class={BLOCK}>
-        <div class={`${BLOCK}__item`}>
+        <div class={`${BLOCK}-items valign-${this.valign} halign-${this.halign} ${this.hasoverlay && 'has-overlay'}`}>
           <slot/>
         </div>
-        {this.navDots && (
-          <div class="carousel-dots">
+        {this.navdots && (
+          <div class={`${BLOCK}-dots`}>
             {this.items.map((_item, index) => (
               <button
                 class={`dot ${index === this.currentIndex ? 'active' : ''}`}
@@ -83,10 +89,17 @@ export class IvCarousel {
             ))}
           </div>
         )}
-        {this.navArrows && (
-          <div class="arrow-wrapper">
+        {this.navarrows && (
+          <div class={`${BLOCK}-arrow-wrapper`}>
             <button class="arrow left" onClick={() => this.navigate('left')}>‹</button>
             <button class="arrow right" onClick={() => this.navigate('right')}>›</button>
+          </div>
+        )}
+        {this.navarrows && this.showslidecount && (
+          <div class={`${BLOCK}-slide-count`}>
+            <span>
+              {this.currentIndex + 1} / {this.items.length}
+            </span>
           </div>
         )}
       </div>

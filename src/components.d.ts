@@ -51,13 +51,26 @@ export namespace Components {
         /**
           * @default false
          */
-        "autoPlay": boolean;
+        "autoplay": boolean;
         /**
           * @default 3000
          */
-        "autoPlaySpeed": number;
-        "navArrows"?: boolean;
-        "navDots"?: boolean;
+        "autoplayspeed": number;
+        /**
+          * @default 'center'
+         */
+        "halign": 'left' | 'center' | 'right';
+        /**
+          * @default false
+         */
+        "hasoverlay": boolean;
+        "navarrows"?: boolean;
+        "navdots"?: boolean;
+        "showslidecount"?: boolean;
+        /**
+          * @default 'center'
+         */
+        "valign": 'top' | 'center' | 'bottom';
     }
     interface IvCompareProduct {
     }
@@ -751,13 +764,26 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
-        "autoPlay"?: boolean;
+        "autoplay"?: boolean;
         /**
           * @default 3000
          */
-        "autoPlaySpeed"?: number;
-        "navArrows"?: boolean;
-        "navDots"?: boolean;
+        "autoplayspeed"?: number;
+        /**
+          * @default 'center'
+         */
+        "halign"?: 'left' | 'center' | 'right';
+        /**
+          * @default false
+         */
+        "hasoverlay"?: boolean;
+        "navarrows"?: boolean;
+        "navdots"?: boolean;
+        "showslidecount"?: boolean;
+        /**
+          * @default 'center'
+         */
+        "valign"?: 'top' | 'center' | 'bottom';
     }
     interface IvCompareProduct {
     }

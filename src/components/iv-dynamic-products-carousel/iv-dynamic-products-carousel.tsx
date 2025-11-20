@@ -1,3 +1,5 @@
+// Refactor this to use the iv-carousel component
+
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { state } from '../../utils/store/store';
 import { fetchProducts } from '../../utils/storefront_api';
