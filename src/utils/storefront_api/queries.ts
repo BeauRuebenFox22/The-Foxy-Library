@@ -1,21 +1,3 @@
-// Cart Queries - MAY NOW BE USELESS, SUPERSEDED BY cartManager METHODS
-export const DEFAULT_CART_FIELDS = [
-  'id',
-  'checkoutUrl',
-  'totalQuantity',
-  'lines(first: 10) { edges { node { id quantity merchandise { ... on ProductVariant { id title product { id title } } } } } }',
-  'cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }'
-];
-
-export function buildCartQuery(fields: string[] = DEFAULT_CART_FIELDS): string {
-  return `
-    query ($cartId: ID!) {
-      cart(id: $cartId) {
-        ${fields.join('\n')}
-      }
-    }`;
-};
-
 export function getIdFromHandleQuery(): string {
   return `
     query ($handle: String!) {

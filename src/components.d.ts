@@ -48,6 +48,16 @@ export namespace Components {
         "fields"?: string;
     }
     interface IvCarousel {
+        /**
+          * @default false
+         */
+        "autoPlay": boolean;
+        /**
+          * @default 3000
+         */
+        "autoPlaySpeed": number;
+        "navArrows"?: boolean;
+        "navDots"?: boolean;
     }
     interface IvCompareProduct {
     }
@@ -738,6 +748,16 @@ declare namespace LocalJSX {
         "fields"?: string;
     }
     interface IvCarousel {
+        /**
+          * @default false
+         */
+        "autoPlay"?: boolean;
+        /**
+          * @default 3000
+         */
+        "autoPlaySpeed"?: number;
+        "navArrows"?: boolean;
+        "navDots"?: boolean;
     }
     interface IvCompareProduct {
     }
