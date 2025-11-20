@@ -285,11 +285,14 @@ class CartManager implements CartOps {
 
 };
 
+/**
+ * To use cartManager, you can import it and call its methods like so:
+ * import { cartManager } from './path/to/cart';
+*/
 export const cartManager = new CartManager();
 
 /* 
   To Add: 
-  * Add retry logic for network errors
   * Add events system to power the components, modules and helpers methods
   * This should also reduce reliance on the State as well
   * Add loading state management
