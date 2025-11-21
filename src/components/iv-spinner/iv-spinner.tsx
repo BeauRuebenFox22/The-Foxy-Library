@@ -8,6 +8,10 @@ const BLOCK = 'iv-spinner';
   shadow: false
 })
 
+// Add a global loading state, that responds to something in global state
+// When this is true, the spinner appears central with a complete screen overlay
+// This is to handle things like API calls, route changes, etc.
+
 export class IvSpinner {
 
   @Prop() show: boolean = false;

@@ -72,27 +72,41 @@ export class IvCarousel {
     this.updateActiveSlide();
   };
 
+  /** Prevent anchor navigation when controls sit inside a link wrapper */
+  private handleDotClick(e: MouseEvent, index: number) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.setCurrentIndex(index);
+  };
+
+  private handleArrowClick(e: MouseEvent, direction: 'left' | 'right') {
+    e.preventDefault();
+    e.stopPropagation();
+    this.navigate(direction);
+  };
+
   render() {
 
     return (
       <div class={BLOCK}>
-        <div class={`${BLOCK}-items valign-${this.valign} halign-${this.halign} ${this.hasoverlay && 'has-overlay'}`}>
+        <div class={`${BLOCK}-items valign-${this.valign} halign-${this.halign} ${this.hasoverlay ? 'has-overlay' : ''}`}>
           <slot/>
         </div>
         {this.navdots && (
-          <div class={`${BLOCK}-dots`}>
+          <div class={`${BLOCK}-dots`} onClick={e => e.stopPropagation()}>
             {this.items.map((_item, index) => (
               <button
+                type="button"
                 class={`dot ${index === this.currentIndex ? 'active' : ''}`}
-                onClick={() => this.setCurrentIndex(index)}>
-              </button>
+                onClick={(e) => this.handleDotClick(e, index)}
+              />
             ))}
           </div>
         )}
         {this.navarrows && (
-          <div class={`${BLOCK}-arrow-wrapper`}>
-            <button class="arrow left" onClick={() => this.navigate('left')}>‹</button>
-            <button class="arrow right" onClick={() => this.navigate('right')}>›</button>
+          <div class={`${BLOCK}-arrow-wrapper`} onClick={e => e.stopPropagation()}>
+            <button type="button" class="arrow left" onClick={(e) => this.handleArrowClick(e,'left')}>‹</button>
+            <button type="button" class="arrow right" onClick={(e) => this.handleArrowClick(e,'right')}>›</button>
           </div>
         )}
         {this.navarrows && this.showslidecount && (

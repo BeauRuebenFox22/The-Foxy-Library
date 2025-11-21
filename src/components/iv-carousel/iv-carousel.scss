@@ -1,5 +1,10 @@
 .iv-carousel {
   --iv-carousel-height: 320px;
+  --iv-dots-offset: 0.5rem; /* distance from bottom of carousel */
+  --iv-dots-gap: 0.75rem;
+  --iv-dot-size: 12px;
+  --iv-dot-color: #eee;
+  --iv-dot-active: #ff5858;
   position: relative;
   width: 100%;
   max-width: 600px;
@@ -104,26 +109,33 @@
   }
 
   .iv-carousel-dots {
+    position: absolute;
+    left: 50%;
+    bottom: var(--iv-dots-offset);
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin: 1rem 0 0 0;
-    position: relative;
-    z-index: 3;
+    align-items: center;
+    gap: var(--iv-dots-gap);
+    z-index: 5;
+    padding: 0.25rem 0.5rem;
+    background: var(--iv-carousel-dot-box-bg, rgba(255,255,255,0.6));
+    backdrop-filter: blur(4px);
+    border-radius: 999px;
 
     .dot {
-      width: 12px;
-      height: 12px;
+      width: var(--iv-dot-size);
+      height: var(--iv-dot-size);
       border-radius: 50%;
-      background: var(--iv-carousel-dot-bg, #eee);
+      background: var(--iv-dot-color);
       border: none;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.25s, transform 0.25s;
+    }
 
-      &.active {
-        background: var(--iv-carousel-dot-active-bg, #ff5858);
-      }
-
+    .dot.active {
+      background: var(--iv-dot-active);
+      transform: scale(1.15);
     }
 
   }
