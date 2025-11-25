@@ -1,4 +1,5 @@
 import { Component, h, Prop, State, Element } from '@stencil/core';
+import { classNames } from '../../utils/helpers/factory';
 
 const BLOCK = 'iv-carousel';
 
@@ -15,8 +16,8 @@ export class IvCarousel {
   @Prop() showslidecount?: boolean;
   @Prop() autoplay: boolean = false;
   @Prop() autoplayspeed: number = 3000;
-  @Prop() valign: 'top' | 'center' | 'bottom' = 'center';
-  @Prop() halign: 'left' | 'center' | 'right' = 'center';
+  @Prop() valign?: 'top' | 'center' | 'bottom';
+  @Prop() halign?: 'left' | 'center' | 'right';
   @Prop() hasoverlay: boolean = false;
   
   @State() currentIndex: number = 0;
@@ -89,7 +90,11 @@ export class IvCarousel {
 
     return (
       <div class={BLOCK}>
-        <div class={`${BLOCK}-items valign-${this.valign} halign-${this.halign} ${this.hasoverlay ? 'has-overlay' : ''}`}>
+        <div class={classNames(
+          `${BLOCK}-items`, 
+          this?.halign && `halign-${this.halign}`,
+          this?.valign && `valign-${this.valign}`
+        )}>          
           <slot/>
         </div>
         {this.navdots && (

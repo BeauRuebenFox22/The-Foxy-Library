@@ -13,16 +13,20 @@ export interface NewsletterFailDetail { reason: string; error?: string; email?: 
 
 export class IvNewsletter {
 
+  @Prop() formimageurl?: string;
+  @Prop() formimageposition?: 'top' | 'cover';
+  @Prop() formimageheight?: string;
   @Prop() formsubmitbtntext: string = 'Subscribe';
   @Prop() formsuccessmessage?: string;
   @Prop() formfailuremessage?: string;
   @Prop() formplaceholdertext?: string;
   @Prop() formlabeltext?: string;
-  @Prop() formstackbutton?: boolean;
+  @Prop() formstackbutton: boolean = false;
   @Prop() formtitletag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' = 'h2';
   @Prop() formtitletext?: string;
   @Prop() formdescriptiontext?: string;
-  @Prop() includeloadingspinner?: boolean;
+  @Prop() includeloadingspinner: boolean = true;
+  @Prop() newsletterpopupdisclaimer?: string;
 
   @State() email: string = '';
   @State() formFeedback: string = '';
@@ -79,7 +83,13 @@ export class IvNewsletter {
 
     return (
 
-      <div class={`${BLOCK} status-${this.status} ${this.includeloadingspinner && `${BLOCK}--with-spinner`}`}>
+      <div class={`${BLOCK} status-${this.status} ${this.includeloadingspinner && `${BLOCK}-with-spinner`}`}>
+        {this.formimageurl && (
+          <img 
+            class={`${BLOCK}-image ${BLOCK}-image-${this.formimageposition}`} 
+            style={{ height: `${this.formimageheight}px` }}
+            src={this.formimageurl} />
+        )}
         {(this.formtitletext || this.formdescriptiontext) && (
           <div class={`${BLOCK}-header`}>
             {this.formtitletext && <TAG class={`${BLOCK}-title`}>{this.formtitletext}</TAG>}
@@ -88,7 +98,8 @@ export class IvNewsletter {
         )}
         <form 
           class={`${BLOCK}-form`} 
-          method="post" 
+          method="post"
+          action="/contact"
           onSubmit={(event) => this.submitHandler(event)} 
           accept-charset="UTF-8"
           aria-busy={this.status === 'submitting'}
@@ -122,6 +133,10 @@ export class IvNewsletter {
         </form>
         {this.includeloadingspinner && this.status === 'submitting' &&
           <iv-spinner show={true}></iv-spinner>
+        }
+        {
+          this.newsletterpopupdisclaimer &&
+          <p class={`${BLOCK}-disclaimer`}>{this.newsletterpopupdisclaimer}</p>
         }
         {this.formFeedback && (
           <div class={`${BLOCK}-form-feedback`} aria-live="polite">

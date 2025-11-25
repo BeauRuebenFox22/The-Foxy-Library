@@ -9,6 +9,7 @@
 
 | Property            | Attribute           | Description | Type     | Default     |
 | ------------------- | ------------------- | ----------- | -------- | ----------- |
+| `footerbackground`  | `footerbackground`  |             | `string` | `undefined` |
 | `gridtemplateareas` | `gridtemplateareas` |             | `string` | `undefined` |
 
 

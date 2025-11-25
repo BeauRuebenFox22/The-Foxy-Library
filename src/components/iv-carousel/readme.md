@@ -11,12 +11,12 @@
 | ---------------- | ---------------- | ----------- | ------------------------------- | ----------- |
 | `autoplay`       | `autoplay`       |             | `boolean`                       | `false`     |
 | `autoplayspeed`  | `autoplayspeed`  |             | `number`                        | `3000`      |
-| `halign`         | `halign`         |             | `"center" \| "left" \| "right"` | `'center'`  |
+| `halign`         | `halign`         |             | `"center" \| "left" \| "right"` | `undefined` |
 | `hasoverlay`     | `hasoverlay`     |             | `boolean`                       | `false`     |
 | `navarrows`      | `navarrows`      |             | `boolean`                       | `undefined` |
 | `navdots`        | `navdots`        |             | `boolean`                       | `undefined` |
 | `showslidecount` | `showslidecount` |             | `boolean`                       | `undefined` |
-| `valign`         | `valign`         |             | `"bottom" \| "center" \| "top"` | `'center'`  |
+| `valign`         | `valign`         |             | `"bottom" \| "center" \| "top"` | `undefined` |
 
 
 ----------------------------------------------

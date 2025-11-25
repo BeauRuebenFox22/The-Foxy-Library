@@ -9,17 +9,13 @@ const BLOCK = 'iv-modal';
 @Component({
   tag: 'iv-modal',
   styleUrl: 'iv-modal.scss',
-  shadow: false
+  shadow: true
 })
 
 export class IvModal {
 
   @Prop() newsletterpopuptrigger?: NewsletterTimerOptions['newsletterpopuptrigger'];
   @Prop() newsletterpopuptimedelay?: NewsletterTimerOptions['newsletterpopuptimedelay'];
-  @Prop() newsletterpopuptitle?: NewsletterTimerOptions['newsletterpopuptitle'];
-  @Prop() newsletterpopuptext?: NewsletterTimerOptions['newsletterpopuptext'];
-  @Prop() newsletterpopupimage?: NewsletterTimerOptions['newsletterpopupimage'];
-  @Prop() newsletterpopupdisclaimer?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
 
   @State() modalState: boolean = false;
   @State() contentName: string;

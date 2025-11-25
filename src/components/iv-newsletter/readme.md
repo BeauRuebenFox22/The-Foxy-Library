@@ -7,18 +7,22 @@
 
 ## Properties
 
-| Property                | Attribute               | Description | Type                                                     | Default       |
-| ----------------------- | ----------------------- | ----------- | -------------------------------------------------------- | ------------- |
-| `formdescriptiontext`   | `formdescriptiontext`   |             | `string`                                                 | `undefined`   |
-| `formfailuremessage`    | `formfailuremessage`    |             | `string`                                                 | `undefined`   |
-| `formlabeltext`         | `formlabeltext`         |             | `string`                                                 | `undefined`   |
-| `formplaceholdertext`   | `formplaceholdertext`   |             | `string`                                                 | `undefined`   |
-| `formstackbutton`       | `formstackbutton`       |             | `boolean`                                                | `undefined`   |
-| `formsubmitbtntext`     | `formsubmitbtntext`     |             | `string`                                                 | `'Subscribe'` |
-| `formsuccessmessage`    | `formsuccessmessage`    |             | `string`                                                 | `undefined`   |
-| `formtitletag`          | `formtitletag`          |             | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" \| "span"` | `'h2'`        |
-| `formtitletext`         | `formtitletext`         |             | `string`                                                 | `undefined`   |
-| `includeloadingspinner` | `includeloadingspinner` |             | `boolean`                                                | `undefined`   |
+| Property                    | Attribute                   | Description | Type                                                     | Default       |
+| --------------------------- | --------------------------- | ----------- | -------------------------------------------------------- | ------------- |
+| `formdescriptiontext`       | `formdescriptiontext`       |             | `string`                                                 | `undefined`   |
+| `formfailuremessage`        | `formfailuremessage`        |             | `string`                                                 | `undefined`   |
+| `formimageheight`           | `formimageheight`           |             | `string`                                                 | `undefined`   |
+| `formimageposition`         | `formimageposition`         |             | `"cover" \| "top"`                                       | `undefined`   |
+| `formimageurl`              | `formimageurl`              |             | `string`                                                 | `undefined`   |
+| `formlabeltext`             | `formlabeltext`             |             | `string`                                                 | `undefined`   |
+| `formplaceholdertext`       | `formplaceholdertext`       |             | `string`                                                 | `undefined`   |
+| `formstackbutton`           | `formstackbutton`           |             | `boolean`                                                | `false`       |
+| `formsubmitbtntext`         | `formsubmitbtntext`         |             | `string`                                                 | `'Subscribe'` |
+| `formsuccessmessage`        | `formsuccessmessage`        |             | `string`                                                 | `undefined`   |
+| `formtitletag`              | `formtitletag`              |             | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" \| "span"` | `'h2'`        |
+| `formtitletext`             | `formtitletext`             |             | `string`                                                 | `undefined`   |
+| `includeloadingspinner`     | `includeloadingspinner`     |             | `boolean`                                                | `true`        |
+| `newsletterpopupdisclaimer` | `newsletterpopupdisclaimer` |             | `string`                                                 | `undefined`   |
 
 
 ## Events

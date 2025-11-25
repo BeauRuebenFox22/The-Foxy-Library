@@ -1,10 +1,4 @@
 .iv-carousel {
-  --iv-carousel-height: 320px;
-  --iv-dots-offset: 0.5rem; /* distance from bottom of carousel */
-  --iv-dots-gap: 0.75rem;
-  --iv-dot-size: 12px;
-  --iv-dot-color: #eee;
-  --iv-dot-active: #ff5858;
   position: relative;
   width: 100%;
   max-width: 600px;
@@ -15,7 +9,7 @@
 
   .iv-carousel-items {
     width: 100%;
-    height: var(--iv-carousel-height);
+    height: var(--iv-carousel-height, 320px);
     position: relative;
 
     &.halign-center {
@@ -92,7 +86,7 @@
     position: relative;
     z-index: 2;
     max-width: 60%;
-    color: #fff;
+    color: var(--iv-carousel-content-color, transparent);
     background: var(--iv-carousel-content-bg, transparent);
     backdrop-filter: blur(2px);
     padding: 1rem 1.5rem;
@@ -111,12 +105,12 @@
   .iv-carousel-dots {
     position: absolute;
     left: 50%;
-    bottom: var(--iv-dots-offset);
+    bottom: var(--iv-carousel-dots-offset, 0);
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--iv-dots-gap);
+    gap: var(--iv-carousel-dots-gap, 1.25rem);
     z-index: 5;
     padding: 0.25rem 0.5rem;
     background: var(--iv-carousel-dot-box-bg, rgba(255,255,255,0.6));
@@ -124,17 +118,17 @@
     border-radius: 999px;
 
     .dot {
-      width: var(--iv-dot-size);
-      height: var(--iv-dot-size);
+      width: var(--iv-carousel-dot-size, 15px);
+      height: var(--iv-carousel-dot-size, 15px);
       border-radius: 50%;
-      background: var(--iv-dot-color);
+      background: var(--iv-carousel-dot-color, transparent);
       border: none;
       cursor: pointer;
       transition: background 0.25s, transform 0.25s;
     }
 
     .dot.active {
-      background: var(--iv-dot-active);
+      background: var(--iv-carousel-dot-active, transparent);
       transform: scale(1.15);
     }
 
@@ -155,13 +149,13 @@
       background: none;
       border: none;
       font-size: 2.5rem;
-      color: var(--iv-carousel-arrow-color, #333);
+      color: var(--iv-carousel-arrow-color, transparent);
       cursor: pointer;
       padding: 0 1rem;
       transition: color 0.2s;
     
       &:hover { 
-        color: var(--iv-carousel-arrow-hover-color, #ff5858); 
+        color: var(--iv-carousel-arrow-hover-color, transparent); 
       }
 
     }
@@ -173,7 +167,7 @@
     bottom: 1rem;
     right: 1rem;
     background: var(--iv-carousel-slide-count-bg, unset);
-    color: var(--iv-carousel-slide-count-color, #fff);
+    color: var(--iv-carousel-slide-count-color, transparent);
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     font-size: 0.875rem;

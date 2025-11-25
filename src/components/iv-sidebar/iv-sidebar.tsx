@@ -16,10 +16,6 @@ export class IvSidebar {
 
   @Prop() newsletterpopuptrigger?: NewsletterTimerOptions['newsletterpopuptrigger'];
   @Prop() newsletterpopuptimedelay?: NewsletterTimerOptions['newsletterpopuptimedelay'];
-  @Prop() newsletterpopuptitle?: NewsletterTimerOptions['newsletterpopuptitle'];
-  @Prop() newsletterpopuptext?: NewsletterTimerOptions['newsletterpopuptext'];
-  @Prop() newsletterpopupimage?: NewsletterTimerOptions['newsletterpopupimage'];
-  @Prop() newsletterpopupdisclaimer?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
   
   @State() sidebarState: boolean = false;
   @State() contentName: string;

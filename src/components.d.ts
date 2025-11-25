@@ -11,7 +11,15 @@ export { NewsletterTimerOptions } from "./utils/shared/newsletter-timer";
 export { NewsletterFailDetail, NewsletterSuccessDetail } from "./components/iv-newsletter/iv-newsletter";
 export namespace Components {
     interface IvAccordion {
+        /**
+          * @default 'vertical'
+         */
+        "acordionlayout": 'vertical' | 'horizontal';
         "allowmultiple"?: boolean;
+        /**
+          * @default 'right'
+         */
+        "contentplacement": 'below' | 'right';
         "dropdownicon"?: 'chevron-down-outline' | 'add-outline';
         "labels": string;
         "startopen"?: boolean;
@@ -56,10 +64,7 @@ export namespace Components {
           * @default 3000
          */
         "autoplayspeed": number;
-        /**
-          * @default 'center'
-         */
-        "halign": 'left' | 'center' | 'right';
+        "halign"?: 'left' | 'center' | 'right';
         /**
           * @default false
          */
@@ -67,10 +72,7 @@ export namespace Components {
         "navarrows"?: boolean;
         "navdots"?: boolean;
         "showslidecount"?: boolean;
-        /**
-          * @default 'center'
-         */
-        "valign": 'top' | 'center' | 'bottom';
+        "valign"?: 'top' | 'center' | 'bottom';
     }
     interface IvCompareProduct {
     }
@@ -169,6 +171,7 @@ export namespace Components {
     interface IvFilters {
     }
     interface IvFooter {
+        "footerbackground"?: string;
         "gridtemplateareas": string;
     }
     interface IvLayout {
@@ -225,19 +228,21 @@ export namespace Components {
         "showicons": boolean;
     }
     interface IvModal {
-        "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
-        "newsletterpopupimage"?: NewsletterTimerOptions['newsletterpopupimage'];
-        "newsletterpopuptext"?: NewsletterTimerOptions['newsletterpopuptext'];
         "newsletterpopuptimedelay"?: NewsletterTimerOptions['newsletterpopuptimedelay'];
-        "newsletterpopuptitle"?: NewsletterTimerOptions['newsletterpopuptitle'];
         "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvNewsletter {
         "formdescriptiontext"?: string;
         "formfailuremessage"?: string;
+        "formimageheight"?: string;
+        "formimageposition"?: 'top' | 'cover';
+        "formimageurl"?: string;
         "formlabeltext"?: string;
         "formplaceholdertext"?: string;
-        "formstackbutton"?: boolean;
+        /**
+          * @default false
+         */
+        "formstackbutton": boolean;
         /**
           * @default 'Subscribe'
          */
@@ -248,7 +253,11 @@ export namespace Components {
          */
         "formtitletag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
         "formtitletext"?: string;
-        "includeloadingspinner"?: boolean;
+        /**
+          * @default true
+         */
+        "includeloadingspinner": boolean;
+        "newsletterpopupdisclaimer"?: string;
     }
     interface IvPredictiveSearch {
         "action"?: string;
@@ -327,11 +336,7 @@ export namespace Components {
         "producthandles"?: string;
     }
     interface IvSidebar {
-        "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
-        "newsletterpopupimage"?: NewsletterTimerOptions['newsletterpopupimage'];
-        "newsletterpopuptext"?: NewsletterTimerOptions['newsletterpopuptext'];
         "newsletterpopuptimedelay"?: NewsletterTimerOptions['newsletterpopuptimedelay'];
-        "newsletterpopuptitle"?: NewsletterTimerOptions['newsletterpopuptitle'];
         "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvSpinner {
@@ -723,7 +728,15 @@ declare global {
 }
 declare namespace LocalJSX {
     interface IvAccordion {
+        /**
+          * @default 'vertical'
+         */
+        "acordionlayout"?: 'vertical' | 'horizontal';
         "allowmultiple"?: boolean;
+        /**
+          * @default 'right'
+         */
+        "contentplacement"?: 'below' | 'right';
         "dropdownicon"?: 'chevron-down-outline' | 'add-outline';
         "labels"?: string;
         "startopen"?: boolean;
@@ -769,9 +782,6 @@ declare namespace LocalJSX {
           * @default 3000
          */
         "autoplayspeed"?: number;
-        /**
-          * @default 'center'
-         */
         "halign"?: 'left' | 'center' | 'right';
         /**
           * @default false
@@ -780,9 +790,6 @@ declare namespace LocalJSX {
         "navarrows"?: boolean;
         "navdots"?: boolean;
         "showslidecount"?: boolean;
-        /**
-          * @default 'center'
-         */
         "valign"?: 'top' | 'center' | 'bottom';
     }
     interface IvCompareProduct {
@@ -883,6 +890,7 @@ declare namespace LocalJSX {
     interface IvFilters {
     }
     interface IvFooter {
+        "footerbackground"?: string;
         "gridtemplateareas"?: string;
     }
     interface IvLayout {
@@ -939,18 +947,20 @@ declare namespace LocalJSX {
         "showicons"?: boolean;
     }
     interface IvModal {
-        "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
-        "newsletterpopupimage"?: NewsletterTimerOptions['newsletterpopupimage'];
-        "newsletterpopuptext"?: NewsletterTimerOptions['newsletterpopuptext'];
         "newsletterpopuptimedelay"?: NewsletterTimerOptions['newsletterpopuptimedelay'];
-        "newsletterpopuptitle"?: NewsletterTimerOptions['newsletterpopuptitle'];
         "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvNewsletter {
         "formdescriptiontext"?: string;
         "formfailuremessage"?: string;
+        "formimageheight"?: string;
+        "formimageposition"?: 'top' | 'cover';
+        "formimageurl"?: string;
         "formlabeltext"?: string;
         "formplaceholdertext"?: string;
+        /**
+          * @default false
+         */
         "formstackbutton"?: boolean;
         /**
           * @default 'Subscribe'
@@ -962,7 +972,11 @@ declare namespace LocalJSX {
          */
         "formtitletag"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
         "formtitletext"?: string;
+        /**
+          * @default true
+         */
         "includeloadingspinner"?: boolean;
+        "newsletterpopupdisclaimer"?: string;
         "onNewsletterFail"?: (event: IvNewsletterCustomEvent<NewsletterFailDetail>) => void;
         "onNewsletterSuccess"?: (event: IvNewsletterCustomEvent<NewsletterSuccessDetail>) => void;
     }
@@ -1044,11 +1058,7 @@ declare namespace LocalJSX {
         "producthandles"?: string;
     }
     interface IvSidebar {
-        "newsletterpopupdisclaimer"?: NewsletterTimerOptions['newsletterpopupdisclaimer'];
-        "newsletterpopupimage"?: NewsletterTimerOptions['newsletterpopupimage'];
-        "newsletterpopuptext"?: NewsletterTimerOptions['newsletterpopuptext'];
         "newsletterpopuptimedelay"?: NewsletterTimerOptions['newsletterpopuptimedelay'];
-        "newsletterpopuptitle"?: NewsletterTimerOptions['newsletterpopuptitle'];
         "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvSpinner {

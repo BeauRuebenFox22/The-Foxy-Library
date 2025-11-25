@@ -3,10 +3,6 @@ import { hasSessionItem, setSessionItem } from '../storage/factory';
 export interface NewsletterTimerOptions {
   newsletterpopuptrigger?: 'time_delay' | 'exit_intent';
   newsletterpopuptimedelay?: number;
-  newsletterpopuptitle?: string;
-  newsletterpopuptext?: string;
-  newsletterpopupimage?: string;
-  newsletterpopupdisclaimer?: string;
 };
 
 export interface NewsletterTimerState {
