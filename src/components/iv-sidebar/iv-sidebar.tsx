@@ -82,7 +82,7 @@ export class IvSidebar {
   };
 
   render() {
-    
+
     return [
 
       <div class={`${BLOCK} ${ this.sidebarState && 'open' }`} role="complementary" aria-labelledby="iv-sidebar-title">

@@ -1,243 +1,143 @@
-// Intravenous Newsletter Component Styles
-// Uses scoped CSS variables with fallbacks so designers can override selectively.
-// All variables are prefixed with `iv-newsletter-*`.
+/* Simplified base styles for iv-newsletter (no CSS variables) */
+/* Goals:
+	 1. Component fills parent slot (width & height).
+	 2. Image modes: top (above content) and cover (background behind content).
+	 3. formstackbutton controls stacked vs inline input/button.
+*/
 
 .iv-newsletter {
-	/* Dimensional & layout vars */
-	--iv-newsletter-max-width: var(--iv-newsletter-max-width, 540px);
-	--iv-newsletter-padding: var(--iv-newsletter-padding, 1.75rem 1.75rem 2.25rem);
-	--iv-newsletter-gap: var(--iv-newsletter-gap, 1.25rem);
-	--iv-newsletter-row-gap: var(--iv-newsletter-row-gap, .75rem);
-	--iv-newsletter-border-radius: var(--iv-newsletter-border-radius, 0.75rem);
-	--iv-newsletter-border-color: var(--iv-newsletter-border-color, rgba(0,0,0,0.08));
-	--iv-newsletter-border-width: var(--iv-newsletter-border-width, 1px);
-	--iv-newsletter-shadow: var(--iv-newsletter-shadow, 0 4px 18px -2px rgba(0,0,0,0.12));
-
-	/* Color & background vars */
-	--iv-newsletter-bg: var(--iv-newsletter-bg, #ffffff);
-	--iv-newsletter-cover-overlay: var(--iv-newsletter-cover-overlay, linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.6)));
-	--iv-newsletter-title-color: var(--iv-newsletter-title-color, #111111);
-	--iv-newsletter-description-color: var(--iv-newsletter-description-color, #444444);
-	--iv-newsletter-feedback-success-color: var(--iv-newsletter-feedback-success-color, #0A7A3B);
-	--iv-newsletter-feedback-error-color: var(--iv-newsletter-feedback-error-color, #B00020);
-
-	/* Typography vars */
-	--iv-newsletter-title-font-size: var(--iv-newsletter-title-font-size, 1.5rem);
-	--iv-newsletter-title-font-weight: var(--iv-newsletter-title-font-weight, 600);
-	--iv-newsletter-description-font-size: var(--iv-newsletter-description-font-size, .95rem);
-	--iv-newsletter-description-line-height: var(--iv-newsletter-description-line-height, 1.5);
-
-	/* Form vars */
-	--iv-newsletter-input-bg: var(--iv-newsletter-input-bg, #ffffff);
-	--iv-newsletter-input-color: var(--iv-newsletter-input-color, #222222);
-	--iv-newsletter-input-border-color: var(--iv-newsletter-input-border-color, rgba(0,0,0,0.25));
-	--iv-newsletter-input-border-radius: var(--iv-newsletter-input-border-radius, 0.5rem);
-	--iv-newsletter-input-padding: var(--iv-newsletter-input-padding, 0.75rem 0.9rem);
-	--iv-newsletter-input-focus-ring: var(--iv-newsletter-input-focus-ring, #2684FF);
-	--iv-newsletter-button-bg: var(--iv-newsletter-button-bg, #111111);
-	--iv-newsletter-button-color: var(--iv-newsletter-button-color, #ffffff);
-	--iv-newsletter-button-hover-bg: var(--iv-newsletter-button-hover-bg, #333333);
-	--iv-newsletter-button-disabled-opacity: var(--iv-newsletter-button-disabled-opacity, .55);
-	--iv-newsletter-button-padding: var(--iv-newsletter-button-padding, 0.75rem 1.1rem);
-	--iv-newsletter-button-border-radius: var(--iv-newsletter-button-border-radius, 0.5rem);
-	--iv-newsletter-row-stack-gap: var(--iv-newsletter-row-stack-gap, .65rem);
-
-	/* Transitions */
-	--iv-newsletter-transition-speed: var(--iv-newsletter-transition-speed, .3s);
-	--iv-newsletter-ease: var(--iv-newsletter-ease, cubic-bezier(.4,.2,.2,1));
-
-	width: 100%;
-	max-width: var(--iv-newsletter-max-width);
-	padding: var(--iv-newsletter-padding);
-	box-sizing: border-box;
-	background: var(--iv-newsletter-bg);
-	border: var(--iv-newsletter-border-width) solid var(--iv-newsletter-border-color);
-	border-radius: var(--iv-newsletter-border-radius);
-	box-shadow: var(--iv-newsletter-shadow);
 	display: flex;
 	flex-direction: column;
-	gap: var(--iv-newsletter-gap);
+	width: 100%;
+	box-sizing: border-box;
+	padding: 24px 24px 32px;
+	background: #111;
+	color: #eee;
+	border-radius: 8px;
 	position: relative;
 	overflow: hidden;
+	gap: 18px;
+	font-family: inherit;
+
+  &.newsletter-modal {
+    height: 50vh;
+  }
+
 }
 
-/* Cover image mode: image fills component, content overlays */
-.iv-newsletter .iv-newsletter-image.iv-newsletter-image-cover {
+/* Top image: sits above header/form */
+.iv-newsletter-image-top {
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 6px;
+	margin: 0 0 12px;
+}
+
+/* Cover image: fills entire container behind content */
+.iv-newsletter-image-cover {
 	position: absolute;
 	inset: 0;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: top left; /* top -> bottom left -> right base per requirements */
+	object-position: center;
 	z-index: 0;
+	filter: brightness(.85);
 }
 
-.iv-newsletter.status-success { --iv-newsletter-title-color: var(--iv-newsletter-title-color-success, #0A7A3B); }
-.iv-newsletter.status-error { --iv-newsletter-title-color: var(--iv-newsletter-title-color-error, #B00020); }
-
-/* Overlay gradient for cover mode */
-.iv-newsletter .iv-newsletter-image.iv-newsletter-image-cover + .iv-newsletter-header,
-.iv-newsletter .iv-newsletter-image.iv-newsletter-image-cover + .iv-newsletter-header + .iv-newsletter-form,
-.iv-newsletter .iv-newsletter-image.iv-newsletter-image-cover ~ .iv-newsletter-form-feedback {
+/* Layer content above cover image */
+.iv-newsletter-image-cover + .iv-newsletter-header,
+.iv-newsletter-image-cover + .iv-newsletter-header + .iv-newsletter-form,
+.iv-newsletter-image-cover ~ .iv-newsletter-disclaimer,
+.iv-newsletter-image-cover ~ .iv-newsletter-form-feedback {
 	position: relative;
 	z-index: 1;
 }
 
-.iv-newsletter .iv-newsletter-image.iv-newsletter-image-cover::after { content: none; }
-
-/* Create overlay via pseudo on container */
-.iv-newsletter:has(.iv-newsletter-image-cover)::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: var(--iv-newsletter-cover-overlay);
-	z-index: 0;
-	pointer-events: none;
-}
-
-/* Top image mode: image just sits above header content */
-.iv-newsletter .iv-newsletter-image.iv-newsletter-image-top {
-	width: 100%;
-	display: block;
-	object-fit: cover;
-	object-position: top left;
-	border-radius: calc(var(--iv-newsletter-border-radius) - 2px);
-	margin-bottom: .5rem;
-	height: auto; /* height overridden via inline style if provided */
-}
-
-/* Header */
+/* Header block */
 .iv-newsletter-header {
 	display: flex;
 	flex-direction: column;
-	gap: .5rem;
-	position: relative;
-	z-index: 1;
+	gap: 8px;
 }
-
 .iv-newsletter-title {
 	margin: 0;
-	font-size: var(--iv-newsletter-title-font-size);
-	font-weight: var(--iv-newsletter-title-font-weight);
-	color: var(--iv-newsletter-title-color);
+	font-size: 1.4rem;
+	font-weight: 600;
 	line-height: 1.25;
+	color: #fff;
 }
-
 .iv-newsletter-description {
 	margin: 0;
-	font-size: var(--iv-newsletter-description-font-size);
-	line-height: var(--iv-newsletter-description-line-height);
-	color: var(--iv-newsletter-description-color);
+	font-size: .95rem;
+	line-height: 1.45;
+	color: #ccc;
 }
 
 /* Form */
-.iv-newsletter-form {
-	display: flex;
-	flex-direction: column;
-	gap: var(--iv-newsletter-row-gap);
-}
-
+.iv-newsletter-form { display: flex; flex-direction: column; gap: 12px; }
 .iv-newsletter-form-label {
-	font-size: .8rem;
+	font-size: .7rem;
 	font-weight: 600;
 	letter-spacing: .5px;
 	text-transform: uppercase;
-	color: var(--iv-newsletter-description-color);
+	color: #bbb;
 }
-
-.iv-newsletter-form-row {
-	display: flex;
-	align-items: stretch;
-	gap: .5rem;
-}
-
-.iv-newsletter-form-row--stacked { flex-direction: column; gap: var(--iv-newsletter-row-stack-gap); }
+.iv-newsletter-form-row { display: flex; gap: 8px; align-items: stretch; }
+.iv-newsletter-form-row--stacked { flex-direction: column; }
 
 .iv-newsletter-form-input {
 	flex: 1 1 auto;
-	background: var(--iv-newsletter-input-bg);
-	color: var(--iv-newsletter-input-color);
-	padding: var(--iv-newsletter-input-padding);
-	border: 1px solid var(--iv-newsletter-input-border-color);
-	border-radius: var(--iv-newsletter-input-border-radius);
+	background: #1c1d1e;
+	color: #eee;
+	border: 1px solid #333;
+	border-radius: 6px;
+	padding: 10px 12px;
 	font-size: .95rem;
-	line-height: 1.2;
+	line-height: 1.3;
 	outline: none;
-	transition: border-color var(--iv-newsletter-transition-speed) var(--iv-newsletter-ease),
-							box-shadow var(--iv-newsletter-transition-speed) var(--iv-newsletter-ease);
 }
-
-.iv-newsletter-form-input:focus-visible {
-	border-color: var(--iv-newsletter-input-focus-ring);
-	box-shadow: 0 0 0 3px color-mix(in srgb, var(--iv-newsletter-input-focus-ring) 55%, transparent);
-}
+.iv-newsletter-form-input:focus { border-color: #555; box-shadow: 0 0 0 2px #222; }
 
 .iv-newsletter-form-button {
-	background: var(--iv-newsletter-button-bg);
-	color: var(--iv-newsletter-button-color);
-	border: none;
-	padding: var(--iv-newsletter-button-padding);
-	border-radius: var(--iv-newsletter-button-border-radius);
-	font-size: .95rem;
+	background: #f5f5f5;
+	color: #111;
+	border: 1px solid #222;
+	border-radius: 6px;
+	padding: 10px 18px;
+	font-size: .9rem;
 	font-weight: 600;
 	cursor: pointer;
-	transition: background var(--iv-newsletter-transition-speed) var(--iv-newsletter-ease),
-							opacity var(--iv-newsletter-transition-speed) var(--iv-newsletter-ease);
+	min-width: 120px;
+	transition: background .25s ease;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	min-width: 7rem;
 }
+.iv-newsletter-form-button:hover { background: #e2e2e2; }
+.iv-newsletter-form-button:disabled { opacity: .55; cursor: not-allowed; }
 
-.iv-newsletter-form-button:hover { background: var(--iv-newsletter-button-hover-bg); }
-.iv-newsletter-form-button:disabled { opacity: var(--iv-newsletter-button-disabled-opacity); cursor: not-allowed; }
+/* Feedback / status */
+.iv-newsletter-form-feedback { margin: 4px 0 0; font-size: .85rem; color: #d5d5d5; }
+.status-success .iv-newsletter-form-feedback { color: #3bb373; }
+.status-error .iv-newsletter-form-feedback { color: #e04f4f; }
 
-/* Feedback */
-.iv-newsletter-form-feedback {
-	font-size: .85rem;
-	margin: .25rem 0 0;
-	color: var(--iv-newsletter-description-color);
-	position: relative;
-	z-index: 1;
-}
-
-.iv-newsletter.status-success .iv-newsletter-form-feedback { color: var(--iv-newsletter-feedback-success-color); }
-.iv-newsletter.status-error .iv-newsletter-form-feedback { color: var(--iv-newsletter-feedback-error-color); }
+.iv-newsletter-disclaimer { margin: 8px 0 0; font-size: .7rem; color: #999; line-height: 1.3; }
 
 /* Spinner spacing */
-.iv-newsletter.iv-newsletter-with-spinner iv-spinner { margin-top: .75rem; }
+.iv-newsletter-with-spinner iv-spinner { margin-top: 12px; }
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
-	.iv-newsletter { --iv-newsletter-padding: var(--iv-newsletter-padding-mobile, 1.25rem 1.25rem 1.75rem); }
-	.iv-newsletter-title { font-size: calc(var(--iv-newsletter-title-font-size) - .25rem); }
+	.iv-newsletter { padding: 20px 18px 28px; }
 	.iv-newsletter-form-row { flex-direction: column; }
 	.iv-newsletter-form-button { width: 100%; }
+	.iv-newsletter-title { font-size: 1.25rem; }
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-	.iv-newsletter-form-input, .iv-newsletter-form-button { transition: none; }
-}
-
-/* High contrast mode accessibility */
+/* High contrast mode */
 @media (forced-colors: active) {
-	.iv-newsletter-form-input:focus-visible { outline: 2px solid Highlight; box-shadow: none; }
-	.iv-newsletter-form-button { border: 1px solid ButtonText; }
-}
-
-/* Dark scheme optional tweaks */
-@media (prefers-color-scheme: dark) {
-	.iv-newsletter {
-		--iv-newsletter-bg: var(--iv-newsletter-bg-dark, #1d1f21);
-		--iv-newsletter-border-color: var(--iv-newsletter-border-color-dark, rgba(255,255,255,0.12));
-		--iv-newsletter-title-color: var(--iv-newsletter-title-color-dark, #f9f9f9);
-		--iv-newsletter-description-color: var(--iv-newsletter-description-color-dark, #c4c8cc);
-		--iv-newsletter-input-bg: var(--iv-newsletter-input-bg-dark, #2b2e31);
-		--iv-newsletter-input-color: var(--iv-newsletter-input-color-dark, #f9f9f9);
-		--iv-newsletter-input-border-color: var(--iv-newsletter-input-border-color-dark, rgba(255,255,255,0.3));
-		--iv-newsletter-button-bg: var(--iv-newsletter-button-bg-dark, #f9f9f9);
-		--iv-newsletter-button-color: var(--iv-newsletter-button-color-dark, #111111);
-		--iv-newsletter-button-hover-bg: var(--iv-newsletter-button-hover-bg-dark, #dcdcdc);
-	}
+	.iv-newsletter-form-input:focus { outline: 2px solid Highlight; box-shadow: none; }
 }

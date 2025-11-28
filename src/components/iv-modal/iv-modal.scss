@@ -20,12 +20,20 @@
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-  padding: 2rem;
-  min-width: 320px;
+  min-width: 50vw;
   max-width: 90vw;
+  min-height: 50vh;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make any slotted modal content (e.g., iv-newsletter) fill available space */
+::slotted(*) {
+  flex: 1 1 auto;
+  width: 100%;
 }
 
 .iv-modal-close {
@@ -37,6 +45,7 @@
   font-size: 2rem;
   cursor: pointer;
   color: #333;
+  z-index: 10;
 }
 
 .iv-modal-wishlist {

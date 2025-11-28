@@ -9,6 +9,7 @@
 
 | Property                    | Attribute                   | Description | Type                                                     | Default       |
 | --------------------------- | --------------------------- | ----------- | -------------------------------------------------------- | ------------- |
+| `classmodifier`             | `classmodifier`             |             | `string`                                                 | `undefined`   |
 | `formdescriptiontext`       | `formdescriptiontext`       |             | `string`                                                 | `undefined`   |
 | `formfailuremessage`        | `formfailuremessage`        |             | `string`                                                 | `undefined`   |
 | `formimageheight`           | `formimageheight`           |             | `string`                                                 | `undefined`   |

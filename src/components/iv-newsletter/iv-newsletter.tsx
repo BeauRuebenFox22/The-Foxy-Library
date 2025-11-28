@@ -27,6 +27,7 @@ export class IvNewsletter {
   @Prop() formdescriptiontext?: string;
   @Prop() includeloadingspinner: boolean = true;
   @Prop() newsletterpopupdisclaimer?: string;
+  @Prop() classmodifier?: string;
 
   @State() email: string = '';
   @State() formFeedback: string = '';
@@ -83,11 +84,11 @@ export class IvNewsletter {
 
     return (
 
-      <div class={`${BLOCK} status-${this.status} ${this.includeloadingspinner && `${BLOCK}-with-spinner`}`}>
+      <div class={`${BLOCK} status-${this.status} ${this.includeloadingspinner && `${BLOCK}-with-spinner`} ${this.classmodifier && this.classmodifier}`}>
         {this.formimageurl && (
-          <img 
-            class={`${BLOCK}-image ${BLOCK}-image-${this.formimageposition}`} 
-            style={{ height: `${this.formimageheight}px` }}
+          <img
+            class={`${BLOCK}-image ${BLOCK}-image-${this.formimageposition}`}
+            {...(this.formimageposition === 'top' && this.formimageheight ? { style: { height: `${this.formimageheight}px` } } : {})}
             src={this.formimageurl} />
         )}
         {(this.formtitletext || this.formdescriptiontext) && (
@@ -109,7 +110,7 @@ export class IvNewsletter {
           {this.formlabeltext && 
             <label htmlFor="ContactForm-email" class={`${BLOCK}-form-label`}>{this.formlabeltext}</label>
           }
-          <div class={`${BLOCK}-form-row${this.formstackbutton ? ` ${BLOCK}-form-row--stacked` : ''}`}>
+          <div class={`${BLOCK}-form-row ${this.formstackbutton && ` ${BLOCK}-form-row-stacked`}`}>
             <input 
               id="ContactForm-email" 
               class={`${BLOCK}-form-input`} 

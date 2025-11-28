@@ -232,6 +232,7 @@ export namespace Components {
         "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvNewsletter {
+        "classmodifier"?: string;
         "formdescriptiontext"?: string;
         "formfailuremessage"?: string;
         "formimageheight"?: string;
@@ -951,6 +952,7 @@ declare namespace LocalJSX {
         "newsletterpopuptrigger"?: NewsletterTimerOptions['newsletterpopuptrigger'];
     }
     interface IvNewsletter {
+        "classmodifier"?: string;
         "formdescriptiontext"?: string;
         "formfailuremessage"?: string;
         "formimageheight"?: string;

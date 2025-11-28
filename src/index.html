@@ -115,12 +115,16 @@
       </div>
     </iv-footer> -->
 
-    <!-- <iv-event-button eventname="openSidebar" eventdetail="newsletter">
+    <iv-event-button eventname="openSidebar" eventdetail="newsletter">
       Open Sidebar
     </iv-event-button>
-    <iv-event-button eventname="openModal" eventdetail="foxy socks">
+ 
+
+    <!-- <iv-event-button eventname="openModal" eventdetail="newsletter">
       Open Newsletter Modal
     </iv-event-button> -->
+
+    <iv-sidebar></iv-sidebar>
 
     <!-- <iv-sidebar
       newsletterpopuptrigger="time_delay"
@@ -139,18 +143,18 @@
       newsletterpopuptimedelay="3000">
       <div slot="newsletter">
         <iv-newsletter
-        formimageurl="https://via.placeholder.com/150"
-        formimageposition="top"
-        formimageheight="250"
-        formtitletext="Subscribe to our Newsletter"
-        formdescriptiontext="Get the latest updates and offers."
-        newsletterpopupdisclaimer="You can unsubscribe at any time."
-        formsuccessmessage="Thanks for subscribing!"
-        formfailuremessage="There was a problem. Please try again."
-        formplaceholdertext="Enter your email"
-        formlabeltext="Email"
-        formstackbutton
-        formtitletag="h2">
+          formimageurl="https://via.placeholder.com/150"
+          formimageposition="cover"
+          formimageheight="250"
+          formtitletext="Subscribe to our Newsletter"
+          formdescriptiontext="Get the latest updates and offers."
+          newsletterpopupdisclaimer="You can unsubscribe at any time."
+          formsuccessmessage="Thanks for subscribing!"
+          formfailuremessage="There was a problem. Please try again."
+          formplaceholdertext="Enter your email"
+          formlabeltext="Email"
+          formtitletag="h2"
+          classmodifier="newsletter-modal">
         </iv-newsletter>
       </div>
     </iv-modal>
