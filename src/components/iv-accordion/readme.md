@@ -7,12 +7,14 @@
 
 ## Properties
 
-| Property        | Attribute       | Description | Type                                      | Default     |
-| --------------- | --------------- | ----------- | ----------------------------------------- | ----------- |
-| `allowmultiple` | `allowmultiple` |             | `boolean`                                 | `undefined` |
-| `dropdownicon`  | `dropdownicon`  |             | `"add-outline" \| "chevron-down-outline"` | `undefined` |
-| `labels`        | `labels`        |             | `string`                                  | `undefined` |
-| `startopen`     | `startopen`     |             | `boolean`                                 | `undefined` |
+| Property           | Attribute          | Description | Type                                      | Default      |
+| ------------------ | ------------------ | ----------- | ----------------------------------------- | ------------ |
+| `acordionlayout`   | `acordionlayout`   |             | `"horizontal" \| "vertical"`              | `'vertical'` |
+| `allowmultiple`    | `allowmultiple`    |             | `boolean`                                 | `undefined`  |
+| `contentplacement` | `contentplacement` |             | `"below" \| "right"`                      | `'right'`    |
+| `dropdownicon`     | `dropdownicon`     |             | `"add-outline" \| "chevron-down-outline"` | `undefined`  |
+| `labels`           | `labels`           |             | `string`                                  | `undefined`  |
+| `startopen`        | `startopen`        |             | `boolean`                                 | `undefined`  |
 
 
 ## Dependencies

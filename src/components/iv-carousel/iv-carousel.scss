@@ -1,0 +1,210 @@
+.iv-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+
+  .iv-carousel-items {
+    width: 100%;
+    height: var(--iv-carousel-height, 320px);
+    position: relative;
+
+    &.halign-center {
+      .iv-carousel-item {
+        justify-content: center;
+      }
+    }
+
+    &.halign-left {
+      .iv-carousel-item {
+        justify-content: flex-start;
+      }
+    }
+
+    &.halign-right {
+      .iv-carousel-item {
+        justify-content: flex-end;
+      }
+    }
+
+    &.valign-top {
+      .iv-carousel-item {
+        align-items: flex-start;
+      }
+    }
+
+    &.valign-center { 
+      .iv-carousel-item {
+        align-items: center; 
+      }
+    }
+
+    &.valign-bottom {
+      .iv-carousel-item { 
+        align-items: flex-end; 
+      }
+    }
+
+  }
+
+  .iv-carousel-item {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+    overflow: hidden;
+    display: none;
+    padding: 1.25rem;
+  }
+
+  .iv-carousel-item.active {
+    display: flex;
+    opacity: 1;
+    z-index: 2;
+    animation: pixelate-in 0.7s cubic-bezier(.4,1.4,.6,1);
+  }
+
+  .iv-carousel-item img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    pointer-events: none;
+    animation: img-fade 0.6s ease;
+  }
+
+  .iv-carousel-content {
+    position: relative;
+    z-index: 2;
+    max-width: 60%;
+    color: var(--iv-carousel-content-color, transparent);
+    background: var(--iv-carousel-content-bg, transparent);
+    backdrop-filter: blur(2px);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+
+  .iv-carousel-item.has-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--iv-carousel-image-overlay, transparent);
+    z-index: 1;
+  }
+
+  .iv-carousel-dots {
+    position: absolute;
+    left: 50%;
+    bottom: var(--iv-carousel-dots-offset, 0);
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--iv-carousel-dots-gap, 1.25rem);
+    z-index: 5;
+    padding: 0.25rem 0.5rem;
+    background: var(--iv-carousel-dot-box-bg, rgba(255,255,255,0.6));
+    backdrop-filter: blur(4px);
+    border-radius: 999px;
+
+    .dot {
+      width: var(--iv-carousel-dot-size, 15px);
+      height: var(--iv-carousel-dot-size, 15px);
+      border-radius: 50%;
+      background: var(--iv-carousel-dot-color, transparent);
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .dot.active {
+      background: var(--iv-carousel-dot-active, transparent);
+      transform: scale(1.15);
+    }
+
+  }
+
+  .iv-carousel-arrow-wrapper {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    z-index: 4;
+
+    .arrow {
+      pointer-events: auto;
+      background: none;
+      border: none;
+      font-size: 2.5rem;
+      color: var(--iv-carousel-arrow-color, transparent);
+      cursor: pointer;
+      padding: 0 1rem;
+      transition: color 0.2s;
+    
+      &:hover { 
+        color: var(--iv-carousel-arrow-hover-color, transparent); 
+      }
+
+    }
+
+  }
+
+  .iv-carousel-slide-count {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--iv-carousel-slide-count-bg, unset);
+    color: var(--iv-carousel-slide-count-color, transparent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    z-index: 5;
+  }
+
+}
+
+@keyframes pixelate-in {
+  0% {
+    opacity: 0;
+    filter: blur(12px) contrast(200%);
+    transform: scale(1.05);
+  }
+  40% {
+    opacity: 1;
+    filter: blur(6px) contrast(150%);
+    transform: scale(1.02);
+  }
+  70% {
+    filter: blur(2px) contrast(120%);
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+  }
+}
+
+@keyframes img-fade {
+  from { 
+    opacity: 0; 
+    transform: scale(1.03); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}

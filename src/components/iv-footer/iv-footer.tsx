@@ -11,6 +11,7 @@ const BLOCK = 'iv-footer';
 export class IvFooter {
 
   @Prop() gridtemplateareas: string;
+  @Prop() footerbackground?: string;
 
   @Element() host: HTMLElement;
 

@@ -1,6 +1,9 @@
 .iv-footer {
   display: grid;
-  gap: 2rem;
+  gap: var(--iv-footer-gap, 1.5rem);
+  background: var(--iv-footer-bg, transparent);
+  margin-top: var(--iv-footer-margin-top, 3rem);
+  padding: var(--iv-footer-padding, 2rem);
 
   .footer-social-links { 
     grid-area: social; 
@@ -24,6 +27,34 @@
 
   .footer-payment-icons { 
     grid-area: payment; 
+  }
+
+  .footer-payment-icons {
+    padding: var(--iv-footer-payment-icons-padding, 0);
+    margin: var(--iv-footer-payment-icons-margin, 0);
+    display: flex;
+    justify-content: center;
+
+    .payment-icons {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+      
+      .payment-icon {
+        display: block;
+
+        .payment-icon-image {
+          width: var(--iv-footer-payment-icon-size, 40px);
+          height: auto;
+          display: block;
+        }
+
+      }
+
+    }
+
   }
 
 }

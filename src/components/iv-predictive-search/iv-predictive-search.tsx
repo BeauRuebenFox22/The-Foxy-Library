@@ -27,10 +27,8 @@ export class IvPredictiveSearch {
   @Prop() searchlabel?: string;
   @Prop() labelposition?: 'inline' | 'top' = 'top'; 
   @Prop() action?: string;
-  @Prop() method: 'get' | 'post' = 'get';
   @Prop() placeholder?: string;
   @Prop() minchars: number = 3;
-  @Prop() debounce: number = 300; 
   @Prop() resultslimit: number = 5;
   @Prop() showspinner?: boolean;
   @Prop() noresultstext: string = 'No results found';
@@ -50,6 +48,7 @@ export class IvPredictiveSearch {
   @Event() searchTermsChanged: any;
 
   // Internals
+  private readonly debounce = 3000;
   private debounceTimer: any;
   private abortController?: AbortController;
   private cache = new Map<string, any>(); 
@@ -312,13 +311,13 @@ export class IvPredictiveSearch {
   render() {
     const hasResults = this.hasRenderableResults;
     const base = this.normalizeAction(this.action);
-    const seeAllHref = `${base}?q=${encodeURIComponent(this.searchTerm || '')}`;
+    const seeAllHref = `${base}?type=product&q=${encodeURIComponent(this.searchTerm || '')}`;
     const shouldShowPanel = !!this.searchTerm && this.searchTerm.length >= this.minchars;
     return (
       <form
         class={`${BLOCK}${this.expandable ? ' expandable' : ''}`}
         action={this.action} 
-        method={this.method} 
+        method="get" 
         role="search"
         onSubmit={this.handleSearchSubmit}>
           <div class={`${BLOCK}-wrapper ${this.labelposition ? `label-${this.labelposition}` : ''}`}>

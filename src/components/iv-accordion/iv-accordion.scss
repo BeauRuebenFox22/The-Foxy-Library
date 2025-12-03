@@ -1,3 +1,160 @@
-:host {
-  display: block;
+// Intravenous Accordion Component
+// Uses CSS variables with safe fallbacks enabling Shopify theme overrides.
+// All variable names are scoped with `iv-accordion-*`.
+
+.iv-accordion {
+  /* Root variables (override at component or panel level) */
+  --iv-accordion-bg: var(--iv-accordion-bg-color, transparent);
+  --iv-accordion-border-color: var(--iv-accordion-border-color, rgba(0,0,0,0.12));
+  --iv-accordion-border-width: var(--iv-accordion-border-width, 1px);
+  --iv-accordion-radius: var(--iv-accordion-radius, 0.5rem);
+  --iv-accordion-gap: var(--iv-accordion-gap, 0.5rem);
+  --iv-accordion-transition-speed: var(--iv-accordion-transition-speed, 0.32s);
+  --iv-accordion-header-bg: var(--iv-accordion-header-bg, transparent);
+  --iv-accordion-header-color: var(--iv-accordion-header-color, currentColor);
+  --iv-accordion-header-padding: var(--iv-accordion-header-padding, 0.875rem 1rem);
+  --iv-accordion-header-font-size: var(--iv-accordion-header-font-size, 1rem);
+  --iv-accordion-header-font-weight: var(--iv-accordion-header-font-weight, 600);
+  --iv-accordion-header-icon-size: var(--iv-accordion-header-icon-size, 1rem);
+  --iv-accordion-header-icon-color: var(--iv-accordion-header-icon-color, currentColor);
+  --iv-accordion-content-bg: var(--iv-accordion-content-bg, transparent);
+  --iv-accordion-content-color: var(--iv-accordion-content-color, currentColor);
+  --iv-accordion-content-padding: var(--iv-accordion-content-padding, 0.75rem 1rem 1rem);
+  --iv-accordion-panel-shadow: var(--iv-accordion-panel-shadow, none);
+  --iv-accordion-focus-ring-color: var(--iv-accordion-focus-ring-color, #2684FF);
+  --iv-accordion-divider-color: var(--iv-accordion-divider-color, rgba(0,0,0,0.08));
+  --iv-accordion-icon-rotate-open: var(--iv-accordion-icon-rotate-open, 180deg);
+  --iv-accordion-ease: var(--iv-accordion-ease, cubic-bezier(.4,.2,.2,1));
+
+  background: var(--iv-accordion-bg);
+  border: var(--iv-accordion-border-width) solid var(--iv-accordion-border-color);
+  border-radius: var(--iv-accordion-radius);
+  display: flex;
+  flex-direction: column;
+  gap: var(--iv-accordion-gap);
+  position: relative;
+  overflow: hidden;
+}
+
+.iv-accordion.layout-horizontal { flex-direction: row; }
+.iv-accordion.layout-vertical { flex-direction: column; }
+
+.iv-accordion .accordion-panel {
+  background: var(--iv-accordion-panel-bg, transparent);
+  border-radius: var(--iv-accordion-radius);
+  box-shadow: var(--iv-accordion-panel-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: var(--iv-accordion-panel-border-width, 0) solid var(--iv-accordion-panel-border-color, transparent);
+  position: relative;
+}
+
+.iv-accordion .accordion-panel:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0;
+  height: 1px;
+  background: var(--iv-accordion-divider-color);
+  pointer-events: none;
+}
+
+.iv-accordion .accordion-header {
+  background: var(--iv-accordion-header-bg);
+  color: var(--iv-accordion-header-color);
+  padding: var(--iv-accordion-header-padding);
+  font-size: var(--iv-accordion-header-font-size);
+  font-weight: var(--iv-accordion-header-font-weight);
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.iv-accordion .accordion-header:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--iv-accordion-focus-ring-color) 65%, transparent);
+  border-radius: calc(var(--iv-accordion-radius) - 2px);
+}
+
+.iv-accordion .accordion-header::after {
+  content: var(--iv-accordion-icon-content, '▾');
+  font-size: var(--iv-accordion-header-icon-size);
+  color: var(--iv-accordion-header-icon-color);
+  margin-left: auto;
+  transform: rotate(0deg);
+  transition: transform var(--iv-accordion-transition-speed) var(--iv-accordion-ease);
+  display: inline-block;
+}
+
+.iv-accordion .accordion-header.open::after { transform: rotate(var(--iv-accordion-icon-rotate-open)); }
+
+.iv-accordion .accordion-header:hover { background: var(--iv-accordion-header-bg-hover, rgba(0,0,0,0.04)); }
+.iv-accordion .accordion-header:active { background: var(--iv-accordion-header-bg-active, rgba(0,0,0,0.08)); }
+
+.iv-accordion .accordion-content {
+  background: var(--iv-accordion-content-bg);
+  color: var(--iv-accordion-content-color);
+  padding: var(--iv-accordion-content-padding);
+  font-size: var(--iv-accordion-content-font-size, .95rem);
+  line-height: 1.5;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height var(--iv-accordion-transition-speed) var(--iv-accordion-ease),
+  opacity calc(var(--iv-accordion-transition-speed) * 0.75) var(--iv-accordion-ease);
+  will-change: max-height, opacity;
+}
+
+.iv-accordion .accordion-content.open {
+  max-height: var(--iv-accordion-content-max-height, 600px); 
+  opacity: 1;
+}
+
+/* Content placement modifier: content appears to the right of header inside each panel */
+.iv-accordion.content-right .accordion-panel { flex-direction: row; }
+.iv-accordion.content-right .accordion-header { flex: 0 0 var(--iv-accordion-horizontal-header-width, 220px); border-right: 1px solid var(--iv-accordion-border-color); }
+.iv-accordion.content-right .accordion-content { flex: 1 1 auto; max-height: none; opacity: 1; display: none; padding: var(--iv-accordion-content-padding); }
+.iv-accordion.content-right .accordion-content.open { display: block; }
+/* When content is right, we don't animate height */
+.iv-accordion.content-right .accordion-content { transition: opacity var(--iv-accordion-transition-speed) var(--iv-accordion-ease); }
+.iv-accordion.content-right .accordion-content.open { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .iv-accordion .accordion-content { transition: none; }
+  .iv-accordion .accordion-header::after { transition: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .iv-accordion {
+    --iv-accordion-border-color: var(--iv-accordion-border-color-dark, rgba(255,255,255,0.18));
+    --iv-accordion-divider-color: var(--iv-accordion-divider-color-dark, rgba(255,255,255,0.12));
+  }
+  .iv-accordion .accordion-header:hover { background: var(--iv-accordion-header-bg-hover-dark, rgba(255,255,255,0.06)); }
+  .iv-accordion .accordion-header:active { background: var(--iv-accordion-header-bg-active-dark, rgba(255,255,255,0.12)); }
+}
+
+.iv-accordion .accordion-panel.open > .accordion-header { background: var(--iv-accordion-header-bg-open, var(--iv-accordion-header-bg)); }
+.iv-accordion .accordion-panel.open > .accordion-header::after { transform: rotate(var(--iv-accordion-icon-rotate-open)); }
+.iv-accordion .accordion-panel.open > .accordion-content { max-height: var(--iv-accordion-content-max-height, 600px); opacity: 1; }
+
+.iv-accordion .accordion-content.open > * { animation: ivAccordionFadeIn calc(var(--iv-accordion-transition-speed) * 0.6) var(--iv-accordion-ease); }
+
+@keyframes ivAccordionFadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.iv-accordion .accordion-content.opem { max-height: var(--iv-accordion-content-max-height, 600px); opacity: 1; }
+
+@media (forced-colors: active) {
+  .iv-accordion .accordion-header:focus-visible { outline: 2px solid Highlight; box-shadow: none; }
 }

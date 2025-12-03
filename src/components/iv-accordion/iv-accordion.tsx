@@ -15,6 +15,8 @@ export class IvAccordion {
   @Prop() labels: string;
   @Prop() allowmultiple?: boolean;
   @Prop() startopen?: boolean;
+  @Prop() acordionlayout: 'vertical' | 'horizontal' = 'vertical';
+  @Prop() contentplacement: 'below' | 'right' = 'right';
   @Prop() dropdownicon?: 'chevron-down-outline' | 'add-outline';
 
   @State() openPanels: number[] = [];
@@ -39,12 +41,11 @@ export class IvAccordion {
 
     return (
 
-      <div class={BLOCK}>
+  <div class={`${BLOCK} layout-${this.acordionlayout} content-${this.contentplacement}`}>
         {requestedFields(this.labels).map((label, index) => (
           <div class="accordion-panel" key={index}>
             <button
               class={{
-                'copy': true,
                 'accordion-header': true,
                 'open': this.openPanels.includes(index)
               }}
