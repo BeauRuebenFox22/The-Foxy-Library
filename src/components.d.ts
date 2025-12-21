@@ -264,10 +264,6 @@ export namespace Components {
         "action"?: string;
         "clearbutton"?: string;
         /**
-          * @default 300
-         */
-        "debounce": number;
-        /**
           * @default false
          */
         "expandable": boolean;
@@ -276,10 +272,6 @@ export namespace Components {
           * @default 'top'
          */
         "labelposition"?: 'inline' | 'top';
-        /**
-          * @default 'get'
-         */
-        "method": 'get' | 'post';
         /**
           * @default 3
          */
@@ -986,10 +978,6 @@ declare namespace LocalJSX {
         "action"?: string;
         "clearbutton"?: string;
         /**
-          * @default 300
-         */
-        "debounce"?: number;
-        /**
           * @default false
          */
         "expandable"?: boolean;
@@ -998,10 +986,6 @@ declare namespace LocalJSX {
           * @default 'top'
          */
         "labelposition"?: 'inline' | 'top';
-        /**
-          * @default 'get'
-         */
-        "method"?: 'get' | 'post';
         /**
           * @default 3
          */

@@ -11,11 +11,9 @@
 | -------------------- | -------------------- | ----------- | ------------------- | ----------------------------------- |
 | `action`             | `action`             |             | `string`            | `undefined`                         |
 | `clearbutton`        | `clearbutton`        |             | `string`            | `undefined`                         |
-| `debounce`           | `debounce`           |             | `number`            | `300`                               |
 | `expandable`         | `expandable`         |             | `boolean`           | `false`                             |
 | `gridlayout`         | `gridlayout`         |             | `string`            | `undefined`                         |
 | `labelposition`      | `labelposition`      |             | `"inline" \| "top"` | `'top'`                             |
-| `method`             | `method`             |             | `"get" \| "post"`   | `'get'`                             |
 | `minchars`           | `minchars`           |             | `number`            | `3`                                 |
 | `noresultstext`      | `noresultstext`      |             | `string`            | `'No results found'`                |
 | `placeholder`        | `placeholder`        |             | `string`            | `undefined`                         |
