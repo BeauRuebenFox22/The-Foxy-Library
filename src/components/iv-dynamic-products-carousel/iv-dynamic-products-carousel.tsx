@@ -28,7 +28,7 @@ export class IvDynamicProductsCarousel {
   @Prop() emptystring: string = 'No products found';
   @Prop() cachettl?: number; 
   @Prop() stale?: boolean = true;
-  @Prop() excluse?: string;
+  @Prop() exclude?: string;
   
   @State() products: any[] = [];
   @State() errorMsg: string; 
@@ -68,11 +68,11 @@ export class IvDynamicProductsCarousel {
   };
 
   private filterAndSliceProducts(data: any[]): any[] {
-    if(!this.excluse) return data.slice(0, this.limit);
+    if(!this.exclude) return data.slice(0, this.limit);
     if(!this.requestedfields || !this.requestedfields.includes('productType')) {
       this.requestedfields = this.ensureProductTypeField(this.requestedfields);
     };
-    const filtered = data.filter(p => p.productType !== this.excluse);
+    const filtered = data.filter(p => p.productType !== this.exclude);
     return filtered.slice(0, this.limit);
   };
 

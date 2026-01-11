@@ -16,7 +16,7 @@
 | `collectionhandle` | `collectionhandle` |             | `string`                                                                           | `'all'`               |
 | `componenttitle`   | `componenttitle`   |             | `string`                                                                           | `undefined`           |
 | `emptystring`      | `emptystring`      |             | `string`                                                                           | `'No products found'` |
-| `excluse`          | `excluse`          |             | `string`                                                                           | `undefined`           |
+| `exclude`          | `exclude`          |             | `string`                                                                           | `undefined`           |
 | `limit`            | `limit`            |             | `number`                                                                           | `24`                  |
 | `requestedfields`  | `requestedfields`  |             | `string`                                                                           | `undefined`           |
 | `reversed`         | `reversed`         |             | `boolean`                                                                          | `false`               |
