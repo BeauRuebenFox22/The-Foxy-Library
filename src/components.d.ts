@@ -260,6 +260,26 @@ export namespace Components {
         "includeloadingspinner": boolean;
         "newsletterpopupdisclaimer"?: string;
     }
+    interface IvPill {
+        /**
+          * @default true
+         */
+        "bordered": boolean;
+        "content": string;
+        /**
+          * @default 'none'
+         */
+        "externalspacing": 'none' | 'small' | 'medium' | 'large';
+        /**
+          * @default 'medium'
+         */
+        "internalspacing": 'small' | 'medium' | 'large';
+        "label"?: string;
+        /**
+          * @default 'medium'
+         */
+        "roundedcorners": 'none' | 'small' | 'medium' | 'large';
+    }
     interface IvPredictiveSearch {
         "action"?: string;
         "clearbutton"?: string;
@@ -577,6 +597,12 @@ declare global {
         prototype: HTMLIvNewsletterElement;
         new (): HTMLIvNewsletterElement;
     };
+    interface HTMLIvPillElement extends Components.IvPill, HTMLStencilElement {
+    }
+    var HTMLIvPillElement: {
+        prototype: HTMLIvPillElement;
+        new (): HTMLIvPillElement;
+    };
     interface HTMLIvPredictiveSearchElementEventMap {
         "searchTermsChanged": any;
     }
@@ -701,6 +727,7 @@ declare global {
         "iv-link-list": HTMLIvLinkListElement;
         "iv-modal": HTMLIvModalElement;
         "iv-newsletter": HTMLIvNewsletterElement;
+        "iv-pill": HTMLIvPillElement;
         "iv-predictive-search": HTMLIvPredictiveSearchElement;
         "iv-product-pin": HTMLIvProductPinElement;
         "iv-product-upsell": HTMLIvProductUpsellElement;
@@ -974,6 +1001,26 @@ declare namespace LocalJSX {
         "onNewsletterFail"?: (event: IvNewsletterCustomEvent<NewsletterFailDetail>) => void;
         "onNewsletterSuccess"?: (event: IvNewsletterCustomEvent<NewsletterSuccessDetail>) => void;
     }
+    interface IvPill {
+        /**
+          * @default true
+         */
+        "bordered"?: boolean;
+        "content"?: string;
+        /**
+          * @default 'none'
+         */
+        "externalspacing"?: 'none' | 'small' | 'medium' | 'large';
+        /**
+          * @default 'medium'
+         */
+        "internalspacing"?: 'small' | 'medium' | 'large';
+        "label"?: string;
+        /**
+          * @default 'medium'
+         */
+        "roundedcorners"?: 'none' | 'small' | 'medium' | 'large';
+    }
     interface IvPredictiveSearch {
         "action"?: string;
         "clearbutton"?: string;
@@ -1161,6 +1208,7 @@ declare namespace LocalJSX {
         "iv-link-list": IvLinkList;
         "iv-modal": IvModal;
         "iv-newsletter": IvNewsletter;
+        "iv-pill": IvPill;
         "iv-predictive-search": IvPredictiveSearch;
         "iv-product-pin": IvProductPin;
         "iv-product-upsell": IvProductUpsell;
@@ -1199,6 +1247,7 @@ declare module "@stencil/core" {
             "iv-link-list": LocalJSX.IvLinkList & JSXBase.HTMLAttributes<HTMLIvLinkListElement>;
             "iv-modal": LocalJSX.IvModal & JSXBase.HTMLAttributes<HTMLIvModalElement>;
             "iv-newsletter": LocalJSX.IvNewsletter & JSXBase.HTMLAttributes<HTMLIvNewsletterElement>;
+            "iv-pill": LocalJSX.IvPill & JSXBase.HTMLAttributes<HTMLIvPillElement>;
             "iv-predictive-search": LocalJSX.IvPredictiveSearch & JSXBase.HTMLAttributes<HTMLIvPredictiveSearchElement>;
             "iv-product-pin": LocalJSX.IvProductPin & JSXBase.HTMLAttributes<HTMLIvProductPinElement>;
             "iv-product-upsell": LocalJSX.IvProductUpsell & JSXBase.HTMLAttributes<HTMLIvProductUpsellElement>;
