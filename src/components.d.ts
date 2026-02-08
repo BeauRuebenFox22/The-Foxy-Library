@@ -24,6 +24,28 @@ export namespace Components {
         "labels": string;
         "startopen"?: boolean;
     }
+    interface IvAgeVerify {
+        /**
+          * @default 7
+         */
+        "cookiedays": number;
+        /**
+          * @default 18
+         */
+        "minage": number;
+        /**
+          * @default false
+         */
+        "verificationimage": boolean;
+        /**
+          * @default 'age'
+         */
+        "verificationmethod": 'boolean' | 'date' | 'age';
+        /**
+          * @default 'Age Verification'
+         */
+        "verificationtitle": string;
+    }
     interface IvBanner {
         "bannerbuttontext"?: string;
         /**
@@ -473,6 +495,12 @@ declare global {
         prototype: HTMLIvAccordionElement;
         new (): HTMLIvAccordionElement;
     };
+    interface HTMLIvAgeVerifyElement extends Components.IvAgeVerify, HTMLStencilElement {
+    }
+    var HTMLIvAgeVerifyElement: {
+        prototype: HTMLIvAgeVerifyElement;
+        new (): HTMLIvAgeVerifyElement;
+    };
     interface HTMLIvBannerElement extends Components.IvBanner, HTMLStencilElement {
     }
     var HTMLIvBannerElement: {
@@ -712,6 +740,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "iv-accordion": HTMLIvAccordionElement;
+        "iv-age-verify": HTMLIvAgeVerifyElement;
         "iv-banner": HTMLIvBannerElement;
         "iv-button": HTMLIvButtonElement;
         "iv-card": HTMLIvCardElement;
@@ -760,6 +789,28 @@ declare namespace LocalJSX {
         "dropdownicon"?: 'chevron-down-outline' | 'add-outline';
         "labels"?: string;
         "startopen"?: boolean;
+    }
+    interface IvAgeVerify {
+        /**
+          * @default 7
+         */
+        "cookiedays"?: number;
+        /**
+          * @default 18
+         */
+        "minage"?: number;
+        /**
+          * @default false
+         */
+        "verificationimage"?: boolean;
+        /**
+          * @default 'age'
+         */
+        "verificationmethod"?: 'boolean' | 'date' | 'age';
+        /**
+          * @default 'Age Verification'
+         */
+        "verificationtitle"?: string;
     }
     interface IvBanner {
         "bannerbuttontext"?: string;
@@ -1193,6 +1244,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "iv-accordion": IvAccordion;
+        "iv-age-verify": IvAgeVerify;
         "iv-banner": IvBanner;
         "iv-button": IvButton;
         "iv-card": IvCard;
@@ -1232,6 +1284,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "iv-accordion": LocalJSX.IvAccordion & JSXBase.HTMLAttributes<HTMLIvAccordionElement>;
+            "iv-age-verify": LocalJSX.IvAgeVerify & JSXBase.HTMLAttributes<HTMLIvAgeVerifyElement>;
             "iv-banner": LocalJSX.IvBanner & JSXBase.HTMLAttributes<HTMLIvBannerElement>;
             "iv-button": LocalJSX.IvButton & JSXBase.HTMLAttributes<HTMLIvButtonElement>;
             "iv-card": LocalJSX.IvCard & JSXBase.HTMLAttributes<HTMLIvCardElement>;
